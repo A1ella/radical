@@ -3,112 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radical – Магазин Стиля и Идей</title>
+  <title>Radical – Стиль и Идеи</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Видео-фон -->
   <video autoplay muted loop id="bg-video">
     <source src="assets/bg-video.mp4" type="video/mp4" />
   </video>
 
-  <!-- Фоновая музыка -->
   <audio id="bg-music" src="assets/music.mp3" autoplay loop></audio>
 
-  <!-- Хедер -->
-  <header class="header small-header">
-    <div class="logo">
-      <img src="assets/logo.png" alt="Radical Logo" />
-    </div>
-    <nav class="nav">
+  <header>
+    <div class="logo"><img src="assets/logo.png" alt="Radical Logo" /></div>
+    <nav>
       <a href="#home">Главная</a>
       <a href="#products">Товары</a>
       <a href="#articles">Статьи</a>
-      <a href="#reviews">Отзывы</a>
+      <a href="#blog">Блог</a>
+      <a href="#about">О нас</a>
       <a href="#contact">Контакты</a>
       <button id="theme-toggle">🌓</button>
     </nav>
   </header>
 
-  <!-- Главная секция -->
-  <section id="home" class="section home-section">
-    <div class="intro-text">
-      <h1 class="animated-title">Добро пожаловать в Radical</h1>
-      <p>Гармония стиля и технологий — открой для себя совершенно новое ощущение дизайна.</p>
-      <a href="#products" class="cta-button">Смотреть товары</a>
-    </div>
-  </section>
+  <main>
+    <section id="home" class="section hero">
+      <h1>Добро пожаловать в Radical</h1>
+      <p>Место, где стиль встречает технологию. Выбирайте лучшее!</p>
+      <a href="#products" class="cta-button">Перейти к товарам</a>
+    </section>
 
-  <!-- Секция товаров начинается в следующей части... -->
-    <!-- Секция товаров -->
-  <section id="products" class="section products-section">
-    <h2>Наши Товары</h2>
-    <div id="product-list" class="product-grid">
-      <!-- Продукты подгружаются из products.json -->
-    </div>
-  </section>
+    <section id="products" class="section">
+      <h2>Наши Товары</h2>
+      <div id="product-list" class="product-grid">
+        <!-- Продукты будут подгружены скриптом -->
+      </div>
+    </section>
 
-  <!-- Секция статей -->
-  <section id="articles" class="section articles-section">
-    <h2>Полезные Статьи</h2>
-    <article class="article">
-      <h3>Как выбрать идеальный стиль</h3>
-      <p>Выбор стиля — это поиск себя. Найдите гармонию между трендами и индивидуальностью в каждой детали образа.</p>
-    </article>
-    <article class="article">
-      <h3>Минимализм: Искусство Простоты</h3>
-      <p>Минимализм — это мощь через простоту. Чистые формы, свет и акценты создают атмосферу уюта и вдохновения.</p>
-    </article>
-    <article class="article">
-      <h3>Цвет как средство самовыражения</h3>
-      <p>Палитра вашего гардероба говорит о вас больше, чем кажется. Узнайте, как правильно расставить акценты.</p>
-    </article>
-  </section>
+    <section id="articles" class="section">
+      <h2>Статьи</h2>
+      <article>
+        <h3>Как выбрать идеальный стиль</h3>
+        <p>Стиль — это язык без слов. Узнай, как сочетать модные тренды с личной индивидуальностью.</p>
+      </article>
+      <article>
+        <h3>Минимализм: философия в одежде</h3>
+        <p>Меньше значит больше. Почему минимализм помогает сосредоточиться на главном.</p>
+      </article>
+      <article>
+        <h3>Цвет и энергия</h3>
+        <p>Цвет влияет на настроение и восприятие. Как подобрать идеальные оттенки для гардероба.</p>
+      </article>
+    </section>
 
-  <!-- Секция отзывов -->
-  <section id="reviews" class="section reviews-section">
-    <h2>Отзывы Клиентов</h2>
-    <div class="reviews">
-      <blockquote>
-        <p>“Впечатлён стилем и качеством. Radical — это искусство!”</p>
-        <footer>— Амина Т.</footer>
-      </blockquote>
-      <blockquote>
-        <p>“Люблю ваш подход к дизайну. Всё работает чётко, как музыка!”</p>
-        <footer>— Данил М.</footer>
-      </blockquote>
-    </div>
-  </section>
-    <!-- Секция контактов -->
-  <section id="contact" class="section contact-section">
-    <h2>Связаться с нами</h2>
-    <form id="contact-form">
-      <input type="text" placeholder="Ваше имя" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Сообщение" required></textarea>
-      <button type="submit">Отправить</button>
-    </form>
-  </section>
+    <section id="blog" class="section">
+      <h2>Блог</h2>
+      <article>
+        <h3>5 трендов этой весны</h3>
+        <p>Узнай, какие стили будут актуальны этой весной и как их внедрить в повседневную жизнь.</p>
+      </article>
+      <article>
+        <h3>Гардероб как инструмент уверенности</h3>
+        <p>Одежда может влиять на самоощущение и уверенность. Проверь, как.</p>
+      </article>
+    </section>
 
-  <!-- Подвал -->
+    <section id="about" class="section">
+      <h2>О Нас</h2>
+      <p>Radical — это команда дизайнеров, технологов и мечтателей. Мы создаём не просто одежду, а культуру.</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Связаться с нами</h2>
+      <form id="contact-form">
+        <input type="text" placeholder="Ваше имя" required />
+        <input type="email" placeholder="Email" required />
+        <textarea placeholder="Сообщение" required></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
   <footer>
     <p>&copy; 2025 Radical. Все права защищены.</p>
     <p class="quote">"Стиль — это способ сказать, кто ты, не произнося ни слова."</p>
   </footer>
 
-  <!-- Скрипты -->
   <script src="script.js"></script>
-  <script>
-    // Переключатель темы с анимацией
-    const themeToggle = document.getElementById("theme-toggle");
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-theme");
-      themeToggle.classList.add("rotate");
-      setTimeout(() => themeToggle.classList.remove("rotate"), 600);
-    });
-  </script>
 </body>
 </html>
