@@ -1,61 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const productContainer = document.getElementById("product-list");
   const themeToggle = document.getElementById("theme-toggle");
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  // Загрузка товаров из products.json
+  // Установка темы по умолчанию
+  if (localStorage.getItem("theme") === "light" || (!localStorage.getItem("theme") && !prefersDark)) {
+    document.body.classList.add("light");
+  }
+
+  // Переключатель темы
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    const theme = document.body.classList.contains("light") ? "light" : "dark";
+    localStorage.setItem("theme", theme);
+  });
+
+  // Загрузка товаров
   fetch("products.json")
-    .then((res) => res.json())
-    .then((products) => {
-      if (!productContainer) return;
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById("product-container");
+      if (!container) return;
 
-      productContainer.innerHTML = "";
-
-      products.forEach((product) => {
+      data.products.forEach(product => {
         const card = document.createElement("div");
-        card.className = "product-card fade-in";
-
+        card.className = "product-card";
         card.innerHTML = `
-          <img src="${product.image}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <p class="price">${product.price} СОМ</p>
-          <button class="buy" onclick="window.location.href='${product.link}'">Купить</button>
+          <img src="${product.image}" alt="${product.title}">
+          <h3>${product.title}</h3>
+          <p>${product.description}</p>
+          <div class="price">${product.price} сом</div>
+          <button class="buy-button" onclick="window.open('${product.link}', '_blank')">Купить</button>
         `;
+        container.appendChild(card);
 
-        productContainer.appendChild(card);
+        // Плавное появление
+        setTimeout(() => {
+          card.style.opacity = 1;
+          card.style.transform = "translateY(0)";
+        }, 100);
       });
     })
-    .catch((err) => {
-      console.error("Ошибка при загрузке товаров:", err);
-      productContainer.innerHTML = "<p>Не удалось загрузить товары.</p>";
-    });
-
-  // Переключение темы
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("light-theme");
-      const isLight = document.body.classList.contains("light-theme");
-      localStorage.setItem("theme", isLight ? "light" : "dark");
-    });
-  }
-
-  // Применение сохранённой темы
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    document.body.classList.add("light-theme");
-  }
-
-  // Плавная анимация появления
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
-
-  document.querySelectorAll(".fade-in").forEach((el) => {
-    observer.observe(el);
-  });
+    .catch(err => console.error("Ошибка загрузки товаров:", err));
 });
