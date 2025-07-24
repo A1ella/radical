@@ -1,9 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const themeToggle = document.getElementById("theme-toggle");
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  // Установка темы по умолчанию
-  if (localStorage.getItem("theme") === "light" || (!localStorage.getItem("theme") && !prefersDark)) {
+localStorage.getItem("theme") === "light" || (!localStorage.getItem("theme") && !prefersDark)) {
     document.body.classList.add("light");
   }
 
@@ -41,4 +36,3 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     })
     .catch(err => console.error("Ошибка загрузки товаров:", err));
-});
