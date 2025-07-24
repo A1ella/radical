@@ -2,12 +2,12 @@
   {
     "name": "Футболка 'Cyber Style'",
     "price": "1200",
-    "image": "assets/products/cyber-shirt.jpg"
+    "image": "assets/products/cyber-shirt.png"
   },
   {
     "name": "Кепка 'Neon Wave'",
     "price": "800",
-    "image": "assets/products/neon-cap.jpg"
+    "image": "assets/products/neon-cap.png"
   },
   {
     "name": "Худи 'Minimal Black'",
