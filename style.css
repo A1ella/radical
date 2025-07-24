@@ -1,0 +1,119 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(270deg, #000000, #444444, #ffffff);
+  background-size: 600% 600%;
+  animation: gradientBG 25s ease infinite;
+  color: #f0f0f0;
+  transition: all 0.5s ease;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1.5rem;
+  text-align: center;
+  animation: fadeInDown 1s ease;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+header nav a {
+  margin: 0 15px;
+  color: #f0f0f0;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+}
+
+header nav a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #f0f0f0;
+  transition: width 0.3s;
+  margin: auto;
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+main {
+  padding: 3rem;
+  animation: fadeInUp 1.5s ease;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+
+.hero:hover {
+  transform: scale(1.01);
+}
+
+.latest ul {
+  list-style: none;
+  padding: 0;
+}
+
+.latest li {
+  margin-bottom: 14px;
+  font-size: 1.1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  z-index: 100;
+}
+
+/* Dark mode overrides */
+body.dark {
+  background: #111;
+  color: #ccc;
+}
+body.dark header, body.dark footer {
+  background: #000;
+}
+body.dark .hero {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
