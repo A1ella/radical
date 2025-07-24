@@ -1,0 +1,140 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(-45deg, #000000, #1a1a1a, #333333, #555555);
+  background-size: 400% 400%;
+  animation: gradientFlow 20s ease infinite;
+  color: #f0f0f0;
+  transition: all 0.5s ease;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+header {
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  position: relative;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #ff7f50;
+  margin: 0;
+  text-shadow: 1px 1px 2px #000;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #00bfff;
+  transition: width 0.3s;
+  margin: auto;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+main {
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.08);
+}
+
+.hero h2 {
+  font-size: 2rem;
+  color: #ff6347;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #dddddd;
+}
+
+.latest h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #00bfff;
+}
+
+.latest li {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+/* Переключатель темы */
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Dark Mode */
+body.dark {
+  background: #111;
+  color: #ccc;
+}
+body.dark nav a {
+  color: #ffd700;
+}
+body.dark header h1 {
+  color: #ffcc70;
+}
+body.dark .hero {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
