@@ -91,3 +91,96 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Стильный магазин</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/logo.png" />
+  <script defer src="script.js"></script>
+  <script defer src="theme-toggle.js"></script>
+</head>
+<body>
+
+  <!-- Видеофон -->
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/bg.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Музыка -->
+  <audio id="bg-music" loop>
+    <source src="assets/music.mp3" type="audio/mp3" />
+  </audio>
+  <button id="music-toggle">🎵</button>
+
+  <!-- Хедер -->
+  <header class="header">
+    <img src="assets/logo.png" alt="Radical Logo" class="logo" />
+    <h1>Radical</h1>
+    <nav>
+      <a href="#home">Главная</a>
+      <a href="#products">Товары</a>
+      <a href="#articles">Статьи</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact">Контакты</a>
+      <button id="theme-toggle">🌙</button>
+    </nav>
+  </header>
+
+  <!-- Главная -->
+  <section id="home" class="section home">
+    <h2>Добро пожаловать в Radical</h2>
+    <p>Магазин стильных решений и вдохновения</p>
+    <blockquote>“Стиль — это способ сказать, кто ты есть, не произнося ни слова.”</blockquote>
+  </section>
+
+  <!-- Товары -->
+  <section id="products" class="section products">
+    <h2>Наши товары</h2>
+    <div class="product-grid" id="product-container">
+      <!-- Товары из products.json -->
+    </div>
+  </section>
+
+  <!-- Статьи -->
+  <section id="articles" class="section articles">
+    <h2>Полезные статьи</h2>
+    <article>
+      <h3>Как выбрать стильный образ?</h3>
+      <p>Стиль — это не только одежда, но и осознание себя. Узнайте, как сочетать аксессуары и подобрать тон.</p>
+    </article>
+    <article>
+      <h3>Современные тренды в уличной моде</h3>
+      <p>Узнайте, как меняется мода с каждым сезоном и как быть в тренде без лишних затрат.</p>
+    </article>
+  </section>
+
+  <!-- Отзывы -->
+  <section id="reviews" class="section reviews">
+    <h2>Отзывы наших клиентов</h2>
+    <div class="review-slider">
+      <div class="review">“Лучший сервис, всё очень красиво и быстро доставили!” — Айгуль</div>
+      <div class="review">“Товары стильные, как на фото. Советую друзьям.” — Тимур</div>
+      <div class="review">“Радикал просто топ! Брал худи — качество 🔥” — Нурбек</div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contact" class="section contact">
+    <h2>Связаться с нами</h2>
+    <form>
+      <input type="text" placeholder="Ваше имя" required />
+      <input type="email" placeholder="Ваш email" required />
+      <textarea placeholder="Ваше сообщение" required></textarea>
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Radical. Все права защищены.</p>
+  </footer>
+
+</body>
+</html>
