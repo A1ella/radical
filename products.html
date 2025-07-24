@@ -1,44 +1,52 @@
-[
-  {
-    "name": "Смарт-часы Radical One",
-    "description": "Стильные часы с трекингом активности и уведомлениями.",
-    "price": "4990",
-    "image": "assets/products/watch1.jpg",
-    "link": "https://t.me/yourshop"
-  },
-  {
-    "name": "Рюкзак Urban Style",
-    "description": "Удобный и прочный рюкзак для города и путешествий.",
-    "price": "3490",
-    "image": "assets/products/backpack1.jpg",
-    "link": "https://t.me/yourshop"
-  },
-  {
-    "name": "Наушники X-Wave",
-    "description": "Беспроводной звук высокого качества и шумоподавление.",
-    "price": "5990",
-    "image": "assets/products/headphones1.jpg",
-    "link": "https://t.me/yourshop"
-  },
-  {
-    "name": "Футболка Radical Black",
-    "description": "Черная хлопковая футболка с логотипом.",
-    "price": "1290",
-    "image": "assets/products/shirt1.jpg",
-    "link": "https://t.me/yourshop"
-  },
-  {
-    "name": "Очки VR Ultra",
-    "description": "Полное погружение в виртуальную реальность.",
-    "price": "8990",
-    "image": "assets/products/vr1.jpg",
-    "link": "https://t.me/yourshop"
-  },
-  {
-    "name": "Светящийся LED-браслет",
-    "description": "Аксессуар для вечеринок и спорта.",
-    "price": "790",
-    "image": "assets/products/ledband1.jpg",
-    "link": "https://t.me/yourshop"
-  }
-]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Товары — Radical</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/logo.png" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Radical Logo" /></a></div>
+    <nav>
+      <a href="index.html#home">Главная</a>
+      <a href="index.html#articles">Статьи</a>
+      <a href="index.html#contact">Контакты</a>
+      <a href="index.html" id="theme-toggle">🌓</a>
+    </nav>
+  </header>
+
+  <main class="section">
+    <h1>Каталог Товаров</h1>
+    <div id="product-list" class="product-grid">
+      <!-- Динамически заполняется из JSON -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Radical</p>
+  </footer>
+
+  <script>
+    fetch('products.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('product-list');
+        data.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" />
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <p class="price">${product.price} сом</p>
+            <a href="${product.link}" target="_blank" class="buy-button">Купить</a>
+          `;
+          container.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>
