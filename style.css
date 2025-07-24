@@ -1,4 +1,4 @@
-/* Основные стили */
+ Основные стили */
 body {
   margin: 0;
   font-family: 'Rubik', sans-serif;
@@ -266,11 +266,4 @@ body.light footer {
   }
 
   h1 {
-    font-size: 2.2rem;
-  }
-
-  .section h2 {
-    font-size: 2rem;
-  }
-}
-
+    font-size: 2.2rem
