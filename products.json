@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Футболка 'Cyber Style'",
+    "price": "1200",
+    "image": "assets/products/cyber-shirt.jpg"
+  },
+  {
+    "name": "Кепка 'Neon Wave'",
+    "price": "800",
+    "image": "assets/products/neon-cap.jpg"
+  },
+  {
+    "name": "Худи 'Minimal Black'",
+    "price": "2200",
+    "image": "assets/products/hoodie-black.jpg"
+  },
+  {
+    "name": "Очки 'Futuristic Glasses'",
+    "price": "1600",
+    "image": "assets/products/future-glasses.jpg"
+  },
+  {
+    "name": "Рюкзак 'Urban Style'",
+    "price": "2500",
+    "image": "assets/products/urban-backpack.jpg"
+  },
+  {
+    "name": "Кроссовки 'Street Fire'",
+    "price": "3100",
+    "image": "assets/products/sneakers-fire.jpg"
+  },
+  {
+    "name": "Часы 'Digital Minimal'",
+    "price": "2900",
+    "image": "assets/products/watch-digital.jpg"
+  },
+  {
+    "name": "Браслет 'Tech Glow'",
+    "price": "700",
+    "image": "assets/products/bracelet-glow.jpg"
+  },
+  {
+    "name": "Футболка 'Pixel Art'",
+    "price": "1150",
+    "image": "assets/products/pixel-shirt.jpg"
+  },
+  {
+    "name": "Сумка 'Crossbody Core'",
+    "price": "1800",
+    "image": "assets/products/bag-crossbody.jpg"
+  }
+]
