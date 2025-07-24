@@ -1,22 +1,44 @@
 [
   {
-    "title": "Сумка Minimal",
-    "image": "assets/products/bag.jpg",
-    "price": "1200 сом"
+    "name": "Смарт-часы Radical One",
+    "description": "Стильные часы с трекингом активности и уведомлениями.",
+    "price": "4990",
+    "image": "assets/products/watch1.jpg",
+    "link": "https://t.me/yourshop"
   },
   {
-    "title": "Очки Radical",
-    "image": "assets/products/glasses.jpg",
-    "price": "900 сом"
+    "name": "Рюкзак Urban Style",
+    "description": "Удобный и прочный рюкзак для города и путешествий.",
+    "price": "3490",
+    "image": "assets/products/backpack1.jpg",
+    "link": "https://t.me/yourshop"
   },
   {
-    "title": "Футболка Urban",
-    "image": "assets/products/tshirt.jpg",
-    "price": "1500 сом"
+    "name": "Наушники X-Wave",
+    "description": "Беспроводной звук высокого качества и шумоподавление.",
+    "price": "5990",
+    "image": "assets/products/headphones1.jpg",
+    "link": "https://t.me/yourshop"
   },
   {
-    "title": "Кроссовки Storm",
-    "image": "assets/products/shoes.jpg",
-    "price": "3200 сом"
+    "name": "Футболка Radical Black",
+    "description": "Черная хлопковая футболка с логотипом.",
+    "price": "1290",
+    "image": "assets/products/shirt1.jpg",
+    "link": "https://t.me/yourshop"
+  },
+  {
+    "name": "Очки VR Ultra",
+    "description": "Полное погружение в виртуальную реальность.",
+    "price": "8990",
+    "image": "assets/products/vr1.jpg",
+    "link": "https://t.me/yourshop"
+  },
+  {
+    "name": "Светящийся LED-браслет",
+    "description": "Аксессуар для вечеринок и спорта.",
+    "price": "790",
+    "image": "assets/products/ledband1.jpg",
+    "link": "https://t.me/yourshop"
   }
 ]
