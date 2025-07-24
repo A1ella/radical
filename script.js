@@ -35,4 +35,4 @@ localStorage.getItem("theme") === "light" || (!localStorage.getItem("theme") && 
         }, 100);
       });
     })
-    .catch(err => console.error("Ошибка загрузки товаров:", err));
+    .catch(err => console.error(
