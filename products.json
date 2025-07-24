@@ -1,46 +1,22 @@
-{
-  "products": [
-    {
-      "title": "Беспроводные наушники",
-      "description": "Отличный звук, стильный дизайн, до 24 часов работы.",
-      "price": "1290",
-      "image": "assets/products/headphones.jpg",
-      "link": "https://t.me/yourshop"
-    },
-    {
-      "title": "Смарт-часы Radical Fit",
-      "description": "Мониторинг здоровья, шагомер, Bluetooth-синхронизация.",
-      "price": "2450",
-      "image": "assets/products/smartwatch.jpg",
-      "link": "https://t.me/yourshop"
-    },
-    {
-      "title": "Рюкзак UrbanX",
-      "description": "Водонепроницаемый, USB-порт, для города и путешествий.",
-      "price": "1990",
-      "image": "assets/products/backpack.jpg",
-      "link": "https://t.me/yourshop"
-    },
-    {
-      "title": "Портативная колонка BoomMini",
-      "description": "Громкий звук, до 10 часов автономной работы.",
-      "price": "1150",
-      "image": "assets/products/speaker.jpg",
-      "link": "https://t.me/yourshop"
-    },
-    {
-      "title": "Очки виртуальной реальности",
-      "description": "Погрузитесь в мир VR прямо с телефона!",
-      "price": "3100",
-      "image": "assets/products/vr-glasses.jpg",
-      "link": "https://t.me/yourshop"
-    },
-    {
-      "title": "Игровая мышь Radical Pro",
-      "description": "RGB-подсветка, 6 кнопок, DPI до 7200.",
-      "price": "890",
-      "image": "assets/products/mouse.jpg",
-      "link": "https://t.me/yourshop"
-    }
-  ]
-}
+[
+  {
+    "title": "Сумка Minimal",
+    "image": "assets/products/bag.jpg",
+    "price": "1200 сом"
+  },
+  {
+    "title": "Очки Radical",
+    "image": "assets/products/glasses.jpg",
+    "price": "900 сом"
+  },
+  {
+    "title": "Футболка Urban",
+    "image": "assets/products/tshirt.jpg",
+    "price": "1500 сом"
+  },
+  {
+    "title": "Кроссовки Storm",
+    "image": "assets/products/shoes.jpg",
+    "price": "3200 сом"
+  }
+]
