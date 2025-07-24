@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Беспроводные наушники",
+    "description": "Отличный звук и комфорт. Совместимы с любыми устройствами.",
+    "price": "2990",
+    "image": "assets/headphones.jpg"
+  },
+  {
+    "name": "Умные часы",
+    "description": "Следите за здоровьем и уведомлениями с экрана запястья.",
+    "price": "4590",
+    "image": "assets/smartwatch.jpg"
+  },
+  {
+    "name": "Портативная колонка",
+    "description": "Мощный звук и компактность. До 12 часов работы.",
+    "price": "3490",
+    "image": "assets/speaker.jpg"
+  },
+  {
+    "name": "Геймерская мышь",
+    "description": "Точная и быстрая, с настраиваемой RGB-подсветкой.",
+    "price": "2290",
+    "image": "assets/mouse.jpg"
+  },
+  {
+    "name": "USB-хаб 4-в-1",
+    "description": "Расширьте возможности ноутбука. Поддержка USB 3.0.",
+    "price": "990",
+    "image": "assets/usb-hub.jpg"
+  }
+]
