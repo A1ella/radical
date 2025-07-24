@@ -3,197 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radical – Стильный Магазин</title>
+  <title>Radical – Магазин Стиля и Идей</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
-      color: white;
-      background: #000;
-      overflow-x: hidden;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 30px;
-      background: linear-gradient(to right, #0d0d0d, #1a1a1a);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo img {
-      height: 50px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo img:hover {
-      transform: scale(1.05);
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: orange;
-    }
-
-    #theme-toggle {
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: white;
-    }
-
-    #home {
-      text-align: center;
-      padding: 100px 20px 60px;
-    }
-
-    #home h1 {
-      font-size: 48px;
-      color: orange;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(255,140,0,0.7);
-    }
-
-    #home p {
-      font-size: 20px;
-      opacity: 0.9;
-    }
-
-    .cta-button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 12px 24px;
-      background: orange;
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-
-    .cta-button:hover {
-      background: #ffb84d;
-    }
-
-    .section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 36px;
-    }
-
-    article {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-    }
-
-    .reviews blockquote {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-left: 4px solid orange;
-      margin: 20px 0;
-      font-style: italic;
-    }
-
-    #contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    #contact-form input,
-    #contact-form textarea {
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-    }
-
-    #contact-form button {
-      background: orange;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    footer {
-      background: #111;
-      text-align: center;
-      padding: 40px 20px 20px;
-      font-size: 14px;
-    }
-
-    .quote {
-      margin-top: 10px;
-      font-style: italic;
-      color: #aaa;
-    }
-
-    .social-icons {
-      margin-top: 10px;
-    }
-
-    .social-icons img {
-      width: 24px;
-      margin: 0 8px;
-      opacity: 0.8;
-      transition: opacity 0.3s;
-    }
-
-    .social-icons img:hover {
-      opacity: 1;
-    }
-
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
-    }
-  </style>
 </head>
 <body>
 
+  <!-- Видео-фон -->
   <video autoplay muted loop id="bg-video">
     <source src="assets/bg-video.mp4" type="video/mp4" />
   </video>
 
+  <!-- Фоновая музыка -->
   <audio id="bg-music" src="assets/music.mp3" autoplay loop></audio>
 
-  <header>
-    <div class="logo"><img src="assets/logo.png" alt="Radical Logo" /></div>
-    <nav>
+  <!-- Хедер -->
+  <header class="header small-header">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Radical Logo" />
+    </div>
+    <nav class="nav">
       <a href="#home">Главная</a>
       <a href="#products">Товары</a>
       <a href="#articles">Статьи</a>
@@ -203,46 +33,57 @@
     </nav>
   </header>
 
-  <section id="home" class="section">
-    <h1>Добро пожаловать в Radical</h1>
-    <p>Где стиль встречается с инновацией. Исследуй лучшие товары и вдохновляйся!</p>
-    <a href="#products" class="cta-button">Смотреть товары</a>
-  </section>
-
-  <section id="products" class="section">
-    <h2>Наши Товары</h2>
-    <div id="product-list" class="product-grid">
-      <!-- Данные загружаются из products.json -->
+  <!-- Главная секция -->
+  <section id="home" class="section home-section">
+    <div class="intro-text">
+      <h1 class="animated-title">Добро пожаловать в Radical</h1>
+      <p>Гармония стиля и технологий — открой для себя совершенно новое ощущение дизайна.</p>
+      <a href="#products" class="cta-button">Смотреть товары</a>
     </div>
   </section>
 
-  <section id="articles" class="section">
-    <h2>Статьи и Идеи</h2>
-    <article>
+  <!-- Секция товаров начинается в следующей части... -->
+    <!-- Секция товаров -->
+  <section id="products" class="section products-section">
+    <h2>Наши Товары</h2>
+    <div id="product-list" class="product-grid">
+      <!-- Продукты подгружаются из products.json -->
+    </div>
+  </section>
+
+  <!-- Секция статей -->
+  <section id="articles" class="section articles-section">
+    <h2>Полезные Статьи</h2>
+    <article class="article">
       <h3>Как выбрать идеальный стиль</h3>
-      <p>Стиль — это отражение вашего характера. В этой статье вы узнаете, как сочетать тренды с индивидуальностью...</p>
+      <p>Выбор стиля — это поиск себя. Найдите гармонию между трендами и индивидуальностью в каждой детали образа.</p>
     </article>
-    <article>
-      <h3>Почему минимализм — это мощно</h3>
-      <p>Минимализм — не просто мода. Это способ жить легче, чище и продуктивнее...</p>
+    <article class="article">
+      <h3>Минимализм: Искусство Простоты</h3>
+      <p>Минимализм — это мощь через простоту. Чистые формы, свет и акценты создают атмосферу уюта и вдохновения.</p>
+    </article>
+    <article class="article">
+      <h3>Цвет как средство самовыражения</h3>
+      <p>Палитра вашего гардероба говорит о вас больше, чем кажется. Узнайте, как правильно расставить акценты.</p>
     </article>
   </section>
 
-  <section id="reviews" class="section">
+  <!-- Секция отзывов -->
+  <section id="reviews" class="section reviews-section">
     <h2>Отзывы Клиентов</h2>
     <div class="reviews">
       <blockquote>
-        <p>“Просто невероятный магазин! Очень стильный и удобный. Спасибо Radical!”</p>
-        <footer>— Алия Б.</footer>
+        <p>“Впечатлён стилем и качеством. Radical — это искусство!”</p>
+        <footer>— Амина Т.</footer>
       </blockquote>
       <blockquote>
-        <p>“Понравилось всё: товары, оформление, и даже музыка на фоне!”</p>
-        <footer>— Тимур К.</footer>
+        <p>“Люблю ваш подход к дизайну. Всё работает чётко, как музыка!”</p>
+        <footer>— Данил М.</footer>
       </blockquote>
     </div>
   </section>
-
-  <section id="contact" class="section">
+    <!-- Секция контактов -->
+  <section id="contact" class="section contact-section">
     <h2>Связаться с нами</h2>
     <form id="contact-form">
       <input type="text" placeholder="Ваше имя" required />
@@ -252,16 +93,22 @@
     </form>
   </section>
 
+  <!-- Подвал -->
   <footer>
     <p>&copy; 2025 Radical. Все права защищены.</p>
     <p class="quote">"Стиль — это способ сказать, кто ты, не произнося ни слова."</p>
-    <div class="social-icons">
-      <a href="#"><img src="assets/icons/telegram.svg" alt="Telegram"></a>
-      <a href="#"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
-      <a href="#"><img src="assets/icons/youtube.svg" alt="YouTube"></a>
-    </div>
   </footer>
 
+  <!-- Скрипты -->
   <script src="script.js"></script>
+  <script>
+    // Переключатель темы с анимацией
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-theme");
+      themeToggle.classList.add("rotate");
+      setTimeout(() => themeToggle.classList.remove("rotate"), 600);
+    });
+  </script>
 </body>
-
+</html>
