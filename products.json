@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Наушники Sonic Bass",
+    "description": "Беспроводные наушники с мощным басом и шумоподавлением.",
+    "price": "2990",
+    "image": "assets/headphones.jpg"
+  },
+  {
+    "name": "Умные часы SmartTime",
+    "description": "Следите за здоровьем и уведомлениями на запястье.",
+    "price": "4590",
+    "image": "assets/smartwatch.jpg"
+  },
+  {
+    "name": "Портативная колонка BoomBox",
+    "description": "Громкий и чистый звук в любом месте.",
+    "price": "3790",
+    "image": "assets/speaker.jpg"
+  },
+  {
+    "name": "Игровая мышь ProClick",
+    "description": "RGB-подсветка и высокая точность для геймеров.",
+    "price": "2190",
+    "image": "assets/mouse.jpg"
+  },
+  {
+    "name": "USB-хаб 5-в-1",
+    "description": "Расширьте возможности подключения.",
+    "price": "1490",
+    "image": "assets/usb-hub.jpg"
+  }
+]
