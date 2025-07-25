@@ -406,3 +406,42 @@ body {
   font-size: 18px;
   cursor: pointer;
 }
+/* 🌗 Тёмная тема */
+.dark-theme {
+  background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+/* ☀️ Светлая тема */
+.light-theme {
+  background-color: #f4f4f4;
+  color: #111111;
+}
+
+.light-theme .product,
+.light-theme .articles-section,
+.light-theme .reviews-section,
+.light-theme header,
+.light-theme footer {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark-theme .product,
+.dark-theme .articles-section,
+.dark-theme .reviews-section,
+.dark-theme header,
+.dark-theme footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Плавная анимация перехода тем */
+body,
+.product,
+header,
+footer,
+.articles-section,
+.reviews-section {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
