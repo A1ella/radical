@@ -254,3 +254,12 @@ footer .quote {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 }
+.product-image {
+  width: 250px;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.product-image:hover {
+  transform: scale(1.05);
+}
