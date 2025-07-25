@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radical | Главная</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Radical</h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#products">Товары</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="reviews.html">Отзывы</a></li>
+          <li><a href="#blog">Блог</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+          <li><button id="themeToggle">🌙</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <h2>Добро пожаловать в Radical</h2>
+      <p>Магазин стильных и технологичных товаров</p>
+      <a href="#products" class="btn">Смотреть товары</a>
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <div class="container">
+      <h2>Наши товары</h2>
+      <div id="product-list" class="product-grid">
+        <!-- Товары загружаются из products.json -->
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="blog">
+    <div class="container">
+      <h2>Последние статьи</h2>
+      <div class="blog-list">
+        <article class="blog-item">
+          <h3>5 причин выбрать стильный минимализм</h3>
+          <p>Минимализм — это не просто тренд, а стиль жизни. Узнай, почему он завоёвывает сердца.</p>
+        </article>
+        <article class="blog-item">
+          <h3>Как сочетать уличную моду и технологии</h3>
+          <p>Советы по стилю: носим гаджеты так, чтобы это было модно.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts" class="contacts">
+    <div class="container">
+      <h2>Свяжитесь с нами</h2>
+      <form id="contact-form">
+        <input type="text" placeholder="Ваше имя" required />
+        <input type="email" placeholder="Email" required />
+        <textarea placeholder="Ваше сообщение..." required></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Radical. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Тема
+    const toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+
+    // Загрузка товаров
+    fetch('products.json')
+      .then(res => res.json())
+      .then(products => {
+        const container = document.getElementById('product-list');
+        container.innerHTML = products.map(p => `
+          <div class="product-card">
+            <img src="${p.image}" alt="${p.name}" />
+            <h3>${p.name}</h3>
+            <p>${p.price} сом</p>
+            <a href="${p.link || '#'}" class="btn">Купить</a>
+          </div>
+        `).join('');
+      });
+  </script>
+</body>
+</html>
