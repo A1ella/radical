@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Гаджеты будущего</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 0.5s, color 0.5s;
+    }
+    .dark-theme {
+      background: #0e0e0e;
+      color: #f5f5f5;
+    }
+    .light-theme {
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+    header {
+      background: #1f1f1f;
+      padding: 20px 0;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-links a, .nav-links button {
+      margin-left: 20px;
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+    .nav-links a:hover, .nav-links button:hover {
+      transform: scale(1.1);
+    }
+    .main-title {
+      font-size: 2.5rem;
+      animation: fadeInUp 1s ease-in-out;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+    .product {
+      display: inline-block;
+      width: 30%;
+      margin: 1%;
+      background: #222;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.4s, box-shadow 0.4s;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .product:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    .buy-btn {
+      background: orange;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .buy-btn:hover {
+      background: darkorange;
+    }
+    .review {
+      border-left: 4px solid orange;
+      padding-left: 10px;
+      margin: 10px 0;
+      animation: fadeIn 0.6s ease-in;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <header class="main-header">
+    <div class="container nav">
+      <div class="logo">Radical</div>
+      <nav class="nav-links">
+        <a href="#products">Товары</a>
+        <a href="#articles">Статьи</a>
+        <a href="#reviews">Отзывы</a>
+        <button id="theme-toggle" title="Сменить тему">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2 class="main-title">Открывай будущее технологий</h2>
+      <p class="subtitle">На Radical вы найдёте обзоры, честные подборки товаров и реальные способы заработка — мы вдохновляем тебя к лучшему.</p>
+      <blockquote>«Технологии созданы, чтобы вдохновлять, а не отвлекать.»</blockquote>
+    </div>
+  </section>
+
+  <section id="products" class="products-section">
+    <div class="container">
+      <div class="product">
+        <img src="assets/products/headphones.jpg" alt="Наушники" width="100%">
+        <h3>8.490 СОМ</h3>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product">
+        <img src="assets/products/watch.jpg" alt="Умные часы" width="100%">
+        <h3>14.990 СОМ</h3>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product">
+        <img src="assets/products/airpods.jpg" alt="Наушники AirPods" width="100%">
+        <h3>3.990 СОМ</h3>
+        <button class="buy-btn">Купить</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="articles" class="articles-section">
+    <div class="container">
+      <h2>Статьи</h2>
+      <div class="articles">
+        <article>
+          <h3>Рекомендуемые гаджеты для работы и учёбы</h3>
+          <p>Выбираем устройства, которые помогут повысить продуктивность.</p>
+          <a href="#">Читать далее →</a>
+        </article>
+        <article>
+          <h3>15 лучших аксессуаров для твоего смартфона</h3>
+          <p>Стильные и функциональные решения для твоей техники.</p>
+          <a href="#">Читать далее →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <h2>Отзывы</h2>
+      <form id="review-form">
+        <div class="stars" id="star-container">
+          <span data-value="1">★</span>
+          <span data-value="2">★</span>
+          <span data-value="3">★</span>
+          <span data-value="4">★</span>
+          <span data-value="5">★</span>
+        </div>
+        <textarea id="review-text" placeholder="Напишите свой отзыв..." required></textarea>
+        <button type="submit">Отправить отзыв</button>
+      </form>
+      <div id="reviews-container"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Radical — Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Переключение темы
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      toggle.textContent = document.body.classList.contains('light-theme') ? '🌞' : '🌙';
+    });
+
+    // Отзывы
+    const stars = document.querySelectorAll('#star-container span');
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.dataset.value);
+        updateStarUI(selectedRating);
+      });
+    });
+
+    function updateStarUI(rating) {
+      stars.forEach(star => {
+        star.classList.toggle('active', parseInt(star.dataset.value) <= rating);
+      });
+    }
+
+    const reviewForm = document.getElementById('review-form');
+    const reviewText = document.getElementById('review-text');
+    const reviewContainer = document.getElementById('reviews-container');
+
+    reviewForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!selectedRating || !reviewText.value.trim()) return;
+
+      const reviewDiv = document.createElement('div');
+      reviewDiv.className = 'review';
+      reviewDiv.innerHTML = `
+        <div class="stars">${'★'.repeat(selectedRating)}</div>
+        <p>${reviewText.value}</p>
+        <button class="delete-btn">Удалить</button>
+      `;
+      reviewContainer.prepend(reviewDiv);
+
+      reviewText.value = '';
+      selectedRating = 0;
+      updateStarUI(0);
+    });
+
+    reviewContainer.addEventListener('click', e => {
+      if (e.target.classList.contains('delete-btn')) {
+        e.target.parentElement.remove();
+      }
+    });
+  </script>
+</body>
+</html>
