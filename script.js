@@ -139,18 +139,30 @@ reviewsContainer.addEventListener('click', (e) => {
     if (card) card.remove();
   }
 });
-// 🌙 Переключатель темы (светлая / тёмная)
+// 🌙 Переключатель темы с сохранением
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Установим начальную тему
-if (!body.classList.contains('light-theme') && !body.classList.contains('dark-theme')) {
-  body.classList.add('dark-theme'); // По умолчанию тёмная тема
+// Применяем сохранённую тему (если есть)
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  body.classList.add(savedTheme);
+  themeToggle.textContent = savedTheme === 'dark-theme' ? '🌙' : '☀️';
+} else {
+  body.classList.add('dark-theme');
+  themeToggle.textContent = '🌙';
 }
 
-// При клике — меняем тему
+// Переключение темы при клике
 themeToggle.addEventListener('click', () => {
-  body.classList.toggle('light-theme');
-  body.classList.toggle('dark-theme');
+  if (body.classList.contains('dark-theme')) {
+    body.classList.replace('dark-theme', 'light-theme');
+    themeToggle.textContent = '☀️';
+    localStorage.setItem('theme', 'light-theme');
+  } else {
+    body.classList.replace('light-theme', 'dark-theme');
+    themeToggle.textContent = '🌙';
+    localStorage.setItem('theme', 'dark-theme');
+  }
 });
 
