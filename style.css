@@ -17,53 +17,54 @@
 body {
   background-color: var(--bg);
   color: var(--fg);
-  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  transition: background 0.3s ease, color 0.3s ease;
+  margin: 0;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Header */
+/* HEADER */
 .main-header {
   position: sticky;
   top: 0;
   width: 100%;
-  background: rgba(20, 20, 30, 0.65);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px var(--shadow);
-  z-index: 1000;
-  padding: 10px 0;
+  background: rgba(15, 15, 30, 0.8);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px var(--shadow);
+  z-index: 999;
+  padding: 12px 0;
 }
 
 .logo {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: bold;
   color: var(--accent);
-  text-shadow: 1px 1px 5px var(--shadow);
+  text-shadow: 1px 1px 8px var(--shadow);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 22px;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--fg);
   font-weight: 500;
-  transition: 0.3s;
+  font-size: 15px;
   position: relative;
+  transition: 0.3s ease;
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
-  width: 0%;
-  height: 2px;
-  background: var(--accent);
+  bottom: -5px;
   left: 0;
-  bottom: -4px;
-  transition: 0.3s;
+  height: 2px;
+  width: 0%;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -74,21 +75,20 @@ body {
 }
 
 #theme-toggle {
-  font-size: 16px;
-  padding: 5px 10px;
-  border: 2px solid var(--accent);
   background: transparent;
   color: var(--accent);
+  border: 2px solid var(--accent);
   border-radius: 6px;
+  padding: 6px 12px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 #theme-toggle:hover {
   background: var(--accent);
   color: #fff;
 }
 
-/* Контейнер */
+/* CONTAINER */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -96,21 +96,22 @@ body {
   padding: 40px 0;
 }
 
-/* Hero */
+/* HERO */
 .hero {
   background: url('assets/bg-dark.jpg') center/cover no-repeat;
   padding: 100px 0;
   text-align: center;
+  color: var(--fg);
 }
 .main-title {
-  font-size: 48px;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 10px var(--shadow);
+  font-size: 46px;
+  margin-bottom: 18px;
+  text-shadow: 2px 2px 12px var(--shadow);
 }
 .subtitle {
   font-size: 20px;
-  opacity: 0.8;
-  margin-bottom: 30px;
+  opacity: 0.85;
+  margin-bottom: 25px;
 }
 blockquote {
   font-style: italic;
@@ -119,9 +120,10 @@ blockquote {
   border-left: 5px solid var(--accent);
   display: inline-block;
   margin-top: 30px;
+  box-shadow: 0 3px 10px var(--shadow);
 }
 
-/* Товары */
+/* PRODUCTS */
 .products-section .container {
   display: flex;
   justify-content: center;
@@ -131,12 +133,15 @@ blockquote {
   background: var(--secondary);
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px var(--shadow);
+  box-shadow: 0 6px 12px var(--shadow);
   margin: 20px;
   text-align: center;
-  transition: transform 0.3s ease;
-  display: inline-block;
   width: 260px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--shadow);
 }
 .product img {
   width: 100%;
@@ -159,15 +164,16 @@ blockquote {
   background: #ff8743;
 }
 
-/* Статьи */
+/* ARTICLES */
 .articles-section h2 {
   text-align: center;
   font-size: 32px;
+  margin-bottom: 30px;
 }
 .articles {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
 }
 .articles article {
@@ -175,13 +181,17 @@ blockquote {
   padding: 20px;
   border-radius: 10px;
   width: 300px;
-  box-shadow: 0 4px 10px var(--shadow);
+  box-shadow: 0 5px 12px var(--shadow);
+  transition: transform 0.3s ease;
+}
+.articles article:hover {
+  transform: translateY(-5px);
 }
 .articles article h3 {
   margin-top: 0;
 }
 
-/* Отзывы */
+/* REVIEWS */
 .reviews-section h2 {
   text-align: center;
 }
@@ -195,7 +205,7 @@ blockquote {
 }
 #review-text {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-top: 15px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -209,6 +219,10 @@ blockquote {
   margin-top: 15px;
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+#review-form button:hover {
+  background: #ff8743;
 }
 
 #reviews-container {
@@ -218,10 +232,11 @@ blockquote {
 .review {
   background: rgba(255, 255, 255, 0.05);
   padding: 1em;
-  border-radius: 8px;
-  margin-top: 10px;
+  border-radius: 10px;
+  margin-top: 15px;
   position: relative;
   box-shadow: 0 2px 6px var(--shadow);
+  animation: fadeIn 0.4s ease;
 }
 .review .stars {
   font-size: 20px;
@@ -241,7 +256,7 @@ blockquote {
   right: 10px;
 }
 
-/* Звёзды */
+/* Звезды */
 .stars {
   font-size: 30px;
   display: flex;
@@ -252,14 +267,14 @@ blockquote {
 }
 .stars span {
   color: #666;
-  transition: 0.2s;
+  transition: color 0.2s, text-shadow 0.2s;
 }
 .stars span.active {
   color: #ffcc00;
-  text-shadow: 0 0 5px #ffcc00;
+  text-shadow: 0 0 6px #ffcc00;
 }
 
-/* Footer */
+/* FOOTER */
 footer {
   background: var(--secondary);
   color: var(--fg);
@@ -268,7 +283,13 @@ footer {
   font-size: 14px;
 }
 
-/* Адаптивность */
+/* АНИМАЦИИ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* АДАПТИВНОСТЬ */
 @media screen and (max-width: 768px) {
   .nav-links {
     flex-direction: column;
