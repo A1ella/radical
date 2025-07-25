@@ -89,3 +89,54 @@ document.querySelectorAll('.buy-btn').forEach(button => {
     alert('Свяжитесь с нами в Telegram для оформления заказа 📦');
   });
 });
+let selectedRating = 0;
+
+// ⭐ Обработка звёзд
+const starContainer = document.getElementById('star-container');
+const stars = starContainer.querySelectorAll('span');
+
+stars.forEach((star) => {
+  star.addEventListener('click', () => {
+    selectedRating = parseInt(star.getAttribute('data-value'));
+    updateStarDisplay();
+  });
+});
+
+function updateStarDisplay() {
+  stars.forEach((s) => {
+    const val = parseInt(s.getAttribute('data-value'));
+    s.classList.toggle('active', val <= selectedRating);
+  });
+}
+
+// 📝 Обработка формы отзывов
+const form = document.getElementById('review-form');
+const textArea = document.getElementById('review-text');
+const reviewsContainer = document.getElementById('reviews-container');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const reviewText = textArea.value.trim();
+  if (reviewText && selectedRating > 0) {
+    const reviewEl = document.createElement('div');
+    reviewEl.className = 'review-card';
+    reviewEl.innerHTML = `
+      <div class="stars">${'★'.repeat(selectedRating)}</div>
+      <p>${reviewText}</p>
+      <button class="delete-review" title="Удалить отзыв">✖</button>
+    `;
+    reviewsContainer.prepend(reviewEl);
+    textArea.value = '';
+    selectedRating = 0;
+    updateStarDisplay();
+  }
+});
+
+// 🗑️ Удаление отзывов
+reviewsContainer.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete-review')) {
+    const card = e.target.closest('.review-card');
+    if (card) card.remove();
+  }
+});
+
