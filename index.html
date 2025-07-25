@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Будущее технологий</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <script defer src="reviews.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Radical</h1>
+    <button id="theme-toggle" aria-label="Переключить тему">🌙</button>
+  </header>
 
+  <section class="hero">
+    <h2>Открывай будущее технологий</h2>
+    <p>На Radical вы найдете самые свежие обзоры, честные подборы товаров и реальные способы заработка — мы вдохновляем тебя к лучшему.</p>
+  </section>
+
+  <blockquote class="quote">
+    «Технологии созданы, чтобы вдохновлять, а не отвлекать.»
+  </blockquote>
+
+  <section class="products">
+    <div class="product">
+      <img src="assets/products/headphones.jpg" alt="Наушники" />
+      <p class="price">8.490 СОМ</p>
+      <button class="buy-btn">Купить</button>
+    </div>
+    <div class="product">
+      <img src="assets/products/watch.jpg" alt="Умные часы" />
+      <p class="price">14.990 СОМ</p>
+      <button class="buy-btn">Купить</button>
+    </div>
+    <div class="product">
+      <img src="assets/products/airpods.jpg" alt="Наушники AirPods" />
+      <p class="price">3.990 СОМ</p>
+      <button class="buy-btn">Купить</button>
+    </div>
+  </section>
+
+  <section class="articles">
+    <h2>Статьи</h2>
+    <div class="article-card">
+      <h3>Рекомендуемые гаджеты для работы и учёбы</h3>
+      <p>Выбираем топовые устройства для продуктивности.</p>
+      <a href="#">Читать далее →</a>
+    </div>
+    <div class="article-card">
+      <h3>15 лучших аксессуаров для твоего смартфона</h3>
+      <p>Стильные и функциональные находки для твоего устройства.</p>
+      <a href="#">Читать далее →</a>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <h2>Отзывы</h2>
+    <div id="reviews-container"></div>
+    <form id="review-form">
+      <textarea placeholder="Оставьте ваш отзыв..." required></textarea>
+      <div class="stars">
+        <span data-star="1">★</span>
+        <span data-star="2">★</span>
+        <span data-star="3">★</span>
+        <span data-star="4">★</span>
+        <span data-star="5">★</span>
+      </div>
+      <button type="submit">Отправить отзыв</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Radical. Все права защищены.</p>
+  </footer>
+</body>
+</html>
