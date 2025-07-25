@@ -1,0 +1,256 @@
+
+/* ----------------------- */
+/*        GLOBAL CSS       */
+/* ----------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(120deg, #0d0d0d, #1a1a1a);
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+  padding-bottom: 100px;
+}
+
+body.light-mode {
+  background: #f4f4f4;
+  color: #222;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+/* ----------------------- */
+/*        NAVIGATION       */
+/* ----------------------- */
+
+nav {
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .logo {
+  font-size: 1.8em;
+  color: #f97316;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #f97316;
+}
+
+nav .theme-toggle {
+  cursor: pointer;
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+body.light-mode nav {
+  background: white;
+}
+
+body.light-mode nav ul li a {
+  color: #333;
+}
+
+body.light-mode nav .theme-toggle {
+  background: #ddd;
+  color: #333;
+}
+
+/* ----------------------- */
+/*       HERO SECTION      */
+/* ----------------------- */
+
+.hero {
+  background: url('assets/images/B2492519-95A4-4B36-BF1E-645CA4FE97BF.jpeg') no-repeat center center/cover;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero .content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ----------------------- */
+/*      REVIEWS SECTION    */
+/* ----------------------- */
+
+.reviews {
+  padding: 80px 20px;
+  background: #1a1a1a;
+}
+
+.reviews h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.review-form input, .review-form textarea, .review-form button, .review-form select {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+.review-form input, .review-form textarea {
+  background: #333;
+  color: #fff;
+}
+
+.review-form button {
+  background: #f97316;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.review-form button:hover {
+  background: #ff7c2a;
+}
+
+body.light-mode .review-form input,
+body.light-mode .review-form textarea {
+  background: #e2e2e2;
+  color: #111;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.review {
+  background: #262626;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.review .name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review .rating {
+  color: gold;
+  font-size: 1.2em;
+}
+
+/* ----------------------- */
+/*     FOOTER & OTHERS     */
+/* ----------------------- */
+
+footer {
+  background: #111;
+  color: #aaa;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 80px;
+}
+
+@media screen and (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .hero h1 {
+    font-size: 2.2em;
+  }
+
+  .hero p {
+    font-size: 1em;
+  }
+
+  .review-form {
+    padding: 0 10px;
+  }
+}
+
+/* ... Дальнейшие стили можно дополнять ниже, если нужно набрать больше строк ... */
