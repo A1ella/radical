@@ -1,1 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Стиль и Технологии</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent-color: #ff6600;
+      --text-color: #fff;
+      --bg-color: #111;
+      --card-bg: #1c1c1c;
+      --shadow: rgba(0,0,0,0.4);
+    }
 
+    body.light {
+      --text-color: #111;
+      --bg-color: #fff;
+      --card-bg: #f2f2f2;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.5s, color 0.5s;
+      overflow-x: hidden;
+    }
+
+    video#bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    audio {
+      display: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+      background-color: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav a, nav button {
+      color: var(--text-color);
+      margin-left: 1em;
+      text-decoration: none;
+      font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover, nav button:hover {
+      color: var(--accent-color);
+    }
+
+    section {
+      padding: 5em 2em;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 1em;
+    }
+
+    .cta-button {
+      background: var(--accent-color);
+      color: #fff;
+      padding: 1em 2em;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 2em;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .cta-button:hover {
+      background: #e85c00;
+      transform: scale(1.05);
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      justify-content: center;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      padding: 1.5em;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 250px;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px var(--shadow);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    .product-card h3 {
+      margin-bottom: 0.5em;
+    }
+
+    .product-card .price {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    .articles, .reviews {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+    }
+
+    article, .review {
+      background: var(--card-bg);
+      padding: 2em;
+      border-radius: 12px;
+      width: 320px;
+      text-align: left;
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+
+    article h3 {
+      margin-bottom: 0.5em;
+      color: var(--accent-color);
+    }
+
+    .review p {
+      font-style: italic;
+    }
+
+    .review footer {
+      margin-top: 1em;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 1em;
+      margin: 0.5em 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    form button {
+      background: var(--accent-color);
+      color: #fff;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+      text-align: center;
+      padding: 3em 1em;
+    }
+
+    .quote {
+      font-style: italic;
+      margin-top: 1em;
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      .product-grid, .articles, .reviews {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg-video">
+  <source src="assets/bg-video.mp4" type="video/mp4" />
+</video>
+
+<audio src="assets/music.mp3" autoplay loop></audio>
+
+<header>
+  <div class="logo"><img src="assets/logo.png" alt="Radical" /></div>
+  <nav>
+    <a href="#home">Главная</a>
+    <a href="#products">Товары</a>
+    <a href="#articles">Статьи</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#about">О нас</a>
+    <a href="#contact">Контакты</a>
+    <button id="theme-toggle">🌓</button>
+  </nav>
+</header>
+
+<section id="home">
+  <h1>Добро пожаловать в Radical</h1>
+  <p>Где мода встречается с технологиями.</p>
+  <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({ behavior: 'smooth' })">Смотреть товары</button>
+</section>
+
+<section id="products">
+  <h2>Популярные товары</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="assets/products/shirt1.png" alt="Футболка Radical" />
+      <h3>Футболка Radical</h3>
+      <p>Современный крой и премиум-качество.</p>
+      <div class="price">1290 сом</div>
+    </div>
+    <div class="product-card">
+      <img src="assets/products/cyber-shirt.png" alt="Cyber футболка" />
+      <h3>Футболка Cyber Style</h3>
+      <p>Футуристичный стиль для улиц города.</p>
+      <div class="price">1200 сом</div>
+    </div>
+  </div>
+</section>
+
+<section id="articles">
+  <h2>Полезные статьи</h2>
+  <div class="articles">
+    <article>
+      <h3>5 причин выбрать футуристичный стиль</h3>
+      <p>Современная мода уходит от шаблонов. Почему одежда будущего уже рядом?</p>
+    </article>
+    <article>
+      <h3>Как выбрать правильную ткань?</h3>
+      <p>Мягкость, воздухопроницаемость и долговечность — вот что важно.</p>
+    </article>
+    <article>
+      <h3>Минимализм и технологии</h3>
+      <p>Чистые формы и технологичные акценты — идеальный микс для города.</p>
+    </article>
+  </div>
+</section>
+
+<section id="reviews">
+  <h2>Отзывы клиентов</h2>
+  <div class="reviews">
+    <div class="review">
+      <p>“Стильно, качественно и быстро. Рад, что нашёл ваш бренд.”</p>
+      <footer>— Айбек М.</footer>
+    </div>
+    <div class="review">
+      <p>“Одежда просто 🔥. Уже 3-я покупка и всегда доволен.”</p>
+      <footer>— Диана К.</footer>
+    </div>
+    <div class="review">
+      <p>“Доставка в срок, вещи сидят идеально. Рекомендую!”</p>
+      <footer>— Бахтияр Ж.</footer>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>О нас</h2>
+  <p>Radical — бренд, где стиль сочетается с технологичностью. Мы создаём одежду для тех, кто ценит детали, движение и свежий взгляд на моду.</p>
+</section>
+
+<section id="contact">
+  <h2>Связь с нами</h2>
+  <form>
+    <input type="text" placeholder="Ваше имя" required />
+    <input type="email" placeholder="Email" required />
+    <textarea placeholder="Сообщение" required></textarea>
+    <button type="submit">Отправить</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 Radical. Все права защищены.</p>
+  <p class="quote">"Стиль — это способ сказать, кто ты, не произнося ни слова."</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+  });
+</script>
+
+</body>
+</html>
