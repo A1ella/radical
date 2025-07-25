@@ -445,3 +445,55 @@ footer,
 .reviews-section {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Темы */
+body.dark-theme {
+  background-color: #111;
+  color: #f0f0f0;
+}
+body.light-theme {
+  background-color: #f9f9f9;
+  color: #111;
+}
+
+a, button {
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Подсветка активных звёзд */
+.stars span {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: gray;
+  transition: color 0.3s;
+}
+.stars span.active {
+  color: gold;
+}
+
+/* Отзыв */
+.review {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1em;
+  border-radius: 8px;
+  margin-top: 10px;
+  position: relative;
+}
+.review-stars {
+  color: gold;
+}
+.review .delete-btn {
+  background: crimson;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
