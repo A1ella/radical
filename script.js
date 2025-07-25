@@ -139,4 +139,18 @@ reviewsContainer.addEventListener('click', (e) => {
     if (card) card.remove();
   }
 });
+// 🌙 Переключатель темы (светлая / тёмная)
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Установим начальную тему
+if (!body.classList.contains('light-theme') && !body.classList.contains('dark-theme')) {
+  body.classList.add('dark-theme'); // По умолчанию тёмная тема
+}
+
+// При клике — меняем тему
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('light-theme');
+  body.classList.toggle('dark-theme');
+});
 
