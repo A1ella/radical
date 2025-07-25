@@ -66,19 +66,23 @@
     </div>
   </section>
 
-  <section id="reviews" class="reviews-section">
-    <div class="container">
-      <h2>Отзывы</h2>
-      <form id="review-form">
-        <div class="stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <textarea id="review-text" placeholder="Напишите свой отзыв..." required></textarea>
-        <button type="submit">Отправить отзыв</button>
-      </form>
-      <div id="reviews-container"></div>
-    </div>
-  </section>
+<section id="reviews" class="reviews-section">
+  <div class="container">
+    <h2>Отзывы</h2>
+    <form id="review-form">
+      <div class="stars" id="star-container">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+      </div>
+      <textarea id="review-text" placeholder="Напишите свой отзыв..." required></textarea>
+      <button type="submit">Отправить отзыв</button>
+    </form>
+    <div id="reviews-container"></div>
+  </div>
+</section>
 
   <footer>
     <div class="container">
