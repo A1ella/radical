@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Магазин будущего</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <script defer src="reviews.js"></script>
+</head>
+<body class="light-theme">
+  <header>
+    <div class="container">
+      <h1 class="logo">Radical</h1>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#products">Товары</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#blog">Блог</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section">
+      <h2>Добро пожаловать в Radical</h2>
+      <p>Мы создаём будущее. Лучшие товары, самые стильные технологии, и вы — в центре всего этого.</p>
+    </section>
+
+    <section id="products" class="section">
+      <h2>Наши товары</h2>
+      <div id="product-list"></div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>О нас</h2>
+      <p>Radical — это команда креативных умов, стремящихся принести новое дыхание в технологическую моду. Мы объединяем стиль, инновации и удобство в каждом продукте.</p>
+    </section>
+
+    <section id="blog" class="section">
+      <h2>Блог</h2>
+      <article>
+        <h3>Как выбрать идеальную кибер-одежду?</h3>
+        <p>Советы по подбору стиля, актуальные тренды и почему технологии — это новый чёрный.</p>
+      </article>
+      <article>
+        <h3>Будущее моды: носимая электроника</h3>
+        <p>От рубашек с LED-подсветкой до одежды с датчиками — всё, что ждет нас в ближайшие годы.</p>
+      </article>
+    </section>
+
+    <section id="reviews" class="section">
+      <h2>Отзывы</h2>
+      <form id="review-form">
+        <input type="text" id="review-name" placeholder="Ваше имя" required />
+        <input type="email" id="review-email" placeholder="Ваша почта" required />
+        <textarea id="review-comment" placeholder="Комментарий" required></textarea>
+        <div id="star-rating">
+          <span data-star="1">★</span>
+          <span data-star="2">★</span>
+          <span data-star="3">★</span>
+          <span data-star="4">★</span>
+          <span data-star="5">★</span>
+        </div>
+        <button type="submit">Оставить отзыв</button>
+      </form>
+      <div id="review-list"></div>
+    </section>
+
+    <section id="contacts" class="section">
+      <h2>Контакты</h2>
+      <p>Вы можете связаться с нами по почте: <strong>kadyrmirgel5432@gmail.com</strong></p>
+      <p>Телефон: <strong>+996702126406</strong></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Radical. Все права защищены.</p>
+  </footer>
+</body>
+</html>
