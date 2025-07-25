@@ -90,4 +90,6 @@ function addReviewToDOM(review) {
   `;
 
   reviewsList.prepend(reviewCard); // Новый сверху
+  <script src="script.js"></script>
+</body>
 }
