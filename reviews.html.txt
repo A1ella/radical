@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Отзывы | Radical</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      background: #333;
+      color: #fff;
+    }
+    .stars {
+      display: flex;
+      gap: 5px;
+      margin-top: 10px;
+    }
+    .star {
+      font-size: 24px;
+      cursor: pointer;
+      color: #555;
+      transition: color 0.2s;
+    }
+    .star.active {
+      color: gold;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: orange;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .review-list {
+      margin-top: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .review {
+      background: #1f1f1f;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border-left: 5px solid orange;
+    }
+    .review strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    nav a {
+      color: orange;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="reviews.html">Отзывы</a>
+  </nav>
+
+  <h1>Отзывы клиентов</h1>
+
+  <form id="reviewForm">
+    <label for="name">Имя</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Почта</label>
+    <input type="email" id="email" required>
+
+    <label for="comment">Комментарий</label>
+    <textarea id="comment" rows="4" required></textarea>
+
+    <label>Рейтинг</label>
+    <div class="stars" id="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+
+    <button type="submit">Оставить отзыв</button>
+  </form>
+
+  <div class="review-list" id="reviewList"></div>
+
+  <script>
+    const form = document.getElementById('reviewForm');
+    const stars = document.querySelectorAll('.star');
+    const reviewList = document.getElementById('reviewList');
+
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.getAttribute('data-value'));
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < selectedRating; i++) {
+          stars[i].classList.add('active');
+        }
+      });
+    });
+
+    function loadReviews() {
+      const saved = JSON.parse(localStorage.getItem('reviews')) || [];
+      reviewList.innerHTML = '';
+      saved.forEach(({ name, email, comment, rating }) => {
+        const div = document.createElement('div');
+        div.className = 'review';
+        div.innerHTML = `
+          <strong>${name} (${email})</strong>
+          <div>Оценка: ${'⭐'.repeat(rating)}</div>
+          <p>${comment}</p>
+        `;
+        reviewList.appendChild(div);
+      });
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const comment = document.getElementById('comment').value.trim();
+
+      if (!name || !email || !comment || selectedRating === 0) {
+        alert('Пожалуйста, заполните все поля и выберите рейтинг.');
+        return;
+      }
+
+      const review = { name, email, comment, rating: selectedRating };
+      const saved = JSON.parse(localStorage.getItem('reviews')) || [];
+      saved.push(review);
+      localStorage.setItem('reviews', JSON.stringify(saved));
+
+      form.reset();
+      selectedRating = 0;
+      stars.forEach(s => s.classList.remove('active'));
+      loadReviews();
+    });
+
+    loadReviews();
+  </script>
+</body>
+</html>
