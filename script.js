@@ -25,10 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Клик по кнопке переключения темы
-themeToggle.addEventListener('click', () => {
-  const isLight = document.body.classList.contains('light-mode');
-  applyTheme(!isLight);
-  themeToggle.textContent = isLight ? '🌙' : '☀️';
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  const toggleBtn = document.getElementById("theme-toggle");
+  const isLight = document.body.classList.contains("light");
+  toggleBtn.textContent = isLight ? "☀️" : "🌙";
 });
 
 // Активация "звёздочек" рейтинга
