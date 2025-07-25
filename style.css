@@ -14,12 +14,15 @@
   --shadow: rgba(0, 0, 0, 0.1);
 }
 
+* {
+  transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
 body {
   background-color: var(--bg);
   color: var(--fg);
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* HEADER */
@@ -53,7 +56,6 @@ body {
   font-weight: 500;
   font-size: 15px;
   position: relative;
-  transition: 0.3s ease;
 }
 
 .nav-links a::after {
@@ -81,7 +83,6 @@ body {
   border-radius: 6px;
   padding: 6px 12px;
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 #theme-toggle:hover {
   background: var(--accent);
@@ -137,7 +138,6 @@ blockquote {
   margin: 20px;
   text-align: center;
   width: 260px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .product:hover {
   transform: translateY(-5px);
@@ -158,7 +158,6 @@ blockquote {
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 .buy-btn:hover {
   background: #ff8743;
@@ -182,7 +181,6 @@ blockquote {
   border-radius: 10px;
   width: 300px;
   box-shadow: 0 5px 12px var(--shadow);
-  transition: transform 0.3s ease;
 }
 .articles article:hover {
   transform: translateY(-5px);
@@ -219,7 +217,6 @@ blockquote {
   margin-top: 15px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 #review-form button:hover {
   background: #ff8743;
@@ -270,6 +267,11 @@ blockquote {
   transition: color 0.2s, text-shadow 0.2s;
 }
 .stars span.active {
+  color: #ffcc00;
+  text-shadow: 0 0 6px #ffcc00;
+}
+.stars span:hover,
+.stars span:hover ~ span {
   color: #ffcc00;
   text-shadow: 0 0 6px #ffcc00;
 }
