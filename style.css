@@ -1,9 +1,8 @@
-/* ОБЩИЕ СТИЛИ */
+/* Базовые стили */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -16,28 +15,27 @@ body {
 }
 
 body.light-theme {
-  background: #f0f0f0;
+  background: #f4f4f4;
   color: #111;
 }
 
-/* Ссылки */
 a {
   color: #ff9900;
   text-decoration: none;
   transition: color 0.3s;
 }
+
 a:hover {
   color: #ffaa33;
 }
 
-/* КОНТЕЙНЕР */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
-/* HEADER */
+/* Header */
 .main-header {
   background: #1e1e1e;
   padding: 20px 0;
@@ -45,7 +43,6 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: background 0.4s;
 }
 
 .logo {
@@ -58,13 +55,19 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
-.nav-links a {
+
+.nav-links a,
+#theme-toggle {
   margin-left: 20px;
   font-weight: 500;
   transition: transform 0.3s ease, color 0.3s;
+  font-size: 1rem;
 }
-.nav-links a:hover {
+
+.nav-links a:hover,
+#theme-toggle:hover {
   transform: scale(1.1);
   color: #ffaa33;
 }
@@ -72,154 +75,166 @@ a:hover {
 #theme-toggle {
   background: none;
   border: none;
-  font-size: 1.4rem;
   cursor: pointer;
-  color: inherit;
-  transition: transform 0.3s ease;
-}
-#theme-toggle:hover {
-  transform: rotate(20deg);
+  font-size: 1.2rem;
 }
 
-/* HERO */
+/* Hero */
 .hero {
   text-align: center;
   padding: 80px 20px 60px;
   background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
   animation: fadeIn 1s ease-in;
 }
-body.light-theme .hero {
-  background: linear-gradient(135deg, #e6e6e6, #fdfdfd);
-}
 
 .main-title {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   margin-bottom: 15px;
 }
+
 .subtitle {
   font-size: 1.1rem;
-  color: #aaa;
+  color: #ccc;
   max-width: 700px;
   margin: 0 auto 20px;
-}
-body.light-theme .subtitle {
-  color: #444;
 }
 
 blockquote {
   font-style: italic;
-  color: #888;
+  color: #999;
   margin-top: 30px;
+  font-size: 1.1rem;
 }
 
-/* ТОВАРЫ */
+/* Products */
 .products-section {
+  padding: 40px 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding: 40px 20px;
 }
 
-.products-section .product {
+.product {
   background: #1c1c1c;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 20px;
   text-align: center;
-  transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
+  width: 260px;
+  transition: transform 0.4s, box-shadow 0.4s;
   animation: fadeUp 0.6s ease both;
-}
-body.light-theme .products-section .product {
-  background: #fff;
-  color: #111;
 }
 
 .product img {
   width: 100%;
-  max-width: 200px;
-  margin-bottom: 15px;
   border-radius: 8px;
+  margin-bottom: 15px;
 }
+
 .product h3 {
+  font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
-/* КНОПКА КУПИТЬ */
 .buy-btn {
   padding: 10px 20px;
   background: #ff9900;
   color: white;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 6px;
   font-weight: bold;
+  cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
+
 .buy-btn:hover {
   background: #ffaa33;
   transform: scale(1.05);
 }
-body.light-theme .buy-btn {
-  color: #fff;
-  background: #ff9900;
-}
 
-/* СТАТЬИ */
+/* Articles */
 .articles-section {
   padding: 40px 20px;
 }
+
 .articles article {
   background: #1c1c1c;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
-  transition: transform 0.3s ease;
-  animation: fadeUp 0.8s ease both;
+  animation: fadeUp 0.6s ease both;
+  transition: transform 0.3s;
 }
+
 .articles article:hover {
   transform: translateY(-5px);
 }
-body.light-theme .articles article {
-  background: #fff;
-  color: #111;
+
+.articles h2 {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* ОТЗЫВЫ */
+/* Reviews */
 .reviews-section {
   padding: 40px 20px;
 }
+
+.reviews-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 #review-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.stars span {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.stars span:hover {
+  transform: scale(1.2);
+}
+
+.stars span.active {
+  color: #ffcc00;
+}
+
 textarea {
   resize: none;
   height: 80px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 6px;
   border: none;
+  font-size: 1rem;
 }
 
-/* ЗВЁЗДОЧКИ */
-.stars span {
-  font-size: 1.5rem;
+#review-form button {
+  padding: 10px;
+  background: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
-  color: #444;
-  transition: color 0.3s;
-}
-.stars span.active {
-  color: #ffcc00;
-}
-body.light-theme .stars span {
-  color: #999;
-}
-body.light-theme .stars span.active {
-  color: #ffaa00;
+  transition: background 0.3s, transform 0.2s;
 }
 
-/* БЛОК ОТЗЫВА */
+#review-form button:hover {
+  background: #ffaa33;
+  transform: scale(1.05);
+}
+
 .review {
   background: #2a2a2a;
   border-left: 4px solid #ff9900;
@@ -228,9 +243,12 @@ body.light-theme .stars span.active {
   border-radius: 6px;
   animation: fadeIn 0.5s ease-out;
 }
-.review .review-stars {
+
+.review .stars {
   color: #ffcc00;
+  margin-bottom: 5px;
 }
+
 .delete-btn {
   background: none;
   color: #ff4444;
@@ -238,54 +256,84 @@ body.light-theme .stars span.active {
   cursor: pointer;
   margin-top: 10px;
   font-size: 0.9rem;
-  transition: color 0.3s;
-}
-.delete-btn:hover {
-  color: red;
-}
-body.light-theme .review {
-  background: #fff;
-  border-left-color: #ff9900;
-  color: #111;
-}
-body.light-theme .delete-btn {
-  color: #cc0000;
+  transition: color 0.2s;
 }
 
-/* FOOTER */
+.delete-btn:hover {
+  color: #ff6666;
+}
+
+/* Footer */
 footer {
   background: #111;
   color: #777;
   text-align: center;
   padding: 20px;
   font-size: 0.9rem;
-}
-body.light-theme footer {
-  background: #e0e0e0;
-  color: #555;
+  margin-top: 40px;
 }
 
-/* АНИМАЦИИ */
+/* Light theme */
+body.light-theme .main-header,
+body.light-theme .product,
+body.light-theme .articles article,
+body.light-theme .review {
+  background: #fff;
+  color: #111;
+}
+
+body.light-theme .review {
+  border-left-color: #ff9900;
+}
+
+body.light-theme blockquote {
+  color: #666;
+}
+
+body.light-theme .delete-btn {
+  color: #cc0000;
+}
+
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* КЛАССЫ ДЛЯ JAVASCRIPT-АНИМАЦИЙ */
-.fade-in {
-  animation: fadeIn 0.8s ease-in forwards;
-}
-.fade-out {
-  animation: fadeOut 0.4s ease-out forwards;
-}
-.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.clicked {
-  transform: scale(0.95);
+/* Адаптивность */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .products-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
 }
