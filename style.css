@@ -275,3 +275,278 @@ footer {
     width: 90%;
   }
 }
+/* Базовая стилизация */
+:root {
+  --bg: #0f0f1a;
+  --fg: #ffffff;
+  --accent: #ff6b00;
+  --secondary: #1a1a2e;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+.light-theme {
+  --bg: #ffffff;
+  --fg: #111111;
+  --accent: #ff6b00;
+  --secondary: #f4f4f4;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #ff8743;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+/* Шапка */
+header {
+  background-color: var(--secondary);
+  box-shadow: 0 2px 10px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+nav a {
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+#theme-toggle {
+  margin-left: 20px;
+  padding: 6px 12px;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+#theme-toggle:hover {
+  background: #ff8743;
+}
+
+/* Герой-секция */
+.hero {
+  background: url('assets/bg-dark.jpg') center/cover no-repeat;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px var(--shadow);
+}
+
+.subtitle {
+  font-size: 20px;
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+blockquote {
+  font-style: italic;
+  background: var(--secondary);
+  padding: 15px 25px;
+  border-left: 5px solid var(--accent);
+  display: inline-block;
+  margin-top: 30px;
+}
+
+/* Товары */
+.products-section {
+  background: var(--bg);
+}
+
+.product {
+  background: var(--secondary);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--shadow);
+  margin: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: inline-block;
+  width: 260px;
+}
+
+.product img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product h3 {
+  margin: 15px 0;
+}
+
+.buy-btn {
+  background: var(--accent);
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.buy-btn:hover {
+  background: #ff8743;
+}
+
+.products-section .container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Статьи */
+.articles-section h2 {
+  text-align: center;
+  font-size: 32px;
+}
+
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.articles article {
+  background: var(--secondary);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 10px var(--shadow);
+}
+
+.articles article h3 {
+  margin-top: 0;
+}
+
+/* Отзывы */
+.reviews-section {
+  background: var(--bg);
+}
+
+.reviews-section h2 {
+  text-align: center;
+}
+
+#review-form {
+  background: var(--secondary);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px var(--shadow);
+}
+
+#review-form .stars span {
+  font-size: 24px;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+#review-form .stars span.active {
+  color: gold;
+}
+
+#review-text {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+#review-form button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#reviews-container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.review {
+  background: var(--secondary);
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.review .stars {
+  color: gold;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+/* Футер */
+footer {
+  background: var(--secondary);
+  color: var(--fg);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+  }
+
+  .product {
+    width: 90%;
+  }
+
+  .articles {
+    flex-direction: column;
+    align-items: center;
+  }
+}
