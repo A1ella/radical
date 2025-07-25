@@ -273,3 +273,92 @@ footer {
     align-items: center;
   }
 }
+:root {
+  --bg: #0d0d0d;
+  --fg: #ffffff;
+  --accent: #ff9800;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+body.light {
+  --bg: #f9f9f9;
+  --fg: #1a1a1a;
+  --accent: #ff9800;
+  --shadow: rgba(0, 0, 0, 0.1);
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Новый красивый header */
+.main-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(20, 20, 30, 0.65);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px var(--shadow);
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--accent);
+  text-shadow: 1px 1px 5px var(--shadow);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--fg);
+  font-weight: 500;
+  transition: 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  left: 0;
+  bottom: -4px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+#theme-toggle {
+  font-size: 16px;
+  padding: 5px 10px;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#theme-toggle:hover {
+  background: var(--accent);
+  color: #fff;
+}
