@@ -1,4 +1,4 @@
-// Переключение темы
+// Тема
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
@@ -7,67 +7,52 @@ themeToggle.addEventListener('click', () => {
   body.classList.toggle('dark-theme');
 });
 
-// Отзывы: выбор звёзд
-const starSpans = document.querySelectorAll('#review-form .stars span');
+// Подсветка звёзд
 let currentRating = 0;
-
-starSpans.forEach((star, index) => {
-  star.addEventListener('mouseover', () => {
-    starSpans.forEach((s, i) => {
-      s.classList.toggle('active', i <= index);
-    });
-  });
-
-  star.addEventListener('mouseout', () => {
-    starSpans.forEach((s, i) => {
-      s.classList.toggle('active', i < currentRating);
-    });
-  });
-
+const stars = document.querySelectorAll('#star-container span');
+stars.forEach(star => {
   star.addEventListener('click', () => {
-    currentRating = index + 1;
-    starSpans.forEach((s, i) => {
-      s.classList.toggle('active', i < currentRating);
-    });
+    currentRating = parseInt(star.dataset.value);
+    updateStars(currentRating);
   });
 });
 
-// Отправка и отображение отзыва
-const reviewForm = document.getElementById('review-form');
-const reviewText = document.getElementById('review-text');
-const reviewsContainer = document.getElementById('reviews-container');
+function updateStars(rating) {
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add('active');
+    } else {
+      star.classList.remove('active');
+    }
+  });
+}
 
-reviewForm.addEventListener('submit', function (e) {
+// Отзывы
+const form = document.getElementById('review-form');
+const container = document.getElementById('reviews-container');
+
+form.addEventListener('submit', function (e) {
   e.preventDefault();
+  const text = document.getElementById('review-text').value.trim();
+  if (text === '' || currentRating === 0) return;
 
-  if (!reviewText.value.trim() || currentRating === 0) {
-    alert('Пожалуйста, введите отзыв и выберите рейтинг.');
-    return;
-  }
+  const div = document.createElement('div');
+  div.className = 'review';
+  div.innerHTML = `
+    <div class="review-stars">${'★'.repeat(currentRating)}</div>
+    <p>${text}</p>
+    <button class="delete-btn">Удалить</button>
+  `;
 
-  const review = document.createElement('div');
-  review.classList.add('review-card');
-
-  const starsDiv = document.createElement('div');
-  starsDiv.classList.add('stars');
-  starsDiv.innerHTML = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
-
-  const textP = document.createElement('p');
-  textP.textContent = reviewText.value;
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = '✕';
-  deleteBtn.classList.add('delete-review');
-  deleteBtn.onclick = () => review.remove();
-
-  review.appendChild(starsDiv);
-  review.appendChild(textP);
-  review.appendChild(deleteBtn);
-
-  reviewsContainer.prepend(review);
-
-  // Сброс формы
-  reviewText.value = '';
+  container.prepend(div);
+  form.reset();
+  updateStars(0);
   currentRating = 0;
-  starSpans.forEach((s) => s.classList.remove('active'));
+});
+
+// Удаление
+container.addEventListener('click', function (e) {
+  if (e.target.classList.contains('delete-btn')) {
+    e.target.parentElement.remove();
+  }
 });
