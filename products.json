@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Футболка 'Cyber Style'",
+    "price": "1200",
+    "image": "assets/products/cyber-shirt.png"
+  },
+  {
+    "name": "Футболка 'Future Core'",
+    "price": "1350",
+    "image": "assets/products/shirt1.png"
+  }
+]

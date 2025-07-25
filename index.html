@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Магазин будущего</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Radical</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#products">Товары</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#blog">Блог</a></li>
+        <li><button id="themeToggle">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <h2>Добро пожаловать в Radical</h2>
+      <p>Магазин стильной одежды и аксессуаров с душой технологий</p>
+    </section>
+
+    <section id="products" class="product-section">
+      <h2>Наши товары</h2>
+      <div id="product-list" class="product-list"></div>
+    </section>
+
+    <section id="about" class="about-section">
+      <h2>О нас</h2>
+      <p>Radical — это не просто магазин, это стиль жизни. Мы объединяем моду и технологии, чтобы ты выглядел ярко и чувствовал себя уверенно.</p>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+      <h2>Отзывы покупателей</h2>
+      <form id="reviewForm">
+        <input type="text" id="name" placeholder="Имя" required />
+        <input type="email" id="email" placeholder="Почта" required />
+        <textarea id="comment" placeholder="Комментарий" required></textarea>
+        <label for="rating">Рейтинг:</label>
+        <div class="star-rating">
+          <input type="radio" name="rating" value="5" /><span>⭐</span>
+          <input type="radio" name="rating" value="4" /><span>⭐</span>
+          <input type="radio" name="rating" value="3" /><span>⭐</span>
+          <input type="radio" name="rating" value="2" /><span>⭐</span>
+          <input type="radio" name="rating" value="1" /><span>⭐</span>
+        </div>
+        <button type="submit">Отправить</button>
+      </form>
+      <div id="reviewList"></div>
+    </section>
+
+    <section id="blog" class="blog-section">
+      <h2>Блог</h2>
+      <article>
+        <h3>Как мы создаем наш стиль</h3>
+        <p>Каждый элемент нашей одежды вдохновлён городским духом и технологичными формами. Мы выбираем только лучшие материалы и создаём дизайн с вниманием к деталям.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Radical. Все права защищены.</p>
+  </footer>
+</body>
+</html>
