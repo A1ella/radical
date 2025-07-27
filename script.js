@@ -7,7 +7,7 @@ if (savedTheme) {
   body.className = savedTheme;
 }
 
-themeToggle.addEventListener("click", () => {
+themeToggle?.addEventListener("click", () => {
   if (body.classList.contains("dark-theme")) {
     body.classList.replace("dark-theme", "light-theme");
     localStorage.setItem("theme", "light-theme");
@@ -27,14 +27,14 @@ function renderReviews() {
   reviewsList.innerHTML = "";
   reviews.forEach((review, index) => {
     const reviewItem = document.createElement("div");
-    reviewItem.classList.add("review-item");
+    reviewItem.classList.add("review");
 
     reviewItem.innerHTML = `
       <h4>${review.name}</h4>
       <p>${review.text}</p>
       <div class="review-buttons">
-        <button onclick="editReview(${index})">✏️ Редактировать</button>
-        <button onclick="deleteReview(${index})">🗑️ Удалить</button>
+        <button onclick="editReview(${index})" class="edit-btn">✏️ Редактировать</button>
+        <button onclick="deleteReview(${index})" class="delete-btn">🗑️ Удалить</button>
       </div>
     `;
 
