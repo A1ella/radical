@@ -1,108 +1,150 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Radical — Гаджеты будущего</title>
-  <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Онлайн-магазин</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/script.js"></script>
+  <script defer src="assets/js/slider.js"></script>
+  <script defer src="assets/js/filter.js"></script>
+  <script defer src="assets/js/search.js"></script>
+  <script defer src="assets/js/cart.js"></script>
 </head>
 <body class="dark-theme">
-  <header class="main-header" data-aos="fade-down">
-    <div class="container nav">
-      <div class="logo animated-logo"><i class="fa-solid fa-butterfly"></i> Radical</div>
-      <nav class="nav-links">
-        <a href="#hero">Главная</a>
-        <a href="#products">Товары</a>
-        <a href="#articles">Статьи</a>
-        <a href="#about">О нас</a>
-        <a href="#reviews">Отзывы</a>
-        <button id="theme-toggle" title="Сменить тему">🌙</button>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <h1 class="logo">Radical</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#products">Товары</a></li>
+          <li><a href="#articles">Статьи</a></li>
+          <li><a href="#categories">Категории</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <button id="theme-toggle">🌗</button>
+        <button id="cart-toggle">🛒</button>
       </nav>
-      <button class="menu-btn" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </header>
 
-  <section class="hero" id="hero">
-    <video autoplay muted loop class="bg-video"><source src="assets/video-bg.mp4" type="video/mp4"></video>
-    <div class="container hero-content" data-aos="fade-up">
-      <h1 class="main-title">Открывай будущее технологий</h1>
-      <p class="subtitle">Обзоры, честные подборки и реальные способы заработка — мы вдохновляем тебя к лучшему.</p>
-      <blockquote>«Технологии созданы, чтобы вдохновлять, а не отвлекать.»</blockquote>
+  <!-- SLIDER -->
+  <section id="slider" class="slider-section">
+    <div class="slider-container">
+      <div class="slide active"><img src="assets/images/banner1.jpg" alt="Слайд 1" /></div>
+      <div class="slide"><img src="assets/images/banner2.jpg" alt="Слайд 2" /></div>
+      <div class="slide"><img src="assets/images/banner3.jpg" alt="Слайд 3" /></div>
+    </div>
+    <div class="slider-controls">
+      <button id="prev-slide">←</button>
+      <button id="next-slide">→</button>
     </div>
   </section>
 
-  <section id="products" class="products-section" data-aos="fade-up">
-    <div class="container">
-      <h2>Товары</h2>
-      <div class="product-list">
-        <div class="product" data-aos="zoom-in">
-          <img src="assets/products/headphones.png" alt="Наушники">
-          <h3>Наушники</h3>
-          <p class="price">8 490 СОМ</p>
-          <button class="buy-btn" data-link="https://t.me/essis2881">Купить</button>
-        </div>
-        <div class="product" data-aos="zoom-in" data-aos-delay="100">
-          <img src="assets/products/watch.jpg" alt="Умные часы">
-          <h3>Умные часы</h3>
-          <p class="price">14 990 СОМ</p>
-          <button class="buy-btn" data-link="https://t.me/essis2881">Купить</button>
-        </div>
-        <div class="product" data-aos="zoom-in" data-aos-delay="200">
-          <img src="assets/products/airpods.jpg" alt="AirPods">
-          <h3>AirPods</h3>
-          <p class="price">3 990 СОМ</p>
-          <button class="buy-btn" data-link="https://t.me/essis2881">Купить</button>
-        </div>
+  <!-- FILTER & SEARCH -->
+  <section class="filter-search">
+    <input type="text" id="searchInput" placeholder="Поиск товара..." />
+    <select id="sortSelect">
+      <option value="default">Сортировка</option>
+      <option value="price-asc">Цена ↑</option>
+      <option value="price-desc">Цена ↓</option>
+    </select>
+    <select id="categoryFilter">
+      <option value="all">Все категории</option>
+      <option value="аксессуары">Аксессуары</option>
+      <option value="одежда">Одежда</option>
+      <option value="гаджеты">Гаджеты</option>
+    </select>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products-section">
+    <div class="container" id="products-container">
+      <!-- Динамически заполняется через JS -->
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section id="categories" class="categories-section">
+    <h2>Популярные категории</h2>
+    <div class="categories-container">
+      <div class="category-card">Одежда</div>
+      <div class="category-card">Аксессуары</div>
+      <div class="category-card">Гаджеты</div>
+      <div class="category-card">Для дома</div>
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+  <section id="articles" class="articles-section">
+    <h2>Полезные статьи</h2>
+    <div class="articles-container">
+      <article class="article-card">
+        <h3>Как выбрать идеальный гаджет?</h3>
+        <p>В этой статье мы расскажем, на что обратить внимание при покупке современных девайсов.</p>
+        <a href="#">Читать далее →</a>
+      </article>
+      <article class="article-card">
+        <h3>5 трендов в уличной одежде 2025</h3>
+        <p>Узнайте, что будет модно в этом сезоне и как выделяться среди толпы.</p>
+        <a href="#">Читать далее →</a>
+      </article>
+      <article class="article-card">
+        <h3>Топ-10 подарков на любой случай</h3>
+        <p>Идеи подарков на день рождения, праздник или просто так. От бюджетных до премиальных.</p>
+        <a href="#">Читать далее →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="reviews-section">
+    <h2>Отзывы</h2>
+    <form id="review-form">
+      <div id="star-container">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
       </div>
-    </div>
+      <textarea id="review-text" placeholder="Ваш отзыв..."></textarea>
+      <button type="submit">Отправить</button>
+    </form>
+    <div id="reviews-container"></div>
   </section>
 
-  <section id="articles" class="articles-section" data-aos="fade-up">
-    <div class="container">
-      <h2>Статьи</h2>
-      <div class="articles">
-        <article data-aos="flip-left">
-          <h3>Гаджеты для продуктивности</h3>
-          <p>Устройства, которые помогут повысить эффективность.</p>
-          <a href="#">Читать далее →</a>
-        </article>
-        <article data-aos="flip-left" data-aos-delay="100">
-          <h3>Аксессуары для смартфона</h3>
-          <p>Стильные и функциональные решения для тебя.</p>
-          <a href="#">Читать далее →</a>
-        </article>
-      </div>
-    </div>
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <h2>О нас</h2>
+    <p><strong>Radical</strong> — современный онлайн-магазин с акцентом на стиль, технологии и заботу о клиенте. У нас: быстрая доставка, поддержка 24/7 и сотни товаров по отличным ценам.</p>
   </section>
 
-  <section id="about" class="about-section" data-aos="fade-up">
-    <div class="container">
-      <h2>О нас</h2>
-      <p>Мы — команда энтузиастов технологий, стремящихся вдохновлять людей использовать новейшие гаджеты с умом.</p>
-    </div>
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <h2>Контакты</h2>
+    <p>Telegram: <a href="https://t.me/essis2881" target="_blank">@essis2881</a></p>
   </section>
 
-  <section id="reviews" class="reviews-section" data-aos="fade-up">
-    <div class="container">
-      <h2>Отзывы</h2>
-      <form id="review-form">
-        <div class="stars" id="star-container">
-          <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
-        </div>
-        <textarea id="review-text" placeholder="Напишите свой отзыв..." required></textarea>
-        <button type="submit">Отправить</button>
-      </form>
-      <div id="reviews-container"></div>
+  <!-- FOOTER -->
+  <footer>
+    <p>© Radical 2025. Все права защищены.</p>
+  </footer>
+
+  <!-- CART -->
+  <div id="cart" class="cart-panel">
+    <h3>Корзина</h3>
+    <div id="cart-items"></div>
+    <div class="cart-summary">
+      <strong>Итого: <span id="cart-total">0</span> сом</strong>
+      <button id="checkout-btn">Оформить</button>
     </div>
-  </section>
+    <button id="close-cart">Закрыть</button>
+  </div>
 
-  <div id="buy-popup" class="buy-popup">Спасибо! Переход в Telegram...</div>
-
-  <footer><div class="container"><p>© 2025 Radical — Все права защищены.</p></div></footer>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
