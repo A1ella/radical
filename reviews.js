@@ -1,63 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Отзывы клиентов – Radical</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-theme">
+  <header>
+    <div class="container nav-container">
+      <h1 class="logo">Radical</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="index.html#products">Товары</a></li>
+          <li><a href="index.html#articles">Статьи</a></li>
+          <li><a href="index.html#cart">Корзина</a></li>
+          <li><a href="reviews.html" class="active">Отзывы</a></li>
+        </ul>
+        <button id="theme-toggle">🌗</button>
+      </nav>
+    </div>
+  </header>
 
-// reviews.js — обработка отзывов со звездами и localStorage
+  <main class="container">
+    <section class="reviews-section">
+      <h2>Отзывы клиентов</h2>
+      <form id="review-form" class="review-form">
+        <input type="text" id="review-name" placeholder="Ваше имя" required />
+        <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
+        <button type="submit">Оставить отзыв</button>
+      </form>
 
-document.addEventListener("DOMContentLoaded", () => {
-  const reviewForm = document.getElementById("review-form");
-  const reviewsContainer = document.getElementById("reviews-list");
-  const ratingInputs = document.querySelectorAll('input[name="rating"]');
+      <div id="reviews-list" class="reviews-list">
+        <!-- Отзывы добавляются через JS -->
+      </div>
+    </section>
+  </main>
 
-  const getReviews = () => JSON.parse(localStorage.getItem("reviews")) || [];
+  <footer>
+    <p>© 2025 Radical. Все права защищены.</p>
+  </footer>
 
-  const saveReviews = (reviews) => {
-    localStorage.setItem("reviews", JSON.stringify(reviews));
-  };
-
-  const createReviewElement = (review) => {
-    const div = document.createElement("div");
-    div.classList.add("review");
-    div.innerHTML = `
-      <h4>${review.name} <span class="email">&lt;${review.email}&gt;</span></h4>
-      <div class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
-      <p>${review.comment}</p>
-      <span class="timestamp">${new Date(review.timestamp).toLocaleString()}</span>
-    `;
-    return div;
-  };
-
-  const renderReviews = () => {
-    const reviews = getReviews();
-    reviewsContainer.innerHTML = "";
-    reviews.forEach((review) => {
-      reviewsContainer.appendChild(createReviewElement(review));
-    });
-  };
-
-  reviewForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = reviewForm.elements["name"].value.trim();
-    const email = reviewForm.elements["email"].value.trim();
-    const comment = reviewForm.elements["comment"].value.trim();
-    const rating = [...ratingInputs].find((i) => i.checked)?.value || 0;
-
-    if (!name || !email || !comment || rating == 0) {
-      alert("Пожалуйста, заполните все поля и выберите рейтинг.");
-      return;
-    }
-
-    const newReview = {
-      name,
-      email,
-      comment,
-      rating: parseInt(rating),
-      timestamp: Date.now(),
-    };
-
-    const reviews = getReviews();
-    reviews.push(newReview);
-    saveReviews(reviews);
-    renderReviews();
-    reviewForm.reset();
-  });
-
-  renderReviews();
-});
+  <!-- Скрипт -->
+  <script src="script.js"></script>
+</body>
+</html>
