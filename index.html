@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -18,7 +17,8 @@
           <li><a href="#home">Главная</a></li>
           <li><a href="#products">Товары</a></li>
           <li><a href="#articles">Статьи</a></li>
-          <li><a href="#cart">Корзина</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+          <li><a href="orders.html">Мои заказы</a></li>
           <li><a href="#reviews">Отзывы</a></li>
           <li><a href="#contact">Контакты</a></li>
         </ul>
@@ -27,7 +27,7 @@
     </div>
   </header>
 
-  <section id="home" class="banner">
+  <section id="home" class="banner animated-section">
     <div class="banner-content">
       <h2>Добро пожаловать в Radical</h2>
       <p>Поиск, фильтрация, адаптивность — всё в одном месте</p>
@@ -41,7 +41,7 @@
     <div class="slide">🚚 Бесплатная доставка от 2000 сом</div>
   </section>
 
-  <section id="products" class="products-section">
+  <section id="products" class="products-section animated-section">
     <h2>Каталог товаров</h2>
     <div class="filters">
       <label>Категория:</label>
@@ -65,7 +65,7 @@
     </div>
   </section>
 
-  <section id="articles" class="articles-section">
+  <section id="articles" class="articles-section animated-section">
     <h2>Полезные статьи</h2>
     <article class="article-card">
       <h3>Как выбрать идеальный товар</h3>
@@ -77,17 +77,9 @@
     </article>
   </section>
 
-  <section id="cart" class="cart-section">
-    <h2>Корзина</h2>
-    <ul id="cart-items">
-      <!-- JS добавит позиции -->
-    </ul>
-    <p id="cart-total">Итого: 0 сом</p>
-  </section>
-
-  <section id="reviews" class="reviews-section">
+  <section id="reviews" class="reviews-section animated-section">
     <h2>Отзывы клиентов</h2>
-    <div id="review-list"></div>
+    <div id="review-list" class="styled-reviews"></div>
     <form id="review-form">
       <input type="text" id="review-name" placeholder="Ваше имя" required>
       <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
@@ -95,61 +87,7 @@
     </form>
   </section>
 
-  <section id="contact" class="contact-section">
-    <h2>Контакты</h2>
-    <p>📞 Тел: <a href="tel:+996702126406">+996 702 126 406</a></p>
-    <p>📧 Email: radicalshop@kg</p>
-    <p>📍 Бишкек, ул. Примерная, 24</p>
-    <a href="https://t.me/essis2881" target="_blank" class="buy-button">Написать в Telegram</a>
-  </section>
-
-  <footer>
-    <p>© 2025 Radical. Все права защищены.</p>
-  </footer>
-
-  <!-- Скрипты -->
-  <script src="theme.js"></script>
-  <script src="slider.js"></script>
-  <script src="filter.js"></script>
-  <script src="search.js"></script>
-  <script src="cart.js"></script>
-  <script src="reviews.js"></script>
-</body>
-</html>
-
-        <option value="price-asc">Цена ↑</option>
-        <option value="price-desc">Цена ↓</option>
-      </select>
-    </div>
-
-    <div id="product-list" class="product-list">
-      <!-- JS добавит товары -->
-    </div>
-  </section>
-
-  <section id="articles" class="articles-section">
-    <h2>Полезные статьи</h2>
-    <article class="article-card">
-      <h3>Как выбрать идеальный товар</h3>
-      <p>Профессиональные советы по выбору техники и одежды.</p>
-    </article>
-    <article class="article-card">
-      <h3>10 лучших новинок месяца</h3>
-      <p>Отобранные хиты продаж и новинки июля.</p>
-    </article>
-  </section>
-
-  <section id="reviews" class="reviews-section">
-    <h2>Отзывы клиентов</h2>
-    <div id="review-list"></div>
-    <form id="review-form">
-      <input type="text" id="review-name" placeholder="Ваше имя" required>
-      <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
-      <button type="submit">Оставить отзыв</button>
-    </form>
-  </section>
-
-  <section id="contact" class="contact-section">
+  <section id="contact" class="contact-section animated-section">
     <h2>Контакты</h2>
     <p>📞 Тел: <a href="tel:+996702126406">+996 702 126 406</a></p>
     <p>📧 Email: radicalshop@kg</p>
