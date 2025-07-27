@@ -1,49 +1,271 @@
-:root {
-  --accent: #ff6b00;
-  --bg-dark: #111;
-  --fg-dark: #f0f0f0;
-  --bg-light: #fff;
-  --fg-light: #111;
+/* ==== ОБНУЛЕНИЕ ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Segoe UI',sans-serif;transition:background 0.4s,color 0.4s;}
-body.dark-theme{background:var(--bg-dark);color:var(--fg-dark);}
-body.light-theme{background:var(--bg-light);color:var(--fg-light);}
-.main-header{background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);position:sticky;top:0;z-index:100;height:60px;}
-.nav{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;justify-content:space-between;align-items:center;}
-.logo{font-size:1.8rem;color:var(--accent);cursor:pointer;}
-.animated-logo{animation:wiggle 5s infinite;}
-@keyframes wiggle{0%,100%{transform:rotate(0);}25%{transform:rotate(5deg);}75%{transform:rotate(-5deg);}}
-.nav-links{display:flex;}
-.nav-links a,.nav-links button{margin-left:1rem;color:inherit;text-decoration:none;font-size:1rem;cursor:pointer;position:relative;transition:color 0.3s;}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s;}
-.nav-links a:hover::after{width:100%;}
-.hero{position:relative;text-align:center;padding:4rem 1rem;overflow:hidden;}
-.bg-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:0.5;}
-.hero-content{max-width:700px;margin:0 auto;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
-.main-title{font-size:2.8rem;margin-bottom:1rem;}
-.subtitle{font-size:1.2rem;margin-bottom:2rem;}
-blockquote{font-style:italic;opacity:0.8;}
-.products-section .container{max-width:1200px;margin:0 auto;}
-.product-list{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;}
-.product{background:rgba(255,255,255,0.05);border-radius:10px;padding:1rem;width:260px;text-align:center;transition:transform 0.3s,box-shadow 0.3s;}
-.product:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.3);}
-.product img{max-width:100%;border-radius:8px;}
-.price{margin:0.5rem 0;font-size:1.1rem;font-weight:bold;}
-.buy-btn{background:var(--accent);color:#fff;border:none;padding:0.6rem 1.3rem;border-radius:5px;cursor:pointer;transition:transform 0.3s,background 0.3s;}
-.buy-btn:hover{background:darkorange;transform:scale(1.05);}
-.articles-section,.about-section,.reviews-section{padding:2rem 1rem;}
-.articles{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;}
-.articles article{background:rgba(255,255,255,0.05);border-radius:8px;padding:1rem;width:300px;transition:transform 0.3s;}
-.articles article:hover{transform:translateY(-5px);}
-.stars span{font-size:1.5rem;cursor:pointer;color:#ccc;transition:color 0.3s;}
-.stars span.active{color:gold;}
-.review{background:rgba(0,0,0,0.15);padding:1rem;margin:1rem 0;border-radius:6px;animation:fadeIn 0.5s;}
-.delete-btn{background:crimson;color:#fff;border:none;padding:0.4rem 0.8rem;border-radius:4px;cursor:pointer;transition:opacity 0.3s;}
-.delete-btn:hover{opacity:0.8;}
-footer{background:#222;color:#fff;text-align:center;padding:2rem;margin-top:2rem;}
-body.light-theme footer{background:#f2f2f2;color:#111;}
-.buy-popup{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) scale(0.8);background:#28a745;color:#fff;padding:1rem 2rem;border-radius:8px;opacity:0;visibility:hidden;transition:all 0.5s;font-weight:bold;}
-.buy-popup.show{opacity:1;visibility:visible;transform:translateX(-50%) scale(1);}
-@keyframes fadeIn{0%{opacity:0;transform:translateY(10px);}100%{opacity:1;transform:translateY(0);}}
-@media(max-width:768px){.nav-links{display:none;} .menu-btn{display:block;color:inherit;cursor:pointer;} .product-list{flex-direction:column;align-items:center;} }
+
+html, body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #111;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* ==== ТЕМЫ ==== */
+body.light-theme {
+  background: #f7f7f7;
+  color: #111;
+}
+
+body.light-theme header,
+body.light-theme nav,
+body.light-theme .product-card,
+body.light-theme .review {
+  background: #fff;
+  color: #111;
+  border-color: #ccc;
+}
+
+/* ==== HEADER ==== */
+header {
+  background: linear-gradient(to right, #111, #222);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f97316;
+}
+
+nav a {
+  color: #fff;
+  margin-left: 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #f97316;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ==== КНОПКА ТЕМЫ ==== */
+#theme-toggle {
+  background: transparent;
+  color: #f97316;
+  border: 1px solid #f97316;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#theme-toggle:hover {
+  background: #f97316;
+  color: #000;
+}
+
+/* ==== ГЛАВНЫЙ БЛОК ==== */
+.hero {
+  padding: 100px 20px;
+  background: url('https://images.unsplash.com/photo-1596436889106-be35e843f974') no-repeat center center/cover;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==== РАЗДЕЛЫ ==== */
+section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==== КАРТОЧКИ ТОВАРОВ ==== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  text-align: center;
+  box-shadow: 0 0 10px #0003;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  color: #f97316;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.product-card .price {
+  font-weight: bold;
+  color: #0f0;
+  margin-bottom: 15px;
+}
+
+.buy-btn {
+  background: #f97316;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buy-btn:hover {
+  background: #ffa94d;
+}
+
+/* ==== ОТЗЫВЫ ==== */
+#reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review {
+  background: #1c1c1c;
+  border: 1px solid #333;
+  padding: 15px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.review .review-stars {
+  color: gold;
+  font-size: 1.2rem;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #c00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: red;
+}
+
+/* ==== СТАТЬИ ==== */
+.article {
+  margin-bottom: 30px;
+}
+
+.article h2 {
+  color: #f97316;
+  margin-bottom: 10px;
+}
+
+.article p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ==== СЛАЙДЕР ==== */
+.slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 15px;
+}
+
+.slider img {
+  width: 300px;
+  height: 180px;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+
+/* ==== АДАПТИВНОСТЬ ==== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .product-card {
+    padding: 15px;
+  }
+
+  .slider img {
+    width: 90vw;
+  }
+}
