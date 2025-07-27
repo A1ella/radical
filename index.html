@@ -4,17 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Radical Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* ВСТРОЕННЫЙ CSS: адаптивность, стили, темы и оформление */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      transition: background 0.3s, color 0.3s;
+      font-family: 'Orbitron', sans-serif;
+      background: #0a0a0a;
+      color: #f0f0f0;
+      transition: background 0.4s ease, color 0.4s ease;
     }
     header {
-      background: #111;
-      color: #fff;
-      padding: 10px 0;
+      background: #0d0d0d;
+      box-shadow: 0 0 15px rgba(255,140,0,0.3);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
     .container {
       width: 90%;
@@ -24,25 +32,52 @@
       align-items: center;
     }
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: orange;
+      text-shadow: 0 0 10px orange;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 15px;
+      gap: 20px;
     }
     nav a {
       text-decoration: none;
       color: #fff;
       font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: orange;
+      bottom: -4px;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
     }
     #theme-toggle {
-      margin-left: 10px;
+      margin-left: 15px;
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      color: orange;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    #theme-toggle:hover {
+      transform: rotate(20deg);
     }
     .dark-theme {
-      background: #121212;
-      color: #fff;
+      background: #0a0a0a;
+      color: #f0f0f0;
     }
     .light-theme {
       background: #f9f9f9;
@@ -51,81 +86,131 @@
     .banner {
       padding: 60px 20px;
       text-align: center;
-      background: linear-gradient(135deg, #222, #111);
-      color: #fff;
+      background: linear-gradient(135deg, #111, #000);
     }
     #search-input {
-      padding: 10px;
+      padding: 12px;
       width: 90%;
       max-width: 300px;
-      margin-top: 10px;
+      margin-top: 15px;
+      border-radius: 5px;
+      border: none;
+      background: #222;
+      color: #fff;
     }
     .slider {
-      background: #000;
-      color: #fff;
+      background: #111;
+      color: orange;
       text-align: center;
-      padding: 10px;
-      overflow: hidden;
+      padding: 15px;
+      font-size: 1.2rem;
     }
     .slide {
       display: none;
-      font-size: 1.2rem;
+      animation: fade 1s ease;
     }
     .slide.active {
       display: block;
     }
-    .products-section, .articles-section, .cart-section, .contact-section, .reviews-section {
-      padding: 30px 20px;
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
+
+    .products-section, .articles-section, .cart-section, .contact-section, .reviews-section {
+      padding: 40px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: orange;
+      text-shadow: 0 0 10px orange;
+    }
+
     .product-list {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
     }
+
     .product-card {
-      background: #1e1e1e;
-      padding: 10px;
-      border-radius: 6px;
-      width: calc(33% - 20px);
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 10px;
+      width: 260px;
+      box-shadow: 0 0 10px rgba(255,140,0,0.2);
+      transition: transform 0.3s ease;
     }
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+
     .product-card img {
       max-width: 100%;
-      border-radius: 6px;
+      border-radius: 8px;
     }
-    .buy-button {
-      display: inline-block;
-      margin-top: 10px;
+
+    .buy-button, .product-card button {
       background: orange;
-      padding: 8px 16px;
-      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
       font-weight: bold;
-      text-decoration: none;
-      border-radius: 4px;
+      cursor: pointer;
+      color: #000;
+      margin-top: 10px;
+      transition: background 0.3s ease;
     }
+
+    .buy-button:hover, .product-card button:hover {
+      background: #ffaa00;
+    }
+
     .article-card {
       background: #2a2a2a;
       padding: 20px;
-      margin: 10px 0;
-      border-radius: 6px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255,140,0,0.1);
     }
+
     .review {
       border-bottom: 1px solid #444;
       margin-bottom: 10px;
       padding-bottom: 10px;
     }
+
+    input, textarea, select {
+      background: #222;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
     footer {
       background: #111;
       color: #999;
       text-align: center;
       padding: 15px 10px;
+      margin-top: 40px;
     }
+
     @media (max-width: 768px) {
-      .product-card { width: 100%; }
-      nav ul { flex-direction: column; }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .product-list {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body class="dark-theme">
+
   <header>
     <div class="container">
       <h1 class="logo">Radical</h1>
@@ -215,14 +300,12 @@
   </footer>
 
   <script>
-    // Переключение темы
     const toggleBtn = document.getElementById('theme-toggle');
     toggleBtn.onclick = () => {
       document.body.classList.toggle('dark-theme');
       document.body.classList.toggle('light-theme');
     };
 
-    // Слайдер
     const slides = document.querySelectorAll('.slide');
     let index = 0;
     setInterval(() => {
@@ -231,7 +314,6 @@
       slides[index].classList.add('active');
     }, 3000);
 
-    // Товары
     const products = [
       { id: 1, title: "Смартфон", category: "electronics", price: 15000 },
       { id: 2, title: "Футболка", category: "clothes", price: 1200 },
@@ -276,7 +358,6 @@
     document.getElementById('search-input').oninput = renderProducts;
     renderProducts();
 
-    // Корзина
     const cart = [];
     function addToCart(id) {
       const product = products.find(p => p.id === id);
@@ -297,7 +378,6 @@
       document.getElementById('cart-total').textContent = `Итого: ${total} сом`;
     }
 
-    // Отзывы
     let reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
 
     function addReview() {
