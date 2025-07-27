@@ -8,6 +8,143 @@
   <link rel="icon" href="favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dark-theme {
+      background: #111;
+      color: #f0f0f0;
+    }
+
+    .light-theme {
+      background: #fff;
+      color: #111;
+    }
+
+    .main-header {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent, orange);
+    }
+
+    .nav-links a, .nav-links button {
+      color: inherit;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-size: 1rem;
+      transition: color 0.3s;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .product {
+      text-align: center;
+      margin: 1rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .buy-btn {
+      background: orange;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: darkorange;
+      transform: scale(1.05);
+    }
+
+    .stars span {
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .stars span.active {
+      color: gold;
+    }
+
+    .review {
+      background: rgba(0,0,0,0.1);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+    }
+
+    .delete-btn {
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      margin-top: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #222;
+      color: white;
+    }
+
+    .light-theme footer {
+      background: #f0f0f0;
+      color: #111;
+    }
+  </style>
 </head>
 <body class="dark-theme">
   <header class="main-header" data-aos="fade-down">
@@ -40,17 +177,17 @@
       <div class="product">
         <img src="assets/products/headphones.png" alt="Наушники" />
         <h3>8.490 СОМ</h3>
-        <button class="buy-btn">Купить</button>
+        <a href="https://t.me/essis2881" target="_blank"><button class="buy-btn">Купить</button></a>
       </div>
       <div class="product">
         <img src="assets/products/watch.jpg" alt="Умные часы" />
         <h3>14.990 СОМ</h3>
-        <button class="buy-btn">Купить</button>
+        <a href="https://t.me/essis2881" target="_blank"><button class="buy-btn">Купить</button></a>
       </div>
       <div class="product">
         <img src="assets/products/airpods.jpg" alt="AirPods" />
         <h3>3.990 СОМ</h3>
-        <button class="buy-btn">Купить</button>
+        <a href="https://t.me/essis2881" target="_blank"><button class="buy-btn">Купить</button></a>
       </div>
     </div>
   </section>
@@ -76,7 +213,7 @@
   <section id="about" class="about-section" data-aos="fade-up">
     <div class="container">
       <h2>О нас</h2>
-      <p>Мы — команда энтузиастов технологий, стремящихся вдохновлять людей использовать новейшие гаджеты с умом. Наша цель — сделать технологии доступными и полезными для всех.</p>
+      <p>Мы — команда энтузиастов технологий, стремящихся вдохновлять людей использовать новейшие гаджеты с умом.</p>
     </div>
   </section>
 
@@ -115,7 +252,7 @@
       toggle.textContent = document.body.classList.contains('light-theme') ? '🌞' : '🌙';
     });
 
-    // Отзывы
+    // Звезды
     const stars = document.querySelectorAll('#star-container span');
     let selectedRating = 0;
 
@@ -132,6 +269,7 @@
       });
     }
 
+    // Отзывы
     const reviewForm = document.getElementById('review-form');
     const reviewText = document.getElementById('review-text');
     const reviewContainer = document.getElementById('reviews-container');
