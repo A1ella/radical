@@ -13,12 +13,7 @@ body.dark-theme {
   color: #f5f5f5;
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
+/* ===== HEADER ===== */
 .compact-header {
   background: #161616;
   padding: 10px 0;
@@ -65,26 +60,32 @@ body.dark-theme {
   font-size: 1.2rem;
   cursor: pointer;
   margin-left: 10px;
-  transition: transform 0.3s;
-}
-#theme-toggle:hover {
-  transform: rotate(20deg);
 }
 
+/* ===== BANNER ===== */
 .banner {
   background: linear-gradient(145deg, #1b1b1b, #111);
-  padding: 80px 0 50px;
+  padding: 60px 0 40px;
   text-align: center;
   color: #fff;
-  animation: fadeSlide 1.4s ease-in-out both;
-  box-shadow: 0 0 80px rgba(255, 102, 0, 0.1);
+  animation: bannerFadeIn 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes bannerFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
 }
 
 .banner h2 {
-  font-size: 2.4rem;
-  margin-bottom: 14px;
-  text-shadow: 0 0 8px rgba(255, 102, 0, 0.5);
-  animation: glowText 2s ease-in-out infinite alternate;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
 }
 
 .banner .accent {
@@ -92,31 +93,11 @@ body.dark-theme {
 }
 
 .banner p {
-  font-size: 1.15rem;
-  margin-bottom: 25px;
-  opacity: 0.9;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
 }
 
-@keyframes fadeSlide {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes glowText {
-  from {
-    text-shadow: 0 0 4px rgba(255, 102, 0, 0.4);
-  }
-  to {
-    text-shadow: 0 0 12px rgba(255, 102, 0, 0.7);
-  }
-}
-
+/* ===== SEARCH ===== */
 #search-input {
   padding: 12px 16px;
   border-radius: 8px;
@@ -126,6 +107,7 @@ body.dark-theme {
   font-size: 1rem;
 }
 
+/* ===== CATALOG SLIDER ===== */
 .slider {
   display: flex;
   overflow-x: auto;
@@ -161,9 +143,9 @@ body.dark-theme {
   margin: 50px 0 30px;
   font-size: 1.8rem;
   color: #fff;
-  animation: fadeIn 1s ease both;
 }
 
+/* ===== FILTERS ===== */
 .filters {
   display: flex;
   justify-content: center;
@@ -180,6 +162,7 @@ body.dark-theme {
   color: #fff;
 }
 
+/* ===== PRODUCTS ===== */
 .product-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -188,17 +171,23 @@ body.dark-theme {
 }
 
 .product-card {
-  background: linear-gradient(135deg, #1c1c1c, #181818);
-  border-radius: 12px;
+  background: #1c1c1c;
+  border-radius: 10px;
   padding: 15px;
   color: #fff;
   transition: transform 0.3s, box-shadow 0.3s;
-  animation: fadeIn 0.7s ease both;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
 }
 
 .product-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(255, 102, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: scale(0.95); }
 }
 
 .product-card img {
@@ -207,6 +196,7 @@ body.dark-theme {
   margin-bottom: 10px;
 }
 
+/* ===== BUY BUTTON ===== */
 .buy-button {
   display: inline-block;
   margin-top: 10px;
@@ -218,16 +208,15 @@ body.dark-theme {
   cursor: pointer;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+  transition: transform 0.2s, background 0.3s;
 }
 
 .buy-button:hover {
-  transform: translateY(-3px);
   background: #ffa040;
-  box-shadow: 0 6px 18px rgba(255, 102, 0, 0.5);
+  transform: scale(1.05);
 }
 
+/* ===== ARTICLES ===== */
 .articles-section .article-card {
   background: #1e1e1e;
   border-left: 4px solid #ff6600;
@@ -237,18 +226,18 @@ body.dark-theme {
   animation: fadeIn 0.6s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* === Отзывы === */
+/* ===== REVIEWS ===== */
 .reviews-section form {
   display: flex;
   flex-direction: column;
   max-width: 500px;
   margin: 20px auto;
-  animation: fadeIn 1s ease;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .reviews-section input,
@@ -259,6 +248,12 @@ body.dark-theme {
   border-radius: 8px;
   background: #2a2a2a;
   color: #fff;
+  transition: background 0.3s ease;
+}
+
+.reviews-section input:focus,
+.reviews-section textarea:focus {
+  background: #333;
 }
 
 .reviews-section button {
@@ -269,12 +264,12 @@ body.dark-theme {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: all 0.3s ease;
+  transition: transform 0.2s, background 0.3s;
 }
 
 .reviews-section button:hover {
-  background: #ffa040;
   transform: scale(1.05);
+  background: #ff944d;
 }
 
 .review-item {
@@ -284,31 +279,30 @@ body.dark-theme {
   padding: 16px;
   border-radius: 10px;
   color: #fff;
-  position: relative;
-  animation: fadeIn 0.6s ease;
+  animation: fadeInUp 0.5s ease;
 }
 
 .review-buttons {
+  margin-top: 8px;
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
-  margin-top: 10px;
 }
 
 .review-buttons button {
-  background: transparent;
-  color: #ff6600;
+  background: #333;
   border: none;
+  color: #ffb84d;
+  padding: 6px 10px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s ease;
+  transition: background 0.3s ease;
 }
 
 .review-buttons button:hover {
-  transform: scale(1.1);
-  color: #ffa040;
+  background: #444;
 }
 
+/* ===== CONTACT ===== */
 .contact-section {
   background: #141414;
   padding: 40px 20px;
@@ -320,15 +314,17 @@ body.dark-theme {
   text-decoration: none;
 }
 
+/* ===== FOOTER ===== */
 .footer {
   background: #121212;
   padding: 20px;
   text-align: center;
   font-size: 0.9rem;
   color: #aaa;
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* Media Queries */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: column;
@@ -337,6 +333,12 @@ body.dark-theme {
   }
   .product-list {
     grid-template-columns: 1fr 1fr;
+  }
+  .compact-header {
+    padding: 6px 0;
+  }
+  .logo {
+    font-size: 1.2rem;
   }
 }
 
