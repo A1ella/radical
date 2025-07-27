@@ -1,28 +1,20 @@
-/* === ОБЩЕЕ === */
+/* === ОСНОВНЫЙ СТИЛЬ === */
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #111;
-  color: #fff;
-  transition: background 0.3s, color 0.3s;
-}
-a {
-  color: #ff8800;
-  text-decoration: none;
-}
-h1, h2, h3 {
-  font-weight: 600;
-  margin: 0 0 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0d0d0d;
+  color: #f0f0f0;
+  overflow-x: hidden;
 }
 
 /* === ХЕДЕР === */
 header {
-  background: #1a1a1a;
-  padding: 0.5rem 1rem;
+  background: #121212;
+  padding: 0.8rem 1rem;
   position: sticky;
   top: 0;
-  z-index: 10;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 .nav-container {
   display: flex;
@@ -32,114 +24,88 @@ header {
 .nav-links {
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
-}
-.nav-links li {
-  list-style: none;
 }
 .nav-links a {
-  padding: 0.5rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
-  transition: background 0.3s;
+  color: #ffb300;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 .nav-links a:hover {
-  background: #333;
+  background: rgba(255, 179, 0, 0.1);
+  box-shadow: 0 0 10px #ffb300;
+  color: #fff;
 }
 
-/* === БАННЕР === */
-.banner {
-  background: linear-gradient(to right, #111, #222);
-  text-align: center;
-  padding: 3rem 1rem;
+/* === ОБЩИЕ ЭЛЕМЕНТЫ === */
+section {
+  padding: 3rem 1.5rem;
 }
-.banner h2 {
+h2 {
   font-size: 2rem;
+  color: #ffb300;
   margin-bottom: 1rem;
 }
-.banner input {
-  padding: 0.6rem;
-  border: none;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-  margin-top: 1rem;
-}
-
-/* === СЛАЙДЕР === */
-.slider {
-  display: flex;
-  overflow: auto;
-  gap: 1rem;
-  padding: 1rem;
-  background: #181818;
-}
-.slide {
-  flex: 0 0 auto;
-  padding: 1rem 2rem;
-  background: #292929;
+.card {
+  background: #1a1a1a;
   border-radius: 12px;
-  animation: fadein 1s ease;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(255, 179, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-@keyframes fadein {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(255, 179, 0, 0.2);
 }
 
-/* === ПРОДУКТЫ === */
-.products-section {
-  padding: 2rem 1rem;
-}
+/* === ТОВАРЫ === */
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-.product-card {
-  background: #1c1c1c;
-  border-radius: 12px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-.product-card:hover {
-  transform: translateY(-5px);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
 }
 .product-card img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
 }
-
-/* === СТАТЬИ === */
-.articles-section {
-  padding: 2rem 1rem;
+.product-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
 }
-.article-card {
-  background: #222;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-left: 4px solid #ff8800;
-  border-radius: 8px;
+.product-card p {
+  color: #ccc;
 }
 
 /* === ОТЗЫВЫ === */
 .reviews-section {
-  padding: 2rem 1rem;
+  background: linear-gradient(145deg, #0d0d0d, #1c1c1c);
+  padding: 3rem 1.5rem;
+  border-top: 2px solid #222;
 }
-#review-list {
-  margin-bottom: 2rem;
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: #fff;
 }
 .review-item {
-  background: #1e1e1e;
+  background: #1c1c1c;
   padding: 1rem;
-  margin-bottom: 1rem;
+  border-left: 4px solid #ffb300;
   border-radius: 8px;
   position: relative;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.6s ease;
 }
 .review-item button {
   position: absolute;
-  top: 10px;
   right: 10px;
+  top: 10px;
   background: transparent;
   border: none;
   color: #ff5555;
@@ -147,41 +113,40 @@ header {
   font-size: 1.2rem;
 }
 
-/* === КОНТАКТЫ === */
-.contact-section {
-  padding: 2rem 1rem;
-  background: #181818;
-}
-.contact-section a.buy-button {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  background: #ff8800;
-  color: #000;
-  border-radius: 6px;
-  font-weight: bold;
-  margin-top: 1rem;
-  transition: background 0.3s;
-}
-.contact-section a.buy-button:hover {
-  background: #ffaa00;
-}
-
-/* === ФУТЕР === */
-footer {
-  text-align: center;
+/* === ЗАКАЗЫ, КОРЗИНА === */
+.order-card, .cart-card {
+  background: #1e1e1e;
   padding: 1rem;
-  background: #111;
-  font-size: 0.9rem;
-  color: #aaa;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(255, 179, 0, 0.1);
 }
 
-/* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
-@media (max-width: 600px) {
+/* === АНИМАЦИИ === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === КНОПКИ === */
+button, .btn {
+  background: #ffb300;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover, .btn:hover {
+  background: #ffd54f;
+}
+
+/* === АДАПТАЦИЯ === */
+@media screen and (max-width: 768px) {
   .nav-links {
     flex-direction: column;
     gap: 0.5rem;
-  }
-  .product-list {
-    grid-template-columns: 1fr;
   }
 }
