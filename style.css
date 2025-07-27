@@ -27,14 +27,6 @@ a:hover {
   margin: 0 auto;
   padding: 20px;
 }
-
-/* ==== Header ==== */
-header {
-  background: #111;
-  padding: 20px 0;
-  border-bottom: 2px solid #f97316;
-}
-
 .logo {
   font-size: 2rem;
   color: #f97316;
