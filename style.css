@@ -1,343 +1,252 @@
-/* Основные стили */
-* {
+/* Шрифты и сброс */
+body, h1, h2, h3, p, ul, li, input, select, button, textarea {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  @media (max-width: 768px) {
-  header .logo {
-    font-size: 16px;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-  }
-
-  .banner h2 {
-    font-size: 24px;
-  }
-
-  .banner p {
-    font-size: 14px;
-  }
-
-  #search-input {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .filters {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .product-card {
-    padding: 15px;
-  }
-
-  .product-card h3 {
-    font-size: 16px;
-  }
-
-  .buy-button {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  .article-card {
-    padding: 15px;
-    font-size: 15px;
-  }
-
-  .reviews-section input,
-  .reviews-section textarea {
-    font-size: 14px;
-  }
-
-  .review-item {
-    font-size: 14px;
-  }
-
-  footer {
-    font-size: 13px;
-    padding: 15px;
-  }
-
-  section {
-    padding: 40px 15px;
-  }
-}
-}
-
-body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
-  color: #fff;
-  transition: background 0.5s, color 0.5s;
 }
-
-.light-theme {
-  background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
-  color: #111;
+body {
+  background: #111;
+  color: #f0f0f0;
+  line-height: 1.6;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+a {
+  color: #ffa500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #ffcc66;
 }
 
 /* Хедер */
-header {
-  background-color: rgba(0, 0, 0, 0.8);
+header.compact-header {
+  background: #1a1a1a;
   padding: 10px 0;
+  box-shadow: 0 0 8px rgba(0,0,0,0.6);
   position: sticky;
   top: 0;
-  z-index: 999;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
-
-header .logo {
-  font-size: 20px;
-  font-weight: 700;
-  color: #ff6f00;
-}
-
 .nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
-
+.logo {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #ffa500;
+}
 .nav-links {
+  list-style: none;
   display: flex;
   gap: 15px;
-  list-style: none;
 }
-
 .nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
+  color: #ddd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
-
 .nav-links li a:hover {
-  color: #ff9900;
+  background: #2a2a2a;
 }
-
 #theme-toggle {
+  margin-left: 15px;
   background: none;
   border: none;
-  font-size: 20px;
-  color: inherit;
+  color: #ddd;
+  font-size: 1.2em;
   cursor: pointer;
 }
 
-/* Баннер */
+/* Главный баннер */
 .banner {
-  padding: 80px 20px;
+  background: linear-gradient(to right, #1f1f1f, #111);
+  padding: 60px 20px;
   text-align: center;
-  background: url('https://images.unsplash.com/photo-1602526218707-2654c5d60f81?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-  color: #fff;
-  position: relative;
 }
-
-.banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-}
-
-.banner-content {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: auto;
-  animation: fadeIn 1s ease;
-}
-
-.banner h2 {
-  font-size: 36px;
+.banner-content h2 {
+  font-size: 2.2em;
   margin-bottom: 10px;
 }
-
-.banner p {
-  font-size: 18px;
+.banner-content p {
+  font-size: 1em;
   margin-bottom: 20px;
 }
-
 #search-input {
-  padding: 10px 20px;
+  padding: 10px;
   border: none;
-  border-radius: 30px;
-  font-size: 16px;
+  border-radius: 8px;
   width: 80%;
   max-width: 400px;
 }
 
 /* Слайдер */
 .slider {
-  display: flex;
+  background: #222;
+  padding: 10px;
+  text-align: center;
   overflow: hidden;
-  padding: 15px;
-  background: #111;
-  color: #fff;
-  animation: slideUp 0.8s ease;
 }
-
 .slide {
-  flex: 0 0 100%;
-  text-align: center;
+  color: #ffa500;
   font-weight: 600;
-  transition: transform 0.5s;
+  animation: slide 20s infinite;
 }
 
-/* Секции */
-section {
-  padding: 60px 20px;
-  max-width: 1100px;
-  margin: auto;
+/* Каталог */
+.products-section {
+  padding: 40px 20px;
 }
-
-h2 {
+.section-title {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 28px;
+  font-size: 2em;
+  margin-bottom: 20px;
 }
-
 .filters {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
-
 select {
   padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  background-color: #333;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
   color: #fff;
 }
-
-.light-theme select {
-  background-color: #ddd;
-  color: #000;
-}
-
 .product-list {
   display: grid;
-  gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
-
 .product-card {
-  background: #222;
+  background: #1a1a1a;
+  padding: 15px;
   border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
-
 .product-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-.product-card img {
-  max-width: 100%;
+/* Статьи */
+.articles-section .article-card {
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+.article-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Отзывы */
+.reviews-section {
+  padding: 40px 20px;
+}
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 20px auto 0;
+}
+.review-form input,
+.review-form textarea {
+  padding: 10px;
   border-radius: 6px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #fff;
+}
+.review-form button {
+  padding: 10px;
+  background: #ffa500;
+  border: none;
+  color: #111;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.review-form button:hover {
+  background: #ffcc66;
 }
 
-.product-card h3 {
-  margin: 10px 0;
-  font-size: 18px;
+/* Контакты */
+.contact-section {
+  padding: 40px 20px;
+  text-align: center;
 }
-
 .buy-button {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 20px;
-  background: #ff6f00;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
+  background: #ffa500;
+  color: #111;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s ease;
 }
-
 .buy-button:hover {
-  background: #ff8f00;
+  background: #ffcc66;
 }
 
-/* Статьи */
-.article-card {
-  background: #2a2a2a;
+/* Подвал */
+footer.footer {
+  background: #1a1a1a;
   padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  transition: background 0.3s;
-}
-
-.article-card:hover {
-  background: #333;
-}
-
-/* Отзывы */
-.reviews-section textarea,
-.reviews-section input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-}
-
-.reviews-section button {
-  padding: 10px 20px;
-  border: none;
-  background: #ff6f00;
-  color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.review-item {
-  background: #1f1f1f;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-left: 4px solid #ff6f00;
-  border-radius: 6px;
-}
-
-/* Контакты */
-.contact-section a {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-/* Футер */
-footer {
   text-align: center;
-  padding: 20px;
-  background: #111;
-  color: #888;
+  font-size: 0.9em;
+  color: #777;
 }
 
 /* Анимации */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(30px);}
+.animate-fade-in {
+  animation: fade-in 1s ease forwards;
+}
+.animate-slide-up {
+  animation: slide-up 0.8s ease forwards;
+}
+
+@keyframes fade-in {
+  from {opacity: 0; transform: translateY(20px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-@keyframes slideUp {
-  from {transform: translateY(50px);}
-  to {transform: translateY(0);}
+@keyframes slide-up {
+  from {transform: translateY(30px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
+@keyframes slide {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  #search-input {
+    width: 100%;
+  }
+  .review-form {
+    width: 90%;
+  }
 }
