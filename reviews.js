@@ -1,30 +1,40 @@
-const reviewForm = document.getElementById('review-form');
-const reviewList = document.getElementById('review-list');
+document.addEventListener("DOMContentLoaded", () => {
+  const reviewForm = document.getElementById("review-form");
+  const reviewList = document.getElementById("review-list");
 
-// Загрузка отзывов
-function loadReviews() {
-  const saved = JSON.parse(localStorage.getItem('reviews')) || [];
-  reviewList.innerHTML = '';
-  saved.forEach(r => {
-    const div = document.createElement('div');
-    div.className = 'review-item';
-    div.innerHTML = `<strong>${r.name}</strong><p>${r.text}</p>`;
-    reviewList.appendChild(div);
+  let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+  function renderReviews() {
+    reviewList.innerHTML = "";
+    reviews.forEach((review, index) => {
+      const div = document.createElement("div");
+      div.className = "review-item";
+      div.innerHTML = `
+        <strong>${review.name}</strong>
+        <p>${review.text}</p>
+        <button onclick="deleteReview(${index})">✖</button>
+      `;
+      reviewList.appendChild(div);
+    });
+  }
+
+  window.deleteReview = function(index) {
+    reviews.splice(index, 1);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    renderReviews();
+  }
+
+  reviewForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("review-name").value.trim();
+    const text = document.getElementById("review-text").value.trim();
+    if (name && text) {
+      reviews.push({ name, text });
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      renderReviews();
+      reviewForm.reset();
+    }
   });
-}
 
-// Отправка отзыва
-reviewForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name = document.getElementById('review-name').value;
-  const text = document.getElementById('review-text').value;
-
-  const newReview = { name, text };
-  const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-  reviews.push(newReview);
-  localStorage.setItem('reviews', JSON.stringify(reviews));
-  reviewForm.reset();
-  loadReviews();
+  renderReviews();
 });
-
-loadReviews();
