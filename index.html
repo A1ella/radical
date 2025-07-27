@@ -2,242 +2,81 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Radical — Гаджеты будущего</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <style>
-    :root { --accent: orange; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      transition: background 0.3s, color 0.3s;
-      <script src="script.js"></script>
-    }
-    .dark-theme { background: #111; color: #f0f0f0; }
-    .light-theme { background: #fff; color: #111; }
-    .main-header {
-      background: rgba(0,0,0,0.8);
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--accent);
-    }
-    .nav-links a, .nav-links button {
-      color: inherit;
-      text-decoration: none;
-      margin-left: 1rem;
-      font-size: 1rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    .hero {
-      position: relative;
-      color: white;
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-    .bg-video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .main-title { font-size: 2.5rem; margin-bottom: 1rem; }
-    .subtitle { font-size: 1.2rem; margin-bottom: 2rem; }
-    blockquote {
-      font-style: italic;
-      opacity: 0.8;
-    }
-    .product {
-      text-align: center;
-      margin: 1rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 10px;
-      padding: 1rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-    .product img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    .buy-btn {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
-      margin-top: 0.5rem;
-    }
-    .buy-btn:hover {
-      background: darkorange;
-      transform: scale(1.05);
-    }
-    .products-section .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .stars span {
-      cursor: pointer;
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
-    .stars span.active { color: gold; }
-    .review {
-      background: rgba(0,0,0,0.1);
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 8px;
-    }
-    .delete-btn {
-      background: crimson;
-      color: white;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      margin-top: 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #222;
-      color: white;
-    }
-    .light-theme footer {
-      background: #f0f0f0;
-      color: #111;
-    }
-    .buy-popup {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #28a745;
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s, visibility 0.5s;
-      z-index: 9999;
-    }
-    .buy-popup.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    @media (max-width: 768px) {
-      .nav {
-        flex-direction: column;
-      }
-      .products-section .container {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+  <link rel="icon" href="favicon.png" type="image/png" />
 </head>
 <body class="dark-theme">
-  <header class="main-header" data-aos="fade-down">
+  <header class="main-header">
     <div class="container nav">
-      <div class="logo"><i class="fa-solid fa-bolt"></i> Radical</div>
+      <div class="logo">🦋 Radical</div>
       <nav class="nav-links">
         <a href="#products">Товары</a>
         <a href="#articles">Статьи</a>
-        <a href="#about">О нас</a>
         <a href="#reviews">Отзывы</a>
         <button id="theme-toggle" title="Сменить тему">🌙</button>
       </nav>
     </div>
   </header>
 
-  <section class="hero" id="hero">
-    <video autoplay muted loop class="bg-video">
-      <source src="assets/video-bg.mp4" type="video/mp4" />
-    </video>
-    <div class="container hero-content" data-aos="fade-up">
-      <h2 class="main-title">Открывай будущее технологий</h2>
-      <p class="subtitle">Обзоры, честные подборки и реальные способы заработка — мы вдохновляем тебя к лучшему.</p>
+  <section class="hero">
+    <div class="container">
+      <h1 class="main-title">Открывай будущее технологий</h1>
+      <p class="subtitle">На Radical вы найдёте обзоры, честные подборки товаров и реальные способы заработка — мы вдохновляем тебя к лучшему.</p>
       <blockquote>«Технологии созданы, чтобы вдохновлять, а не отвлекать.»</blockquote>
     </div>
   </section>
 
-  <section id="products" class="products-section" data-aos="fade-up">
+  <section id="products" class="products-section">
     <div class="container">
-      <div class="product">
-        <img src="assets/products/headphones.png" alt="Наушники" />
-        <h3>8.490 СОМ</h3>
-        <a href="https://t.me/essis2881" target="_blank"><button class="buy-btn" onclick="showPopup()">Купить</button></a>
+      <h2>Наши товары</h2>
+      <div class="products">
+        <div class="product">
+          <img src="assets/products/1.jpg" alt="Товар 1">
+          <h3>Гарнитура X1</h3>
+          <p>Звук будущего у тебя в ушах.</p>
+          <p><strong>8.490 СОМ</strong></p>
+          <a href="https://t.me/essis2881" target="_blank" class="buy-btn with-sound">Купить 🔊</a>
+        </div>
+        <div class="product">
+          <img src="assets/products/2.jpg" alt="Товар 2">
+          <h3>Умные часы QWatch</h3>
+          <p>Будь на связи и в форме.</p>
+          <p><strong>14.990 СОМ</strong></p>
+          <a href="https://t.me/essis2881" target="_blank" class="buy-btn with-sound">Купить 🔊</a>
+        </div>
+        <div class="product">
+          <img src="assets/products/3.jpg" alt="Товар 3">
+          <h3>AirPods Neo</h3>
+          <p>Лёгкость. Звук. Стиль.</p>
+          <p><strong>3.990 СОМ</strong></p>
+          <a href="https://t.me/essis2881" target="_blank" class="buy-btn with-sound">Купить 🔊</a>
+        </div>
       </div>
-      <div class="product">
-        <img src="assets/products/watch.jpg" alt="Умные часы" />
-        <h3>14.990 СОМ</h3>
-        <a href="https://t.me/essis2881" target="_blank"><button class="buy-btn" onclick="showPopup()">Купить</button></a>
-      </div>
-      <div class="product">
-        <img src="assets/products/airpods.jpg" alt="AirPods" />
-        <h3>3.990 СОМ</h3>
-        <a href="https://t.me/essis2881" target="_blank"><button class="buy-btn" onclick="showPopup()">Купить</button></a>
-      </div>
+      <audio id="buy-sound" src="assets/sound/click.mp3" preload="auto"></audio>
     </div>
   </section>
 
-  <section id="articles" class="articles-section" data-aos="fade-up">
+  <section id="articles" class="articles-section">
     <div class="container">
       <h2>Статьи</h2>
       <div class="articles">
         <article>
           <h3>Гаджеты для продуктивности</h3>
-          <p>Устройства, которые помогут повысить эффективность.</p>
+          <p>Обзор лучших технологий для работы и учебы в 2025 году.</p>
           <a href="#">Читать далее →</a>
         </article>
         <article>
-          <h3>Аксессуары для смартфона</h3>
-          <p>Стильные и функциональные решения для тебя.</p>
+          <h3>15 аксессуаров для твоего смартфона</h3>
+          <p>Актуальные и стильные решения для повседневного использования.</p>
           <a href="#">Читать далее →</a>
         </article>
       </div>
     </div>
   </section>
 
-  <section id="about" class="about-section" data-aos="fade-up">
-    <div class="container">
-      <h2>О нас</h2>
-      <p>Мы — команда энтузиастов технологий, стремящихся вдохновлять людей использовать новейшие гаджеты с умом.</p>
-    </div>
-  </section>
-
-  <section id="reviews" class="reviews-section" data-aos="fade-up">
+  <section id="reviews" class="reviews-section">
     <div class="container">
       <h2>Отзывы</h2>
       <form id="review-form">
@@ -261,64 +100,6 @@
     </div>
   </footer>
 
-  <div id="buy-popup" class="buy-popup">
-    Спасибо за покупку! Мы свяжемся с вами в Telegram.
-  </div>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-    const toggle = document.getElementById('theme-toggle');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-      toggle.textContent = document.body.classList.contains('light-theme') ? '🌞' : '🌙';
-    });
-
-    const stars = document.querySelectorAll('#star-container span');
-    let selectedRating = 0;
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        selectedRating = parseInt(star.dataset.value);
-        updateStarUI(selectedRating);
-      });
-    });
-    function updateStarUI(rating) {
-      stars.forEach(star => {
-        star.classList.toggle('active', parseInt(star.dataset.value) <= rating);
-      });
-    }
-
-    const reviewForm = document.getElementById('review-form');
-    const reviewText = document.getElementById('review-text');
-    const reviewContainer = document.getElementById('reviews-container');
-    reviewForm.addEventListener('submit', e => {
-      e.preventDefault();
-      if (!selectedRating || !reviewText.value.trim()) return;
-      const reviewDiv = document.createElement('div');
-      reviewDiv.className = 'review';
-      reviewDiv.innerHTML = `
-        <div class="stars">${'★'.repeat(selectedRating)}</div>
-        <p>${reviewText.value}</p>
-        <button class="delete-btn">Удалить</button>
-      `;
-      reviewContainer.prepend(reviewDiv);
-      reviewText.value = '';
-      selectedRating = 0;
-      updateStarUI(0);
-    });
-    reviewContainer.addEventListener('click', e => {
-      if (e.target.classList.contains('delete-btn')) {
-        e.target.parentElement.remove();
-      }
-    });
-
-    function showPopup() {
-      const popup = document.getElementById('buy-popup');
-      popup.classList.add('show');
-      setTimeout(() => {
-        popup.classList.remove('show');
-      }, 3000);
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
