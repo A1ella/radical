@@ -2,253 +2,146 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Отзывы — Radical</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0d0d0d;
-      color: #fff;
-    }
-
-    h2 {
-      text-align: center;
-      margin-top: 2rem;
-      color: #ff9900;
-      font-size: 2rem;
-    }
-
-    #review-form {
-      max-width: 600px;
-      margin: 2rem auto;
-      text-align: center;
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #ff9900;
-    }
-
-    #review-form input,
-    #review-form textarea {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ff9900;
-      background: #0d0d0d;
-      color: #fff;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    .rating-stars {
-      display: flex;
-      justify-content: center;
-      margin: 10px 0;
-    }
-
-    .rating-stars span {
-      font-size: 24px;
-      cursor: pointer;
-      color: #444;
-      transition: color 0.2s ease;
-    }
-
-    .rating-stars span.selected {
-      color: #ff9900;
-    }
-
-    #review-form button {
-      padding: 10px 20px;
-      background: #ff9900;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    #review-form button:hover {
-      background: #ffaa33;
-    }
-
-    #review-list {
-      max-width: 600px;
-      margin: 2rem auto;
-    }
-
-    .review-item {
-      background: #1a1a1a;
-      border: 1px solid #ff9900;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      position: relative;
-    }
-
-    .review-item strong {
-      color: #ff9900;
-    }
-
-    .review-item small {
-      color: #888;
-      font-size: 0.9rem;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .review-item .stars {
-      color: #ff9900;
-      margin-bottom: 5px;
-    }
-
-    .review-item button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      color: #ff5555;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .back-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: transparent;
-      border: 2px solid #ff9900;
-      color: #ff9900;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s ease;
-      font-weight: bold;
-    }
-
-    .back-btn:hover {
-      background: #ff9900;
-      color: #000;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radical — Магазин</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
-<body>
-
-  <button class="back-btn" onclick="goHome()">← На главную</button>
-
-  <h2>Отзывы</h2>
-
-  <form id="review-form">
-    <input type="text" id="review-name" placeholder="Ваше имя" required />
-    <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
-    
-    <div class="rating-stars" id="star-rating">
-      <span data-star="1">★</span>
-      <span data-star="2">★</span>
-      <span data-star="3">★</span>
-      <span data-star="4">★</span>
-      <span data-star="5">★</span>
+<body class="dark-theme">
+  <header>
+    <div class="container nav-container">
+      <div class="logo">Radical</div>
+      <ul class="nav-links">
+        <li><a href="#products">Товары</a></li>
+        <li><a href="#articles">Статьи</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contact">Контакты</a></li>
+        <li><a href="cart.html">Корзина</a></li>
+        <button id="theme-toggle">🌓</button>
+      </ul>
     </div>
+  </header>
 
-    <button type="submit">Отправить отзыв</button>
-  </form>
+  <section class="hero">
+    <div class="container">
+      <h2>Добро пожаловать в Radical</h2>
+      <p>Технологичный минимализм — стиль будущего</p>
+    </div>
+  </section>
 
-  <div id="review-list"></div>
+  <section id="products" class="products-container">
+    <h2>Наши товары</h2>
+    <input type="text" id="search-input" placeholder="Поиск товара..." />
+    <div class="product-list" id="product-list">
+      <!-- Товары -->
+      <div class="product-card" data-name="Смарт-часы" data-price="2990" data-img="assets/products/watch.jpg">
+        <img src="assets/products/watch.jpg" alt="Смарт-часы" />
+        <h3>Смарт-часы</h3>
+        <p class="price">2990 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="Наушники Bluetooth" data-price="1990" data-img="assets/products/headphones.jpg">
+        <img src="assets/products/headphones.jpg" alt="Наушники" />
+        <h3>Наушники Bluetooth</h3>
+        <p class="price">1990 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="Фитнес-браслет" data-price="1590" data-img="assets/products/bracelet.jpg">
+        <img src="assets/products/bracelet.jpg" alt="Браслет" />
+        <h3>Фитнес-браслет</h3>
+        <p class="price">1590 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="Портативная колонка" data-price="2390" data-img="assets/products/speaker.jpg">
+        <img src="assets/products/speaker.jpg" alt="Колонка" />
+        <h3>Портативная колонка</h3>
+        <p class="price">2390 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="USB-хаб 4в1" data-price="890" data-img="assets/products/hub.jpg">
+        <img src="assets/products/hub.jpg" alt="USB-хаб" />
+        <h3>USB-хаб 4в1</h3>
+        <p class="price">890 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+    </div>
+  </section>
 
+  <section id="articles" class="articles-container">
+    <h2>Полезные статьи</h2>
+    <div class="article-list">
+      <div class="article-card">
+        <h3>Как выбрать наушники</h3>
+        <p>Узнай, на что обращать внимание при выборе беспроводных наушников...</p>
+        <a href="#">Читать далее</a>
+      </div>
+      <div class="article-card">
+        <h3>Преимущества смарт-часов</h3>
+        <p>Смарт-часы — не просто гаджет, а полноценный помощник в повседневной жизни.</p>
+        <a href="#">Читать далее</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews-section">
+    <h2>Отзывы</h2>
+    <div class="review-form">
+      <input type="text" id="review-name" placeholder="Ваше имя" />
+      <textarea id="review-text" rows="3" placeholder="Ваш отзыв"></textarea>
+      <button id="submit-review">Оставить отзыв</button>
+    </div>
+    <div class="review-list" id="review-list">
+      <!-- Отзывы появятся здесь -->
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2>Контакты</h2>
+    <p>Напишите нам в Telegram: <a href="#">@RadicalStore</a></p>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Radical. Все права защищены.</p>
+  </footer>
+
+  <!-- ✅ Уведомление о добавлении товара -->
+  <div id="added-notification" style="
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-weight: bold;
+  ">✔ Товар добавлен в корзину</div>
+
+  <!-- ✅ Скрипт добавления в корзину и уведомления -->
   <script>
-    function goHome() {
-      window.location.href = "index.html";
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const reviewForm = document.getElementById("review-form");
-      const reviewList = document.getElementById("review-list");
-      const starRating = document.getElementById("star-rating");
-      let currentRating = 0;
-
-      // Загрузка отзывов
-      let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-
-      // Установка звёзд
-      starRating.addEventListener("click", (e) => {
-        if (e.target.dataset.star) {
-          currentRating = parseInt(e.target.dataset.star);
-          updateStarDisplay(currentRating);
-        }
-      });
-
-      function updateStarDisplay(rating) {
-        const stars = starRating.querySelectorAll("span");
-        stars.forEach((star, index) => {
-          if (index < rating) {
-            star.classList.add("selected");
-          } else {
-            star.classList.remove("selected");
-          }
-        });
-      }
-
-      function renderReviews() {
-        reviewList.innerHTML = "";
-        if (reviews.length === 0) {
-          reviewList.innerHTML = "<p style='text-align:center;color:#888;'>Пока нет отзывов.</p>";
-          return;
-        }
-
-        reviews.forEach((review, index) => {
-          const div = document.createElement("div");
-          div.className = "review-item";
-          div.innerHTML = `
-            <button onclick="deleteReview(${index})">✖</button>
-            <strong>${review.name}</strong>
-            <small>${review.date}</small>
-            <div class="stars">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
-            <p>${review.text}</p>
-          `;
-          reviewList.appendChild(div);
-        });
-      }
-
-      // Удаление
-      window.deleteReview = function(index) {
-        reviews.splice(index, 1);
-        localStorage.setItem("reviews", JSON.stringify(reviews));
-        renderReviews();
-      };
-
-      // Отправка
-      reviewForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const name = document.getElementById("review-name").value.trim();
-        const text = document.getElementById("review-text").value.trim();
-
-        if (!name || !text || currentRating === 0) {
-          alert("Пожалуйста, заполните все поля и выберите рейтинг.");
-          return;
-        }
-
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU');
-
-        const newReview = {
-          name,
-          text,
-          rating: currentRating,
-          date: formattedDate
+    document.querySelectorAll('.buy-btn').forEach(button => {
+      button.addEventListener('click', e => {
+        const card = e.target.closest('.product-card');
+        const product = {
+          name: card.dataset.name,
+          price: card.dataset.price,
+          img: card.dataset.img
         };
 
-        reviews.push(newReview);
-        localStorage.setItem("reviews", JSON.stringify(reviews));
-        renderReviews();
-        reviewForm.reset();
-        currentRating = 0;
-        updateStarDisplay(0);
-      });
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
 
-      renderReviews();
+        const notification = document.getElementById('added-notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 2000);
+      });
     });
   </script>
+
 </body>
 </html>
