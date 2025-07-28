@@ -2,43 +2,68 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radical Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radical — Магазин</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script defer src="script.js"></script>
 </head>
 <body class="dark-theme">
   <header>
     <div class="container nav-container">
-      <h1 class="logo">Radical</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#products">Товары</a></li>
-          <li><a href="#articles">Статьи</a></li>
-          <li><a href="cart.html">Корзина</a></li>
-          <li><a href="orders.html">Мои заказы</a></li>
-          <li><a href="#reviews">Отзывы</a></li>
-          <li><a href="#contact">Контакты</a></li>
-        </ul>
-        <button id="theme-toggle">🌗</button>
-      </nav>
+      <div class="logo">Radical</div>
+      <ul class="nav-links">
+        <li><a href="#products">Товары</a></li>
+        <li><a href="#articles">Статьи</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contact">Контакты</a></li>
+        <li><a href="cart.html">Корзина</a></li>
+        <button id="theme-toggle">🌓</button>
+      </ul>
     </div>
   </header>
 
-  <section id="home" class="hero">
+  <section class="hero">
     <div class="container">
-      <h2>Открывай будущее технологий</h2>
-      <p>На Radical вы найдёте свежие обзоры, честные товары и реальные способы заработка — вдохновляем к лучшему.</p>
-      <blockquote>«Технологии созданы, чтобы вдохновлять, а не отвлекать.»</blockquote>
+      <h2>Добро пожаловать в Radical</h2>
+      <p>Технологичный минимализм — стиль будущего</p>
     </div>
   </section>
 
   <section id="products" class="products-container">
-    <h2>Товары</h2>
-    <input type="text" id="search-input" placeholder="Поиск товаров..." />
+    <h2>Наши товары</h2>
+    <input type="text" id="search-input" placeholder="Поиск товара..." />
     <div class="product-list" id="product-list">
-      <!-- Продукты будут вставлены через JS -->
+      <!-- Товары -->
+      <div class="product-card" data-name="Смарт-часы">
+        <img src="assets/products/watch.jpg" alt="Смарт-часы" />
+        <h3>Смарт-часы</h3>
+        <p class="price">2990 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="Наушники Bluetooth">
+        <img src="assets/products/headphones.jpg" alt="Наушники" />
+        <h3>Наушники Bluetooth</h3>
+        <p class="price">1990 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="Фитнес-браслет">
+        <img src="assets/products/bracelet.jpg" alt="Браслет" />
+        <h3>Фитнес-браслет</h3>
+        <p class="price">1590 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="Портативная колонка">
+        <img src="assets/products/speaker.jpg" alt="Колонка" />
+        <h3>Портативная колонка</h3>
+        <p class="price">2390 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card" data-name="USB-хаб 4в1">
+        <img src="assets/products/hub.jpg" alt="USB-хаб" />
+        <h3>USB-хаб 4в1</h3>
+        <p class="price">890 сом</p>
+        <button class="buy-btn">Купить</button>
+      </div>
     </div>
   </section>
 
@@ -46,52 +71,37 @@
     <h2>Полезные статьи</h2>
     <div class="article-list">
       <div class="article-card">
-        <h3>Рекомендуемые гаджеты для работы и учёбы</h3>
-        <p>Подборка для продуктивности и комфорта. Узнай, как выбрать технику, которая облегчит жизнь.</p>
-        <a href="#">Читать далее →</a>
+        <h3>Как выбрать наушники</h3>
+        <p>Узнай, на что обращать внимание при выборе беспроводных наушников...</p>
+        <a href="#">Читать далее</a>
       </div>
       <div class="article-card">
-        <h3>15 аксессуаров для смартфона</h3>
-        <p>От защиты до удобства — эти аксессуары изменят ваш опыт использования.</p>
-        <a href="#">Читать далее →</a>
-      </div>
-      <div class="article-card">
-        <h3>Как выбрать Powerbank</h3>
-        <p>На что обращать внимание при покупке: ёмкость, вес, безопасность и бренд.</p>
-        <a href="#">Читать далее →</a>
+        <h3>Преимущества смарт-часов</h3>
+        <p>Смарт-часы — не просто гаджет, а полноценный помощник в повседневной жизни.</p>
+        <a href="#">Читать далее</a>
       </div>
     </div>
   </section>
 
   <section id="reviews" class="reviews-section">
-    <h2>Отзывы клиентов</h2>
-    <div id="review-list" class="review-list">
-      <!-- Отзывы будут отображены через JS -->
+    <h2>Отзывы</h2>
+    <div class="review-form">
+      <input type="text" id="review-name" placeholder="Ваше имя" />
+      <textarea id="review-text" rows="3" placeholder="Ваш отзыв"></textarea>
+      <button id="submit-review">Оставить отзыв</button>
     </div>
-    <form id="review-form" class="review-form">
-      <input type="text" id="review-name" placeholder="Ваше имя" required />
-      <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
-      <button type="submit">Оставить отзыв</button>
-    </form>
+    <div class="review-list" id="review-list">
+      <!-- Отзывы появятся здесь -->
+    </div>
   </section>
 
   <section id="contact" class="contact-section">
     <h2>Контакты</h2>
-    <p>📞 <a href="tel:+996702126406">+996 702 126 406</a></p>
-    <p>📧 radicalshop@kg</p>
-    <p>📍 Бишкек, ул. Примерная, 24</p>
-    <a href="https://t.me/essis2881" class="buy-button">Написать в Telegram</a>
+    <p>Напишите нам в Telegram: <a href="#">@RadicalStore</a></p>
   </section>
 
   <footer class="footer">
     <p>© 2025 Radical. Все права защищены.</p>
   </footer>
-
-  <!-- Уведомление о добавлении в корзину -->
-  <div id="cart-toast" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#ff9800; color:#fff; padding:10px 20px; border-radius:8px; font-weight:bold; z-index:999;">
-    Товар добавлен в корзину 🛒
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
