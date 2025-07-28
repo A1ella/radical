@@ -83,17 +83,17 @@
     </div>
   </section>
 
- <section id="reviews" class="reviews-section">
-  <h2>Отзывы</h2>
-  <form id="review-form" class="review-form">
-    <input type="text" id="review-name" placeholder="Ваше имя" required />
-    <textarea id="review-text" rows="3" placeholder="Ваш отзыв" required></textarea>
-    <button id="submit-review" type="submit">Оставить отзыв</button>
-  </form>
-  <div class="review-list" id="review-list">
-    <!-- Отзывы появятся здесь -->
-  </div>
-</section>
+  <section id="reviews" class="reviews-section">
+    <h2>Отзывы</h2>
+    <div class="review-form">
+      <input type="text" id="review-name" placeholder="Ваше имя" />
+      <textarea id="review-text" rows="3" placeholder="Ваш отзыв"></textarea>
+      <button id="submit-review">Оставить отзыв</button>
+    </div>
+    <div class="review-list" id="review-list">
+      <!-- Отзывы появятся здесь -->
+    </div>
+  </section>
 
   <section id="contact" class="contact-section">
     <h2>Контакты</h2>
@@ -104,7 +104,7 @@
     <p>© 2025 Radical. Все права защищены.</p>
   </footer>
 
-  <!-- ✅ Уведомление о добавлении товара -->
+  <!-- ✅ Уведомление -->
   <div id="added-notification" style="
     display: none;
     position: fixed;
@@ -117,9 +117,10 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     z-index: 1000;
     font-weight: bold;
+    transition: opacity 0.3s ease;
   ">✔ Товар добавлен в корзину</div>
 
-  <!-- ✅ Скрипт добавления в корзину и уведомления -->
+  <!-- ✅ Скрипт корзины -->
   <script>
     document.querySelectorAll('.buy-btn').forEach(button => {
       button.addEventListener('click', e => {
@@ -135,13 +136,58 @@
         localStorage.setItem('cart', JSON.stringify(cart));
 
         const notification = document.getElementById('added-notification');
+        notification.innerText = "✔ Товар добавлен в корзину";
         notification.style.display = 'block';
+        notification.style.opacity = '1';
         setTimeout(() => {
-          notification.style.display = 'none';
+          notification.style.opacity = '0';
+          setTimeout(() => {
+            notification.style.display = 'none';
+          }, 300);
         }, 2000);
       });
     });
   </script>
 
+  <!-- ✅ Скрипт отзывов -->
+  <script>
+    // Добавление отзыва
+    document.getElementById("submit-review").addEventListener("click", () => {
+      const name = document.getElementById("review-name").value.trim();
+      const text = document.getElementById("review-text").value.trim();
+      if (!name || !text) return;
+
+      const review = document.createElement("div");
+      review.className = "review-card";
+      review.innerHTML = `
+        <strong>${name}</strong>
+        <p>${text}</p>
+        <button class="delete-review" title="Удалить отзыв">×</button>
+      `;
+      document.getElementById("review-list").appendChild(review);
+
+      document.getElementById("review-name").value = "";
+      document.getElementById("review-text").value = "";
+
+      const note = document.getElementById("added-notification");
+      note.innerText = "Спасибо за отзыв!";
+      note.style.display = "block";
+      note.style.opacity = "1";
+      setTimeout(() => {
+        note.style.opacity = "0";
+        setTimeout(() => {
+          note.style.display = "none";
+          note.innerText = "✔ Товар добавлен в корзину";
+        }, 400);
+      }, 2000);
+    });
+
+    // Удаление отзыва
+    document.getElementById("review-list").addEventListener("click", (e) => {
+      if (e.target.classList.contains("delete-review")) {
+        e.target.closest(".review-card").remove();
+      }
+    });
+  </script>
 </body>
 </html>
