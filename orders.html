@@ -3,17 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Мои заказы – Radical</title>
+  <title>Мои заказы - Radical</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark-theme">
   <header>
-    <h1>📦 Мои заказы</h1>
-    <a href="index.html">← Вернуться</a>
+    <div class="container nav-container">
+      <h1 class="logo">Radical</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+          <li><a href="orders.html" class="active">Мои заказы</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-  <main>
-    <ul id="orders-list"></ul>
-  </main>
-  <script src="script.js"></script>
+
+  <section class="orders-section container">
+    <h2>Мои заказы</h2>
+    <div id="orders-list" class="orders-list"></div>
+  </section>
+
+  <script>
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const container = document.getElementById("orders-list");
+
+    if (orders.length === 0) {
+      container.innerHTML = "<p>У вас пока нет заказов.</p>";
+    } else {
+      orders.forEach(order => {
+        const div = document.createElement("div");
+        div.className = "order-block";
+        div.innerHTML = `
+          <h3>Заказ от ${order.date}</h3>
+          <ul>
+            ${order.items.map(item => `<li>${item.name} — ${item.price} сом</li>`).join("")}
+          </ul>
+        `;
+        container.appendChild(div);
+      });
+    }
+  </script>
 </body>
 </html>
