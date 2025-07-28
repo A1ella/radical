@@ -1,12 +1,10 @@
-// script.js
-
-// ===== ТЕМА =====
+// ==== ТЕМА ====
 document.getElementById("theme-toggle").addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
   document.body.classList.toggle("light-theme");
 });
 
-// ===== УВЕДОМЛЕНИЕ =====
+// ==== УВЕДОМЛЕНИЕ ====
 function showNotification(text) {
   const note = document.createElement("div");
   note.className = "notification";
@@ -15,108 +13,119 @@ function showNotification(text) {
   setTimeout(() => note.remove(), 2500);
 }
 
-// ===== КОРЗИНА =====
+// ==== КОРЗИНА ====
 function addToCart(product) {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.push(product);
   localStorage.setItem("cart", JSON.stringify(cart));
   showNotification(`Товар «${product.name}» добавлен в корзину!`);
+  renderCartItems(); // обновить корзину
 }
 
-// ===== ЗАГРУЗКА ТОВАРОВ =====
+// ==== ЗАГРУЗКА ТОВАРОВ ====
 async function loadProducts() {
   const res = await fetch("products.json");
   const products = await res.json();
   const list = document.getElementById("product-list");
-  if (list) {
-    list.innerHTML = "";
-    products.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.setAttribute("data-name", product.name);
-      card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <p class="price">${product.price} сом</p>
-        <button class="buy-btn">Купить</button>
-      `;
-      card.querySelector(".buy-btn").addEventListener("click", () => addToCart(product));
-      list.appendChild(card);
-    });
-  }
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.setAttribute("data-name", product.name);
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p class="price">${product.price} сом</p>
+      <button class="buy-btn">Купить</button>
+    `;
+    card.querySelector(".buy-btn").addEventListener("click", () => addToCart(product));
+    list.appendChild(card);
+  });
 }
 loadProducts();
 
-// ===== ПОИСК =====
-const searchInput = document.getElementById("search-input");
-if (searchInput) {
-  searchInput.addEventListener("input", e => {
-    const query = e.target.value.toLowerCase();
-    document.querySelectorAll(".product-card").forEach(card => {
-      const name = card.getAttribute("data-name").toLowerCase();
-      card.style.display = name.includes(query) ? "block" : "none";
-    });
+// ==== ПОИСК ====
+document.getElementById("search-input")?.addEventListener("input", e => {
+  const query = e.target.value.toLowerCase();
+  document.querySelectorAll(".product-card").forEach(card => {
+    const name = card.getAttribute("data-name").toLowerCase();
+    card.style.display = name.includes(query) ? "block" : "none";
   });
-}
+});
 
-// ===== ОТЗЫВЫ =====
-const submitBtn = document.getElementById("submit-review");
-if (submitBtn) {
-  submitBtn.addEventListener("click", () => {
-    const name = document.getElementById("review-name").value.trim();
-    const text = document.getElementById("review-text").value.trim();
-    if (!name || !text) return;
+// ==== ОТЗЫВЫ ====
+document.getElementById("submit-review")?.addEventListener("click", () => {
+  const name = document.getElementById("review-name").value.trim();
+  const text = document.getElementById("review-text").value.trim();
+  if (!name || !text) return;
 
-    const review = document.createElement("div");
-    review.className = "review-card";
-    review.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
-    document.getElementById("review-list").appendChild(review);
+  const review = document.createElement("div");
+  review.className = "review";
+  review.innerHTML = `
+    <strong>${name}</strong>
+    <p>${text}</p>
+    <span class="delete-review" title="Удалить отзыв">✖</span>
+  `;
+  review.querySelector(".delete-review").addEventListener("click", () => review.remove());
+  document.getElementById("review-list").appendChild(review);
 
-    document.getElementById("review-name").value = "";
-    document.getElementById("review-text").value = "";
-    showNotification("Спасибо за отзыв!");
-  });
-}
+  document.getElementById("review-name").value = "";
+  document.getElementById("review-text").value = "";
+  showNotification("Спасибо за отзыв!");
+});
 
-// ===== ЗАГРУЗКА КОРЗИНЫ НА СТРАНИЦЕ cart.html =====
-async function loadCart() {
-  if (!window.location.href.includes("cart.html")) return;
+// ==== КОРЗИНА: ОТОБРАЖЕНИЕ ====
+function renderCartItems() {
+  const container = document.getElementById("cart-items");
+  if (!container) return;
 
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartList = document.getElementById("cart-items");
-  const totalElem = document.getElementById("total-price");
+  container.innerHTML = "";
 
-  if (!cartList || !totalElem) return;
-
-  cartList.innerHTML = "";
+  if (cart.length === 0) {
+    container.innerHTML = "<p>Корзина пуста.</p>";
+    document.getElementById("total-sum").innerText = "0";
+    return;
+  }
 
   let total = 0;
 
   cart.forEach((item, index) => {
-    total += Number(item.price);
-    const cartItem = document.createElement("div");
-    cartItem.className = "cart-item";
-    cartItem.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" />
-      <div>
-        <h4>${item.name}</h4>
-        <p>${item.price} сом</p>
-        <button class="remove-btn" data-index="${index}">Удалить</button>
-      </div>
+    total += parseFloat(item.price);
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      <p><strong>${item.name}</strong> — ${item.price} сом</p>
+      <button class="remove-btn" data-index="${index}">Удалить</button>
     `;
-    cartList.appendChild(cartItem);
+    container.appendChild(div);
   });
 
-  totalElem.innerText = `${total} сом`;
+  document.getElementById("total-sum").innerText = total.toFixed(2);
 
+  // Удаление товара
   document.querySelectorAll(".remove-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const index = +e.target.getAttribute("data-index");
+    btn.addEventListener("click", () => {
+      const index = btn.getAttribute("data-index");
       cart.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
-      showNotification("Товар удалён из корзины");
-      loadCart(); // перезагрузка корзины
+      renderCartItems();
     });
   });
 }
-loadCart();
+renderCartItems();
+
+// ==== ОФОРМИТЬ ЗАКАЗ ====
+document.getElementById("checkout-btn")?.addEventListener("click", () => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (cart.length === 0) {
+    alert("Корзина пуста!");
+    return;
+  }
+  alert("Спасибо за заказ!");
+  localStorage.removeItem("cart");
+  renderCartItems();
+});
