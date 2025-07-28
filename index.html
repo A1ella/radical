@@ -1,71 +1,119 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Radical - Минимал</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF‑8"/>
+  <meta name="viewport" content="width=device-width, initial‑scale=1.0"/>
+  <title>Radical Shop</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 </head>
 <body class="dark-theme">
   <header>
-    <div class="nav-container">
-      <div class="logo">Radical</div>
-      <ul class="nav-links">
-        <li><a href="#products">Товары</a></li>
-        <li><a href="#articles">Статьи</a></li>
-        <li><a href="#reviews">Отзывы</a></li>
-        <li><a href="#cart">Корзина</a></li>
-        <li><a href="#orders">Заказы</a></li>
-      </ul>
+    <div class="container nav-container">
+      <h1 class="logo">Radical</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#products">Товары</a></li>
+          <li><a href="#articles">Статьи</a></li>
+          <li><a href="#cart">Корзина</a></li>
+          <li><a href="#orders">Мои заказы</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <button id="theme-toggle">🌗</button>
+      </nav>
     </div>
   </header>
 
-  <section class="banner">
-    <h1>Добро пожаловать в Radical</h1>
-    <p>Минималистичный дизайн. Настоящие товары.</p>
+  <section id="home" class="hero">
+    <div class="container">
+      <h2>Открывай будущее технологий</h2>
+      <p>На Radical вы найдёте свежие обзоры, честные товары и реальные способы заработка — вдохновляем к лучшему.</p>
+      <blockquote>«Технологии созданы, чтобы вдохновлять, а не отвлекать.»</blockquote>
+    </div>
   </section>
 
-  <section id="products" class="products-section">
-    <h2 class="section-title">Товары</h2>
-    <div class="product-list" id="product-list"></div>
+  <section id="products" class="products-container">
+    <h2>Товары</h2>
+    <div class="product-list">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Наушники">
+        <h3>Наушники</h3>
+        <p class="price">8 490 СОМ</p>
+        <button onclick="addToCart('Наушники', 8490)">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Умные часы">
+        <h3>Умные часы</h3>
+        <p class="price">14 990 СОМ</p>
+        <button onclick="addToCart('Умные часы', 14990)">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="AirPods Pro">
+        <h3>AirPods Pro</h3>
+        <p class="price">3 990 СОМ</p>
+        <button onclick="addToCart('AirPods Pro', 3990)">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Повербанк">
+        <h3>Powerbank</h3>
+        <p class="price">2 500 СОМ</p>
+        <button onclick="addToCart('Powerbank', 2500)">Купить</button>
+      </div>
+    </div>
   </section>
 
-  <section id="articles" class="articles-section">
-    <h2 class="section-title">Статьи</h2>
-    <div class="article-card">
-      <h3>Как выбрать лучший продукт</h3>
-      <p>Минимализм помогает сосредоточиться на главном. Мы покажем, как сделать правильный выбор.</p>
+  <section id="articles" class="articles-container">
+    <h2>Полезные статьи</h2>
+    <div class="article-list">
+      <div class="article-card">
+        <h3>Рекомендуемые гаджеты для работы и учёбы</h3>
+        <p>Подборка для продуктивности и комфорта.</p>
+        <a href="#">Читать далее →</a>
+      </div>
+      <div class="article-card">
+        <h3>15 аксессуаров для смартфона</h3>
+        <p>Стиль и функция твоего телефона.</p>
+        <a href="#">Читать далее →</a>
+      </div>
     </div>
-    <div class="article-card">
-      <h3>Почему стоит выбрать Radical</h3>
-      <p>Лучшее качество, проверенные товары, удобная оплата — всё это мы.</p>
-    </div>
+  </section>
+
+  <section id="cart" class="cart-section">
+    <h2>Корзина</h2>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Итого: 0 сом</p>
+    <button id="checkout-btn">Оформить заказ</button>
+  </section>
+
+  <section id="orders" class="orders-section">
+    <h2>Мои заказы</h2>
+    <ul id="orders-list"></ul>
   </section>
 
   <section id="reviews" class="reviews-section">
-    <h2 class="section-title">Отзывы</h2>
+    <h2>Отзывы клиентов</h2>
     <div id="review-list"></div>
-    <form class="review-form" id="review-form">
-      <input type="text" placeholder="Ваше имя" id="review-name" required />
-      <textarea placeholder="Ваш отзыв..." id="review-text" required></textarea>
+    <form id="review-form">
+      <input type="text" id="review-name" placeholder="Ваше имя" required>
+      <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
       <button type="submit">Оставить отзыв</button>
     </form>
   </section>
 
-  <section id="cart" class="cart">
-    <h2 class="section-title">Корзина</h2>
-    <div id="cart-items"></div>
-  </section>
-
-  <section id="orders" class="orders">
-    <h2 class="section-title">Ваши заказы</h2>
-    <div id="order-list"></div>
+  <section id="contact" class="contact-section">
+    <h2>Контакты</h2>
+    <p>📞 <a href="tel:+996702126406">+996 702 126 406</a></p>
+    <p>📧 radicalshop@kg</p>
+    <p>📍 Бишкек, ул. Примерная, 24</p>
+    <a href="https://t.me/essis2881" class="buy-button">Написать в Telegram</a>
   </section>
 
   <footer class="footer">
-    &copy; 2025 Radical. Все права защищены.
+    <p>© 2025 Radical. Все права защищены.</p>
   </footer>
 
-  <script src="assets/js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
