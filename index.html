@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF‑8"/>
-  <meta name="viewport" content="width=device-width, initial‑scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Radical Shop</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body class="dark-theme">
   <header>
@@ -16,8 +16,8 @@
           <li><a href="#home">Главная</a></li>
           <li><a href="#products">Товары</a></li>
           <li><a href="#articles">Статьи</a></li>
-          <li><a href="#cart">Корзина</a></li>
-          <li><a href="#orders">Мои заказы</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+          <li><a href="orders.html">Мои заказы</a></li>
           <li><a href="#reviews">Отзывы</a></li>
           <li><a href="#contact">Контакты</a></li>
         </ul>
@@ -36,31 +36,9 @@
 
   <section id="products" class="products-container">
     <h2>Товары</h2>
-    <div class="product-list">
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Наушники">
-        <h3>Наушники</h3>
-        <p class="price">8 490 СОМ</p>
-        <button onclick="addToCart('Наушники', 8490)">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Умные часы">
-        <h3>Умные часы</h3>
-        <p class="price">14 990 СОМ</p>
-        <button onclick="addToCart('Умные часы', 14990)">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="AirPods Pro">
-        <h3>AirPods Pro</h3>
-        <p class="price">3 990 СОМ</p>
-        <button onclick="addToCart('AirPods Pro', 3990)">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Повербанк">
-        <h3>Powerbank</h3>
-        <p class="price">2 500 СОМ</p>
-        <button onclick="addToCart('Powerbank', 2500)">Купить</button>
-      </div>
+    <input type="text" id="search-input" placeholder="Поиск товаров..." />
+    <div class="product-list" id="product-list">
+      <!-- Продукты будут вставлены через JS -->
     </div>
   </section>
 
@@ -69,34 +47,27 @@
     <div class="article-list">
       <div class="article-card">
         <h3>Рекомендуемые гаджеты для работы и учёбы</h3>
-        <p>Подборка для продуктивности и комфорта.</p>
+        <p>Подборка для продуктивности и комфорта. Узнай, как выбрать технику, которая облегчит жизнь.</p>
         <a href="#">Читать далее →</a>
       </div>
       <div class="article-card">
         <h3>15 аксессуаров для смартфона</h3>
-        <p>Стиль и функция твоего телефона.</p>
+        <p>От защиты до удобства — эти аксессуары изменят ваш опыт использования.</p>
+        <a href="#">Читать далее →</a>
+      </div>
+      <div class="article-card">
+        <h3>Как выбрать Powerbank</h3>
+        <p>На что обращать внимание при покупке: ёмкость, вес, безопасность и бренд.</p>
         <a href="#">Читать далее →</a>
       </div>
     </div>
   </section>
 
-  <section id="cart" class="cart-section">
-    <h2>Корзина</h2>
-    <ul id="cart-items"></ul>
-    <p id="cart-total">Итого: 0 сом</p>
-    <button id="checkout-btn">Оформить заказ</button>
-  </section>
-
-  <section id="orders" class="orders-section">
-    <h2>Мои заказы</h2>
-    <ul id="orders-list"></ul>
-  </section>
-
   <section id="reviews" class="reviews-section">
     <h2>Отзывы клиентов</h2>
-    <div id="review-list"></div>
-    <form id="review-form">
-      <input type="text" id="review-name" placeholder="Ваше имя" required>
+    <div id="review-list" class="review-list"></div>
+    <form id="review-form" class="review-form">
+      <input type="text" id="review-name" placeholder="Ваше имя" required />
       <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
       <button type="submit">Оставить отзыв</button>
     </form>
