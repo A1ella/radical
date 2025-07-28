@@ -2,77 +2,239 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Radical — Корзина</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина | Radical</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    .cart-section {
+      padding: 3rem 1rem;
+      background: #141414;
+    }
+
+    .cart-items {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1.5rem;
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+      padding: 1.2rem;
+      border-radius: 12px;
+      align-items: center;
+      box-shadow: 0 0 12px rgba(255, 152, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cart-item:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 16px rgba(255, 152, 0, 0.25);
+    }
+
+    .cart-item img {
+      width: 110px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cart-item-details h4 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .cart-item-details .price {
+      font-weight: bold;
+      color: #ff9800;
+      font-size: 1rem;
+    }
+
+    .cart-item-details .quantity {
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+
+    .remove-btn {
+      background: transparent;
+      border: 1px solid #ff4d4d;
+      color: #ff4d4d;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .remove-btn:hover {
+      background: #ff4d4d;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .remove-btn:active {
+      transform: scale(0.95);
+    }
+
+    .cart-summary {
+      text-align: right;
+      margin-top: 2.5rem;
+      background: #1d1d1d;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(255, 152, 0, 0.1);
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .total {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #ff9800;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      position: relative;
+      display: inline-block;
+      padding: 1rem 2.7rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(255, 152, 0, 0.4), inset 0 0 0 rgba(255,255,255,0);
+      cursor: pointer;
+      overflow: hidden;
+      letter-spacing: 0.6px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .checkout-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 80%);
+      opacity: 0;
+      transform: rotate(45deg);
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .checkout-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(to right, transparent, #fff, transparent);
+      animation: glowing-line 2s infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes glowing-line {
+      0% {
+        left: -100%;
+      }
+      50% {
+        left: 0%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    .checkout-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
+    }
+
+    .checkout-btn:hover::before {
+      opacity: 1;
+    }
+
+    .checkout-btn:active {
+      transform: scale(0.96);
+      box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+    }
+  </style>
 </head>
-<body class="dark-theme">
-
-  <header class="main-header">
-    <div class="logo">Radical</div>
-    <nav>
-      <a href="index.html">Главная</a>
-      <a href="cart.html" class="active">Корзина</a>
-      <a href="#">Мои заказы</a>
-    </nav>
-  </header>
-
+<body>
   <section class="cart-section">
-    <h2 class="section-title">Ваша корзина</h2>
+    <h2 style="text-align:center; font-size: 2rem; color: #ff9800;">🛒 Ваша корзина</h2>
     <div class="cart-items" id="cart-items">
-      <!-- Товары из корзины появятся тут динамически -->
+      <!-- Товары будут подгружены JS -->
     </div>
 
     <div class="cart-summary">
-      <div class="total">Общая сумма: <span id="total-amount">0</span> сом</div>
+      <div class="total" id="cart-total">Общая сумма: 0 сом</div>
       <button class="checkout-btn">Перейти к оплате</button>
     </div>
   </section>
 
   <script>
-    // Загрузка корзины из localStorage
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalAmountEl = document.getElementById('total-amount');
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("cart-items");
+      const totalContainer = document.getElementById("cart-total");
 
-    function loadCart() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cartItemsContainer.innerHTML = '';
+      container.innerHTML = "";
       let total = 0;
 
       cart.forEach((item, index) => {
-        const itemEl = document.createElement('div');
-        itemEl.classList.add('cart-item');
+        const price = parseInt(item.price); // преобразование к числу
+        total += price;
 
+        const itemEl = document.createElement("div");
+        itemEl.className = "cart-item";
         itemEl.innerHTML = `
-          <img src="${item.image}" alt="${item.name}" />
+          <img src="${item.image}" alt="${item.name}">
           <div class="cart-item-details">
             <h4>${item.name}</h4>
-            <div class="price">${item.price} сом</div>
+            <div class="price">${price} сом</div>
+            <div class="quantity">x1</div>
           </div>
-          <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
+          <button class="remove-btn" onclick="removeFromCart(${index})">Удалить</button>
         `;
-
-        cartItemsContainer.appendChild(itemEl);
-        total += item.price;
+        container.appendChild(itemEl);
       });
 
-      totalAmountEl.textContent = total;
+      totalContainer.innerText = `Общая сумма: ${total} сом`;
     }
 
     function removeFromCart(index) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      loadCart();
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
     }
 
-    // При переходе к оплате (можно заменить на реальную ссылку)
-    document.querySelector('.checkout-btn').addEventListener('click', () => {
-      alert("Переход к оплате (можно привязать к Telegram, Kaspi и др.)");
-    });
-
-    loadCart();
+    renderCart();
   </script>
-
 </body>
 </html>
