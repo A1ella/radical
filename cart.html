@@ -3,19 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Корзина – Radical</title>
+  <title>Корзина - Radical</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark-theme">
   <header>
-    <h1>🛒 Ваша корзина</h1>
-    <a href="index.html">← Вернуться</a>
+    <div class="container nav-container">
+      <h1 class="logo">Radical</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="cart.html" class="active">Корзина</a></li>
+          <li><a href="orders.html">Мои заказы</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-  <main>
-    <ul id="cart-items"></ul>
-    <p id="cart-total">Итого: 0 сом</p>
-    <button id="checkout-btn">Оформить заказ</button>
-  </main>
-  <script src="script.js"></script>
+
+  <section class="cart-section container">
+    <h2>Ваша корзина</h2>
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-summary" class="cart-summary"></div>
+    <button id="checkout-btn" class="buy-button">Перейти к оплате</button>
+    <p id="payment-success" class="payment-success" style="display: none;">
+      ✅ Спасибо за заказ! Он будет обработан в ближайшее время.
+    </p>
+  </section>
+
+  <script>
+    const cartContainer = document.getElementById("cart-items");
+    const cartSummary = document.getElementById("cart-summary");
+    const checkoutBtn = document.getElementById("checkout-btn");
+    const successMsg = document.getElementById("payment-success");
+
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cartContainer.innerHTML = "";
+      cartSummary.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Корзина пуста.</p>";
+        checkoutBtn.style.display = "none";
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div>
+            <h3>${item.name}</h3>
+            <p>${item.price} сом</p>
+          </div>
+          <button class="remove-btn" data-index="${index}">✖</button>
+        `;
+        cartContainer.appendChild(div);
+        total += parseInt(item.price);
+      });
+
+      cartSummary.innerHTML = `<strong>Общая сумма: ${total} сом</strong>`;
+      checkoutBtn.style.display = "inline-block";
+    }
+
+    cartContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-btn")) {
+        const index = e.target.dataset.index;
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+    });
+
+    checkoutBtn.addEventListener("click", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      if (cart.length === 0) return;
+
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
+      orders.push({ date: new Date().toLocaleString(), items: cart });
+      localStorage.setItem("orders", JSON.stringify(orders));
+
+      localStorage.removeItem("cart");
+      renderCart();
+      successMsg.style.display = "block";
+    });
+
+    renderCart();
+  </script>
 </body>
 </html>
