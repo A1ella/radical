@@ -297,19 +297,32 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    renderCart();
-    document.querySelector(".checkout-btn").addEventListener("click", checkout);
+  renderCart();
+  document.querySelector(".checkout-btn").addEventListener("click", checkout);
 
-    // Кнопка «Вернуться на главную»
-    const backBtn = document.createElement("button");
-    backBtn.textContent = "← Вернуться на главную";
-    backBtn.className = "checkout-btn";
-    backBtn.style.marginRight = "1rem";
-    backBtn.onclick = goHome;
+  // Создаём кнопку «Вернуться на главную»
+  const backBtn = document.createElement("button");
+  backBtn.textContent = "← Вернуться на главную";
+  backBtn.className = "checkout-btn";
+  backBtn.style.position = "absolute";
+  backBtn.style.top = "20px";
+  backBtn.style.left = "20px";
+  backBtn.style.background = "transparent";
+  backBtn.style.border = "2px solid #ff9900";
+  backBtn.style.color = "#ff9900";
+  backBtn.style.padding = "0.5rem 1rem";
+  backBtn.style.borderRadius = "8px";
+  backBtn.style.cursor = "pointer";
+  backBtn.style.transition = "0.3s ease";
+  backBtn.onmouseover = () => {
+    backBtn.style.background = "#ff9900";
+    backBtn.style.color = "#000";
+  };
+  backBtn.onmouseout = () => {
+    backBtn.style.background = "transparent";
+    backBtn.style.color = "#ff9900";
+  };
+  backBtn.onclick = goHome;
 
-    const summary = document.querySelector(".cart-summary");
-    summary.insertBefore(backBtn, summary.firstChild);
-  });
-</script>
-</body>
-</html>
+  document.body.appendChild(backBtn); // теперь он в левом верхнем углу
+});
