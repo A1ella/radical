@@ -65,7 +65,9 @@
 
   <section id="reviews" class="reviews-section">
     <h2>Отзывы клиентов</h2>
-    <div id="review-list" class="review-list"></div>
+    <div id="review-list" class="review-list">
+      <!-- Отзывы будут отображены через JS -->
+    </div>
     <form id="review-form" class="review-form">
       <input type="text" id="review-name" placeholder="Ваше имя" required />
       <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
@@ -84,6 +86,11 @@
   <footer class="footer">
     <p>© 2025 Radical. Все права защищены.</p>
   </footer>
+
+  <!-- Уведомление о добавлении в корзину -->
+  <div id="cart-toast" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#ff9800; color:#fff; padding:10px 20px; border-radius:8px; font-weight:bold; z-index:999;">
+    Товар добавлен в корзину 🛒
+  </div>
 
   <script src="script.js"></script>
 </body>
