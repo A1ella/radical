@@ -83,17 +83,17 @@
     </div>
   </section>
 
-  <section id="reviews" class="reviews-section">
-    <h2>Отзывы</h2>
-    <div class="review-form">
-      <input type="text" id="review-name" placeholder="Ваше имя" />
-      <textarea id="review-text" rows="3" placeholder="Ваш отзыв"></textarea>
-      <button id="submit-review">Оставить отзыв</button>
-    </div>
-    <div class="review-list" id="review-list">
-      <!-- Отзывы появятся здесь -->
-    </div>
-  </section>
+ <section id="reviews" class="reviews-section">
+  <h2>Отзывы</h2>
+  <form id="review-form" class="review-form">
+    <input type="text" id="review-name" placeholder="Ваше имя" required />
+    <textarea id="review-text" rows="3" placeholder="Ваш отзыв" required></textarea>
+    <button id="submit-review" type="submit">Оставить отзыв</button>
+  </form>
+  <div class="review-list" id="review-list">
+    <!-- Отзывы появятся здесь -->
+  </div>
+</section>
 
   <section id="contact" class="contact-section">
     <h2>Контакты</h2>
