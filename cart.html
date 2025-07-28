@@ -2,97 +2,77 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Корзина - Radical</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radical — Корзина</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark-theme">
-  <header>
-    <div class="container nav-container">
-      <h1 class="logo">Radical</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="cart.html" class="active">Корзина</a></li>
-          <li><a href="orders.html">Мои заказы</a></li>
-        </ul>
-      </nav>
-    </div>
+
+  <header class="main-header">
+    <div class="logo">Radical</div>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="cart.html" class="active">Корзина</a>
+      <a href="#">Мои заказы</a>
+    </nav>
   </header>
 
-  <section class="cart-section container">
-    <h2>Ваша корзина</h2>
-    <div id="cart-items" class="cart-items"></div>
-    <div id="cart-summary" class="cart-summary"></div>
-    <button id="checkout-btn" class="buy-button">Перейти к оплате</button>
-    <p id="payment-success" class="payment-success" style="display: none;">
-      ✅ Спасибо за заказ! Он будет обработан в ближайшее время.
-    </p>
+  <section class="cart-section">
+    <h2 class="section-title">Ваша корзина</h2>
+    <div class="cart-items" id="cart-items">
+      <!-- Товары из корзины появятся тут динамически -->
+    </div>
+
+    <div class="cart-summary">
+      <div class="total">Общая сумма: <span id="total-amount">0</span> сом</div>
+      <button class="checkout-btn">Перейти к оплате</button>
+    </div>
   </section>
 
   <script>
-    const cartContainer = document.getElementById("cart-items");
-    const cartSummary = document.getElementById("cart-summary");
-    const checkoutBtn = document.getElementById("checkout-btn");
-    const successMsg = document.getElementById("payment-success");
+    // Загрузка корзины из localStorage
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalAmountEl = document.getElementById('total-amount');
 
-    function renderCart() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cartContainer.innerHTML = "";
-      cartSummary.innerHTML = "";
-
-      if (cart.length === 0) {
-        cartContainer.innerHTML = "<p>Корзина пуста.</p>";
-        checkoutBtn.style.display = "none";
-        return;
-      }
-
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cartItemsContainer.innerHTML = '';
       let total = 0;
 
       cart.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `
+        const itemEl = document.createElement('div');
+        itemEl.classList.add('cart-item');
+
+        itemEl.innerHTML = `
           <img src="${item.image}" alt="${item.name}" />
-          <div>
-            <h3>${item.name}</h3>
-            <p>${item.price} сом</p>
+          <div class="cart-item-details">
+            <h4>${item.name}</h4>
+            <div class="price">${item.price} сом</div>
           </div>
-          <button class="remove-btn" data-index="${index}">✖</button>
+          <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
         `;
-        cartContainer.appendChild(div);
-        total += parseInt(item.price);
+
+        cartItemsContainer.appendChild(itemEl);
+        total += item.price;
       });
 
-      cartSummary.innerHTML = `<strong>Общая сумма: ${total} сом</strong>`;
-      checkoutBtn.style.display = "inline-block";
+      totalAmountEl.textContent = total;
     }
 
-    cartContainer.addEventListener("click", (e) => {
-      if (e.target.classList.contains("remove-btn")) {
-        const index = e.target.dataset.index;
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        renderCart();
-      }
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+
+    // При переходе к оплате (можно заменить на реальную ссылку)
+    document.querySelector('.checkout-btn').addEventListener('click', () => {
+      alert("Переход к оплате (можно привязать к Telegram, Kaspi и др.)");
     });
 
-    checkoutBtn.addEventListener("click", () => {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-      if (cart.length === 0) return;
-
-      const orders = JSON.parse(localStorage.getItem("orders")) || [];
-      orders.push({ date: new Date().toLocaleString(), items: cart });
-      localStorage.setItem("orders", JSON.stringify(orders));
-
-      localStorage.removeItem("cart");
-      renderCart();
-      successMsg.style.display = "block";
-    });
-
-    renderCart();
+    loadCart();
   </script>
+
 </body>
 </html>
