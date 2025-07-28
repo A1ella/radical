@@ -2,113 +2,119 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Radical Shop</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Подключение AOS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical — Магазин</title>
+  <style>
+    /* ВСТАВЛЮ СТИЛИ В ОТДЕЛЬНОМ БЛОКЕ */
+  </style>
 </head>
 <body class="dark-theme">
-  <header class="compact-header" data-aos="fade-down">
-    <div class="container nav-container">
-      <h1 class="logo">Radical</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#products">Товары</a></li>
-          <li><a href="#articles">Статьи</a></li>
-          <li><a href="cart.html">Корзина</a></li>
-          <li><a href="orders.html">Мои заказы</a></li>
-          <li><a href="#reviews">Отзывы</a></li>
-          <li><a href="#contact">Контакты</a></li>
-        </ul>
-        <button id="theme-toggle">🦋</button>
+
+  <header>
+    <div class="nav-container">
+      <div class="logo">🦋 Radical</div>
+      <nav class="nav-links">
+        <a href="#home">Главная</a>
+        <a href="#products">Товары</a>
+        <a href="#articles">Статьи</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contact">Контакты</a>
       </nav>
+      <button id="theme-toggle">🌙</button>
     </div>
   </header>
 
-  <section id="home" class="banner" data-aos="zoom-in">
-    <div class="banner-content animate-fade-in">
-      <h2>Добро пожаловать в <span class="accent">Radical</span></h2>
-      <p>Поиск, фильтрация, адаптивность — всё в одном месте</p>
-      <input type="text" id="search-input" placeholder="🔍 Поиск по товарам..." />
+  <section id="home" class="banner">
+    <div class="banner-content">
+      <h2>Добро пожаловать в Radical</h2>
+      <p>Стильный минимализм, качественные товары, мгновенная корзина</p>
     </div>
   </section>
 
-  <section id="slider" class="slider animate-slide-up" data-aos="fade-up">
-    <div class="slide active">🔥 Скидки до -50%</div>
-    <div class="slide">🆕 Новые поступления уже доступны</div>
-    <div class="slide">🚚 Бесплатная доставка от 2000 сом</div>
+  <!-- СЛАЙДЕР -->
+  <section class="slider">
+    <div class="slide">🔥 Новинки каждую неделю!</div>
+    <div class="slide">🎁 Скидки до 50% на товары!</div>
+    <div class="slide">🚀 Мгновенное добавление в корзину</div>
   </section>
 
-  <section id="products" class="products-section" data-aos="fade-up">
-    <h2 class="section-title">Каталог товаров</h2>
-    <div class="filters">
-      <select id="category-filter">
-        <option value="all">Все</option>
-        <option value="electronics">Электроника</option>
-        <option value="clothes">Одежда</option>
-        <option value="books">Книги</option>
-      </select>
-      <select id="sort-filter">
-        <option value="default">По умолчанию</option>
-        <option value="price-asc">Цена ↑</option>
-        <option value="price-desc">Цена ↓</option>
-      </select>
+  <!-- ТОВАРЫ -->
+  <section id="products" class="products-section">
+    <h2 class="section-title">Наши товары</h2>
+    <div class="product-list">
+      <div class="product-card">
+        <img src="assets/products/1.jpg" alt="Product 1">
+        <h3>Футболка Radical</h3>
+        <p>Минималистичный стиль</p>
+        <div class="price">700 сом</div>
+        <button class="buy-button" onclick="addToCart('Футболка Radical', 700)">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="assets/products/2.jpg" alt="Product 2">
+        <h3>Рюкзак Urban</h3>
+        <p>Идеален для города</p>
+        <div class="price">1200 сом</div>
+        <button class="buy-button" onclick="addToCart('Рюкзак Urban', 1200)">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="assets/products/3.jpg" alt="Product 3">
+        <h3>Чехол Radical</h3>
+        <p>Подходит под любой стиль</p>
+        <div class="price">500 сом</div>
+        <button class="buy-button" onclick="addToCart('Чехол Radical', 500)">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="assets/products/4.jpg" alt="Product 4">
+        <h3>Кепка Flex</h3>
+        <p>Стань заметнее</p>
+        <div class="price">650 сом</div>
+        <button class="buy-button" onclick="addToCart('Кепка Flex', 650)">Купить</button>
+      </div>
     </div>
-    <div id="product-list" class="product-list">
-      <!-- JS добавит товары -->
+    <div id="notify" class="notify" style="display:none;">Товар добавлен в корзину!</div>
+  </section>
+
+  <!-- КОРЗИНА -->
+  <section class="cart" id="cart">
+    <h2 class="section-title">🛒 Ваша корзина</h2>
+    <div id="cart-items"></div>
+    <div id="total-price" style="margin: 1rem 0; font-weight: bold;"></div>
+    <button onclick="checkout()" class="buy-button">Оплатить</button>
+  </section>
+
+  <!-- ОСТАЛЬНЫЕ РАЗДЕЛЫ (статьи, отзывы и контакты) -->
+  <section id="articles" class="articles-section">
+    <h2 class="section-title">📚 Полезные статьи</h2>
+    <div class="article-card">
+      <h3>Как выбрать стильную одежду?</h3>
+      <p>Советы от наших дизайнеров по выбору минималистичного гардероба.</p>
+    </div>
+    <div class="article-card">
+      <h3>Советы по уходу за тканями</h3>
+      <p>Сохраняйте яркость и форму вашей одежды надолго!</p>
     </div>
   </section>
 
-  <section id="articles" class="articles-section" data-aos="fade-up">
-    <h2 class="section-title">Полезные статьи</h2>
-    <div class="article-card animate-fade-in">
-      <h3>Как выбрать идеальный товар</h3>
-      <p>Профессиональные советы по выбору техники и одежды.</p>
-    </div>
-    <div class="article-card animate-fade-in">
-      <h3>10 лучших новинок месяца</h3>
-      <p>Отобранные хиты продаж и новинки июля.</p>
-    </div>
-  </section>
-
-  <section id="reviews" class="reviews-section" data-aos="fade-up">
-    <h2 class="section-title">Отзывы клиентов</h2>
-    <div id="review-list" class="animate-fade-in"></div>
-    <form id="review-form" class="review-form">
-      <input type="text" id="review-name" placeholder="Ваше имя" required />
-      <textarea id="review-text" placeholder="Ваш отзыв" required></textarea>
+  <section id="reviews" class="reviews-section">
+    <h2 class="section-title">🗣 Отзывы</h2>
+    <div id="reviews-list"></div>
+    <form class="review-form" onsubmit="submitReview(event)">
+      <input type="text" id="reviewer" placeholder="Ваше имя" required />
+      <textarea id="review-text" placeholder="Ваш отзыв..." rows="4" required></textarea>
       <button type="submit">Оставить отзыв</button>
     </form>
   </section>
 
-  <section id="contact" class="contact-section" data-aos="fade-up">
-    <h2 class="section-title">Контакты</h2>
-    <p>📞 Тел: <a href="tel:+996702126406">+996 702 126 406</a></p>
-    <p>📧 Email: radicalshop@kg</p>
-    <p>📍 Бишкек, ул. Примерная, 24</p>
-    <a href="https://t.me/essis2881" target="_blank" class="buy-button">Написать в Telegram</a>
+  <section id="contact" class="contact-section">
+    <h2 class="section-title">📞 Связаться с нами</h2>
+    <p>Тел: +996 702 126 406</p>
+    <p>Мы ответим в течение дня!</p>
   </section>
 
-  <footer class="footer" data-aos="fade-up">
-    <p>© 2025 Radical. Все права защищены.</p>
-  </footer>
+  <footer class="footer">© Radical 2025 — Все права защищены</footer>
 
-  <!-- Скрипты -->
-  <script src="theme.js"></script>
-  <script src="slider.js"></script>
-  <script src="filter.js"></script>
-  <script src="search.js"></script>
-  <script src="cart.js"></script>
-  <script src="reviews.js"></script>
-
-  <!-- Подключение AOS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init();
+    // ВСТАВЛЮ СКРИПТЫ ОТДЕЛЬНО
   </script>
 </body>
 </html>
