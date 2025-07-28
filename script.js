@@ -36,12 +36,34 @@ document.getElementById('search-input')?.addEventListener('input', e => {
   renderProducts(e.target.value);
 });
 
+// ==================== Уведомление ====================
+function showNotification(message) {
+  const note = document.createElement("div");
+  note.textContent = message;
+  note.style.position = "fixed";
+  note.style.bottom = "20px";
+  note.style.right = "20px";
+  note.style.padding = "1rem 1.5rem";
+  note.style.background = "#ff9800";
+  note.style.color = "#fff";
+  note.style.borderRadius = "8px";
+  note.style.boxShadow = "0 0 10px rgba(0,0,0,0.4)";
+  note.style.zIndex = 9999;
+  document.body.appendChild(note);
+  setTimeout(() => note.remove(), 3000);
+}
+
 // ==================== Корзина и заказы ====================
 function addToCart(name, price) {
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  cart.push({ name, price });
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ name, price, quantity: 1 });
+  }
   localStorage.setItem('cart', JSON.stringify(cart));
-  alert('Товар добавлен в корзину!');
+  showNotification('Товар добавлен в корзину!');
 }
 
 function renderCart() {
@@ -52,13 +74,26 @@ function renderCart() {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   list.innerHTML = '';
   let sum = 0;
-  cart.forEach(item => {
-    list.innerHTML += `<li>${item.name} — ${item.price.toLocaleString()} СОМ</li>`;
-    sum += item.price;
+  cart.forEach((item, index) => {
+    sum += item.price * item.quantity;
+    const li = document.createElement('li');
+    li.innerHTML = `
+      ${item.name} — ${item.price.toLocaleString()} СОМ × ${item.quantity}
+      <button onclick="removeFromCart(${index})">🗑️</button>
+    `;
+    list.appendChild(li);
   });
   total.textContent = `Итого: ${sum.toLocaleString()} СОМ`;
 }
 renderCart();
+
+function removeFromCart(index) {
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+  showNotification('Товар удалён из корзины!');
+}
 
 document.getElementById('checkout-btn')?.addEventListener('click', () => {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -67,7 +102,8 @@ document.getElementById('checkout-btn')?.addEventListener('click', () => {
   orders.push(...cart);
   localStorage.setItem('orders', JSON.stringify(orders));
   localStorage.removeItem('cart');
-  alert('Заказ оформлен!');
+  showNotification('Заказ оформлен!');
+  renderCart();
   location.reload();
 });
 
@@ -77,7 +113,7 @@ function renderOrders() {
   const orders = JSON.parse(localStorage.getItem('orders') || '[]');
   list.innerHTML = '';
   orders.forEach((item, i) => {
-    list.innerHTML += `<li>№${i + 1}: ${item.name} — ${item.price.toLocaleString()} СОМ</li>`;
+    list.innerHTML += `<li>№${i + 1}: ${item.name} — ${item.price.toLocaleString()} СОМ × ${item.quantity || 1}</li>`;
   });
 }
 renderOrders();
@@ -101,11 +137,21 @@ function renderReviews() {
   if (!container) return;
   container.innerHTML = '';
   const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
-  reviews.forEach(({ name, text }) => {
+  reviews.forEach(({ name, text }, index) => {
     const el = document.createElement('div');
     el.className = 'review-item';
-    el.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+    el.innerHTML = `
+      <strong>${name}</strong><p>${text}</p>
+      <button onclick="deleteReview(${index})">Удалить</button>
+    `;
     container.appendChild(el);
   });
+}
+
+function deleteReview(index) {
+  const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+  reviews.splice(index, 1);
+  localStorage.setItem('reviews', JSON.stringify(reviews));
+  renderReviews();
 }
 renderReviews();
