@@ -129,6 +129,17 @@
     <button class="clear-btn" onclick="clearOrders()">🗑 Удалить все заказы</button>
   </div>
 
+  <!-- === ОТЗЫВЫ === -->
+  <div class="orders-container" id="feedback-container">
+    <h3 style="color:#ff9900; text-align:center;">Отзывы о заказах</h3>
+    <form id="feedback-form" style="margin-top: 1rem; text-align:center;">
+      <textarea id="feedback-text" placeholder="Оставьте ваш отзыв..." rows="3" style="width: 100%; max-width: 700px; padding: 0.8rem; border-radius: 10px; border: none; resize: none; background: #1c1c1c; color: #fff;"></textarea>
+      <br />
+      <button type="submit" class="back-btn" style="margin-top:1rem;">➕ Добавить отзыв</button>
+    </form>
+    <div id="feedback-list" style="margin-top:2rem;"></div>
+  </div>
+
   <script>
     function formatDate(dateStr) {
       const date = new Date(dateStr);
@@ -185,6 +196,67 @@
 
         ordersContainer.appendChild(orderDiv);
       });
+
+      // ЗАГРУЗКА ОТЗЫВОВ
+      loadFeedbacks();
+    });
+
+    // === ОТЗЫВЫ ===
+    function loadFeedbacks() {
+      const list = document.getElementById("feedback-list");
+      const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+
+      if (feedbacks.length === 0) {
+        list.innerHTML = "<p style='text-align:center; color: #888;'>Отзывов пока нет.</p>";
+        return;
+      }
+
+      list.innerHTML = "";
+      feedbacks.forEach((fb, index) => {
+        const fbEl = document.createElement("div");
+        fbEl.style.cssText = `
+          background: rgba(255,255,255,0.05);
+          border-left: 4px solid #ff9900;
+          margin-bottom: 1rem;
+          padding: 1rem;
+          border-radius: 10px;
+          position: relative;
+        `;
+        fbEl.innerHTML = `
+          <div style="font-size:0.95rem;">${fb.text}</div>
+          <div style="font-size:0.8rem; color:#999; margin-top:0.4rem;">${formatDate(fb.date)}</div>
+          <button onclick="deleteFeedback(${index})" style="
+            position:absolute; top:10px; right:10px;
+            background:none; border:none; color:#ff4444; font-weight:bold;
+            cursor:pointer; font-size:1rem;
+          ">✖</button>
+        `;
+        list.appendChild(fbEl);
+      });
+    }
+
+    function deleteFeedback(index) {
+      const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+      if (index >= 0 && index < feedbacks.length) {
+        feedbacks.splice(index, 1);
+        localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+        loadFeedbacks();
+      }
+    }
+
+    document.getElementById("feedback-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const text = document.getElementById("feedback-text").value.trim();
+      if (!text) return;
+
+      const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+      feedbacks.unshift({
+        text,
+        date: new Date().toISOString()
+      });
+      localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+      document.getElementById("feedback-text").value = "";
+      loadFeedbacks();
     });
   </script>
 </body>
