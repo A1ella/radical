@@ -36,19 +36,53 @@ document.getElementById("search-input").addEventListener("input", (e) => {
   });
 });
 
-// ===== ДОБАВЛЕНИЕ ОТЗЫВА =====
-document.getElementById("submit-review").addEventListener("click", () => {
-  const name = document.getElementById("review-name").value.trim();
-  const text = document.getElementById("review-text").value.trim();
-  if (!name || !text) return;
+// ===== ОТЗЫВЫ (СОХРАНЕНИЕ, ОТОБРАЖЕНИЕ, УДАЛЕНИЕ) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const reviewName = document.getElementById("review-name");
+  const reviewText = document.getElementById("review-text");
+  const reviewList = document.getElementById("review-list");
+  const submitBtn = document.getElementById("submit-review");
 
-  const review = document.createElement("div");
-  review.className = "review-card";
-  review.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
-  document.getElementById("review-list").appendChild(review);
+  if (!reviewName || !reviewText || !reviewList || !submitBtn) return;
 
-  document.getElementById("review-name").value = "";
-  document.getElementById("review-text").value = "";
+  let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
-  showNotification("Спасибо за отзыв!");
+  function saveReviews() {
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+  }
+
+  function renderReviews() {
+    reviewList.innerHTML = "";
+    reviews.forEach((review, index) => {
+      const div = document.createElement("div");
+      div.className = "review-card";
+      div.innerHTML = `
+        <strong>${review.name}</strong>
+        <p>${review.text}</p>
+        <button onclick="deleteReview(${index})" class="delete-btn">✖</button>
+      `;
+      reviewList.appendChild(div);
+    });
+  }
+
+  window.deleteReview = function(index) {
+    reviews.splice(index, 1);
+    saveReviews();
+    renderReviews();
+  }
+
+  submitBtn.addEventListener("click", () => {
+    const name = reviewName.value.trim();
+    const text = reviewText.value.trim();
+    if (!name || !text) return;
+
+    reviews.push({ name, text });
+    saveReviews();
+    renderReviews();
+    reviewName.value = "";
+    reviewText.value = "";
+    showNotification("Спасибо за отзыв!");
+  });
+
+  renderReviews();
 });
