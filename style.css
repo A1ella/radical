@@ -151,7 +151,7 @@ header {
 }
 
 /* ==== УВЕДОМЛЕНИЕ О ДОБАВЛЕНИИ ==== */
-#cart-toast {
+.notification {
   position: fixed;
   top: 25px;
   right: 25px;
@@ -161,8 +161,75 @@ header {
   border-left: 5px solid #ff9800;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
-  z-index: 999;
+  z-index: 9999;
   display: none;
+  animation: slideIn 0.4s ease forwards;
+}
+@keyframes slideIn {
+  from { transform: translateX(150%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==== КОРЗИНА ==== */
+.cart-section {
+  padding: 3rem 1rem;
+  background: #141414;
+}
+.cart-items {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.cart-item {
+  display: flex;
+  gap: 1.2rem;
+  background: #1f1f1f;
+  padding: 1rem;
+  border-radius: 10px;
+  align-items: center;
+}
+.cart-item img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+.cart-item-details {
+  flex-grow: 1;
+}
+.cart-item-details h4 {
+  margin: 0 0 0.5rem;
+}
+.cart-item-details .price {
+  font-weight: bold;
+  color: #ff9800;
+}
+.cart-item .remove-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ==== ИТОГО И ОПЛАТА ==== */
+.cart-summary {
+  text-align: right;
+  margin-top: 2rem;
+}
+.cart-summary .checkout-btn {
+  padding: 0.8rem 2rem;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.cart-summary .checkout-btn:hover {
+  background: #e07c00;
 }
 
 /* ==== СТАТЬИ ==== */
@@ -252,6 +319,11 @@ header {
   right: 15px;
   color: red;
   cursor: pointer;
+}
+.review .delete-review:hover {
+  color: #ff4d4d;
+  transform: scale(1.1);
+  transition: 0.2s;
 }
 
 /* ==== АДАПТИВНОСТЬ ==== */
