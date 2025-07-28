@@ -2,57 +2,161 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Мои заказы | Radical</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Мои заказы — Radical</title>
   <style>
     body {
-      background: #121212;
-      color: #fff;
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      padding: 2rem;
+      background: #0f0f0f;
+      color: #fff;
     }
+
+    header {
+      padding: 1.5rem;
+      text-align: center;
+      background: linear-gradient(to right, #ff9900, #ff6600);
+      color: #000;
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .orders-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 153, 0, 0.1);
+    }
+
     .order {
-      background: #1e1e1e;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #ff9900;
       border-radius: 10px;
-      box-shadow: 0 0 12px rgba(255, 152, 0, 0.15);
+      animation: fadeInUp 0.5s ease;
+      background-color: rgba(255, 255, 255, 0.05);
     }
+
     .order h3 {
-      color: #ff9800;
-      margin-bottom: 0.5rem;
+      margin-top: 0;
+      color: #ff9900;
+      font-size: 1.2rem;
     }
+
     .order-item {
-      margin-left: 1rem;
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+      padding: 0.5rem 0;
+      border-top: 1px dashed #444;
+    }
+
+    .order-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 1rem;
+    }
+
+    .order-item-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .order-item-details h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .order-item-details .price {
+      color: #ff9900;
+      font-size: 0.9rem;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 2rem auto 0;
+      background: transparent;
+      border: 2px solid #ff9900;
+      color: #ff9900;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #ff9900;
+      color: #000;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .order-item img {
+        margin-bottom: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>📦 Мои заказы</h1>
-  <div id="orders-container"></div>
+  <header>Мои заказы</header>
+
+  <div class="orders-container" id="orders-container">
+    <!-- Заказы будут добавлены тут -->
+  </div>
+
+  <div style="text-align: center;">
+    <button class="back-btn" onclick="window.location.href='index.html'">← На главную</button>
+  </div>
 
   <script>
-    const ordersContainer = document.getElementById("orders-container");
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    document.addEventListener("DOMContentLoaded", () => {
+      const ordersContainer = document.getElementById("orders-container");
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-    if (orders.length === 0) {
-      ordersContainer.innerHTML = "<p>У вас пока нет заказов.</p>";
-    } else {
-      orders.forEach((order, i) => {
+      if (orders.length === 0) {
+        ordersContainer.innerHTML = "<p style='text-align:center;color:#ccc;'>Вы пока не оформляли заказы.</p>";
+        return;
+      }
+
+      orders.forEach((order, index) => {
         const orderDiv = document.createElement("div");
         orderDiv.className = "order";
-        orderDiv.innerHTML = `<h3>Заказ #${i + 1} — ${order.date}</h3>`;
 
-        order.items.forEach((item) => {
+        orderDiv.innerHTML = `
+          <h3>Заказ #${index + 1} — ${order.date}</h3>
+        `;
+
+        order.items.forEach(item => {
           const itemEl = document.createElement("div");
           itemEl.className = "order-item";
-          itemEl.innerHTML = `• ${item.name} — ${parseInt(item.price)} сом`;
+          itemEl.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="order-item-details">
+              <h4>${item.name}</h4>
+              <div class="price">${parseInt(item.price)} сом</div>
+            </div>
+          `;
           orderDiv.appendChild(itemEl);
         });
 
         ordersContainer.appendChild(orderDiv);
       });
-    }
+    });
   </script>
 </body>
 </html>
