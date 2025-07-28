@@ -1,12 +1,32 @@
 [
   {
-    "name": "Футболка 'Cyber Style'",
-    "price": "1200",
-    "image": "assets/products/cyber-shirt.png"
+    "id": 1,
+    "name": "Смарт-часы",
+    "price": 2990,
+    "image": "assets/products/watch.jpg"
   },
   {
-    "name": "Футболка 'Future Core'",
-    "price": "1350",
-    "image": "assets/products/shirt1.png"
+    "id": 2,
+    "name": "Наушники Bluetooth",
+    "price": 1990,
+    "image": "assets/products/headphones.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Фитнес-браслет",
+    "price": 1590,
+    "image": "assets/products/bracelet.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Портативная колонка",
+    "price": 2390,
+    "image": "assets/products/speaker.jpg"
+  },
+  {
+    "id": 5,
+    "name": "USB-хаб 4в1",
+    "price": 890,
+    "image": "assets/products/hub.jpg"
   }
 ]
