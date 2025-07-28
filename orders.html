@@ -2,40 +2,18 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Мои заказы | Radical</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мои заказы – Radical</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark-theme">
-  <header class="compact-header">
-    <div class="container nav-container">
-      <h1 class="logo">Radical</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html#home">Главная</a></li>
-          <li><a href="index.html#products">Товары</a></li>
-          <li><a href="index.html#articles">Статьи</a></li>
-          <li><a href="cart.html">Корзина</a></li>
-          <li><a href="orders.html" class="active-link">Мои заказы</a></li>
-          <li><a href="index.html#reviews">Отзывы</a></li>
-          <li><a href="index.html#contact">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header>
+    <h1>📦 Мои заказы</h1>
+    <a href="index.html">← Вернуться</a>
   </header>
-
-  <main class="orders-page">
-    <h2>📦 История заказов</h2>
-    <div id="orders-list" class="orders-list">
-      <!-- JS добавит список заказов -->
-      <p>У вас пока нет заказов.</p>
-    </div>
+  <main>
+    <ul id="orders-list"></ul>
   </main>
-
-  <footer>
-    <p>© 2025 Radical. Все права защищены.</p>
-  </footer>
-
-  <script src="orders.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
