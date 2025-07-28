@@ -1,107 +1,72 @@
 // script.js
 
-// Темы
-const themeToggle = document.getElementById("theme-toggle");
-themeToggle.addEventListener("click", () => {
+// ===== ТЕМА =====
+document.getElementById("theme-toggle").addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
   document.body.classList.toggle("light-theme");
 });
 
-// Поиск
-const searchInput = document.getElementById("search-input");
-const productList = document.getElementById("product-list");
+// ===== УВЕДОМЛЕНИЕ =====
+function showNotification(text) {
+  const note = document.createElement("div");
+  note.className = "notification";
+  note.innerText = text;
+  document.body.appendChild(note);
+  setTimeout(() => note.remove(), 2500);
+}
 
-let products = [];
+// ===== КОРЗИНА =====
+function addToCart(product) {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push(product);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showNotification(`Товар «${product.name}» добавлен в корзину!`);
+}
 
-fetch("products.json")
-  .then((res) => res.json())
-  .then((data) => {
-    products = data;
-    renderProducts(data);
-  });
+// ===== ЗАГРУЗКА ТОВАРОВ =====
+async function loadProducts() {
+  const res = await fetch("products.json");
+  const products = await res.json();
+  const list = document.getElementById("product-list");
+  list.innerHTML = "";
 
-function renderProducts(items) {
-  productList.innerHTML = "";
-  items.forEach((product) => {
-    const productCard = document.createElement("div");
-    productCard.className = "product-card";
-    productCard.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" />
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.setAttribute("data-name", product.name);
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
-      <p>${product.price} сом</p>
-      <button class="buy-btn" data-id="${product.id}">Купить</button>
+      <p class="price">${product.price} сом</p>
+      <button class="buy-btn">Купить</button>
     `;
-    productList.appendChild(productCard);
+    card.querySelector(".buy-btn").addEventListener("click", () => addToCart(product));
+    list.appendChild(card);
   });
 }
+loadProducts();
 
-searchInput.addEventListener("input", (e) => {
+// ===== ПОИСК =====
+document.getElementById("search-input").addEventListener("input", e => {
   const query = e.target.value.toLowerCase();
-  const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(query)
-  );
-  renderProducts(filtered);
-});
-
-// Корзина
-const toast = document.getElementById("cart-toast");
-
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("buy-btn")) {
-    const id = e.target.dataset.id;
-    const product = products.find((p) => p.id == id);
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    showToast();
-  }
-});
-
-function showToast() {
-  if (!toast) return;
-  toast.style.display = "block";
-  setTimeout(() => (toast.style.display = "none"), 2000);
-}
-
-// Отзывы
-const reviewForm = document.getElementById("review-form");
-const reviewList = document.getElementById("review-list");
-
-function loadReviews() {
-  const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-  reviewList.innerHTML = "";
-  reviews.forEach((rev, i) => {
-    const div = document.createElement("div");
-    div.className = "review";
-    div.innerHTML = `
-      <strong>${rev.name}</strong>
-      <p>${rev.text}</p>
-      <button data-index="${i}" class="delete-review">Удалить</button>
-    `;
-    reviewList.appendChild(div);
+  document.querySelectorAll(".product-card").forEach(card => {
+    const name = card.getAttribute("data-name").toLowerCase();
+    card.style.display = name.includes(query) ? "block" : "none";
   });
-}
+});
 
-reviewForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+// ===== ОТЗЫВЫ =====
+document.getElementById("submit-review").addEventListener("click", () => {
   const name = document.getElementById("review-name").value.trim();
   const text = document.getElementById("review-text").value.trim();
   if (!name || !text) return;
-  const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-  reviews.push({ name, text });
-  localStorage.setItem("reviews", JSON.stringify(reviews));
-  reviewForm.reset();
-  loadReviews();
-});
 
-reviewList.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete-review")) {
-    const i = e.target.dataset.index;
-    const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-    reviews.splice(i, 1);
-    localStorage.setItem("reviews", JSON.stringify(reviews));
-    loadReviews();
-  }
-});
+  const review = document.createElement("div");
+  review.className = "review-card";
+  review.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+  document.getElementById("review-list").appendChild(review);
 
-loadReviews();
+  document.getElementById("review-name").value = "";
+  document.getElementById("review-text").value = "";
+  showNotification("Спасибо за отзыв!");
+});
