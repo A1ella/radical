@@ -295,38 +295,37 @@
     alert("Спасибо за заказ! Он добавлен во вкладку 'Мои заказы'");
     window.location.href = "orders.html"; // создадим orders.html позже
   }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+    renderCart();
+    document.querySelector(".checkout-btn").addEventListener("click", checkout);
 
-  document.addEventListener("DOMContentLoaded", () => {
-  renderCart();
-  document.querySelector(".checkout-btn").addEventListener("click", checkout);
+    // Кнопка «Вернуться на главную»
+    const backBtn = document.createElement("button");
+    backBtn.textContent = "← Вернуться на главную";
+    backBtn.className = "checkout-btn";
+    backBtn.style.position = "absolute";
+    backBtn.style.top = "20px";
+    backBtn.style.left = "20px";
+    backBtn.style.background = "transparent";
+    backBtn.style.border = "2px solid #ff9900";
+    backBtn.style.color = "#ff9900";
+    backBtn.style.padding = "0.5rem 1rem";
+    backBtn.style.borderRadius = "8px";
+    backBtn.style.cursor = "pointer";
+    backBtn.style.transition = "0.3s ease";
+    backBtn.style.zIndex = "999";
 
-  const backBtn = document.createElement("button");
-backBtn.textContent = "← Вернуться на главную";
-backBtn.className = "checkout-btn";
-backBtn.style.background = "linear-gradient(135deg, #555, #333)";
-backBtn.style.border = "none";
-backBtn.style.color = "#fff";
-backBtn.style.marginRight = "auto";
-backBtn.style.marginLeft = "0";
-backBtn.style.order = "0";
-backBtn.style.fontSize = "1rem";
-backBtn.onclick = goHome;
+    backBtn.onmouseover = () => {
+      backBtn.style.background = "#ff9900";
+      backBtn.style.color = "#000";
+    };
+    backBtn.onmouseout = () => {
+      backBtn.style.background = "transparent";
+      backBtn.style.color = "#ff9900";
+    };
+    backBtn.onclick = goHome;
 
-const summary = document.querySelector(".cart-summary");
-
-// Создаём контейнер для кнопок, если его нет
-let summaryFlex = document.querySelector(".cart-summary-flex");
-if (!summaryFlex) {
-  summaryFlex = document.createElement("div");
-  summaryFlex.className = "cart-summary-flex";
-  summaryFlex.style.display = "flex";
-  summaryFlex.style.justifyContent = "space-between";
-  summaryFlex.style.alignItems = "center";
-  summaryFlex.style.gap = "1rem";
-  summaryFlex.appendChild(backBtn);
-  while (summary.firstChild) summaryFlex.appendChild(summary.firstChild);
-  summary.innerHTML = "";
-  summary.appendChild(summaryFlex);
-} else {
-  summaryFlex.insertBefore(backBtn, summaryFlex.firstChild);
-}
+    document.body.appendChild(backBtn);
+  });
+</script>
