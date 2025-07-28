@@ -236,5 +236,80 @@
 
     renderCart();
   </script>
+  <script>
+  function renderCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const container = document.getElementById("cart-items");
+    const totalContainer = document.getElementById("cart-total");
+
+    container.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const price = parseInt(item.price.toString().replace(/^0+/, '')); // убираем лишние нули
+      total += price;
+
+      const itemEl = document.createElement("div");
+      itemEl.className = "cart-item";
+      itemEl.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-item-details">
+          <h4>${item.name}</h4>
+          <div class="price">${price} сом</div>
+          <div class="quantity">x1</div>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart(${index})">Удалить</button>
+      `;
+      container.appendChild(itemEl);
+    });
+
+    totalContainer.innerText = `Общая сумма: ${total} сом`;
+  }
+
+  function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  function goHome() {
+    window.location.href = "index.html";
+  }
+
+  function checkout() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cart.length === 0) {
+      alert("Корзина пуста");
+      return;
+    }
+
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const timestamp = new Date().toLocaleString();
+
+    orders.push({ items: cart, date: timestamp });
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    localStorage.removeItem("cart");
+
+    alert("Спасибо за заказ! Он добавлен во вкладку 'Мои заказы'");
+    window.location.href = "orders.html"; // создадим orders.html позже
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderCart();
+    document.querySelector(".checkout-btn").addEventListener("click", checkout);
+
+    // Кнопка «Вернуться на главную»
+    const backBtn = document.createElement("button");
+    backBtn.textContent = "← Вернуться на главную";
+    backBtn.className = "checkout-btn";
+    backBtn.style.marginRight = "1rem";
+    backBtn.onclick = goHome;
+
+    const summary = document.querySelector(".cart-summary");
+    summary.insertBefore(backBtn, summary.firstChild);
+  });
+</script>
 </body>
 </html>
