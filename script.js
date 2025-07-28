@@ -36,34 +36,13 @@ document.getElementById('search-input')?.addEventListener('input', e => {
   renderProducts(e.target.value);
 });
 
-// ==================== Уведомление ====================
-function showNotification(message) {
-  const note = document.createElement("div");
-  note.textContent = message;
-  note.style.position = "fixed";
-  note.style.bottom = "20px";
-  note.style.right = "20px";
-  note.style.padding = "1rem 1.5rem";
-  note.style.background = "#ff9800";
-  note.style.color = "#fff";
-  note.style.borderRadius = "8px";
-  note.style.boxShadow = "0 0 10px rgba(0,0,0,0.4)";
-  note.style.zIndex = 9999;
-  document.body.appendChild(note);
-  setTimeout(() => note.remove(), 3000);
-}
-
 // ==================== Корзина и заказы ====================
 function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  const existing = cart.find(item => item.name === name);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ name, price, quantity: 1 });
-  }
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  cart.push({ name, price });
   localStorage.setItem('cart', JSON.stringify(cart));
-  showNotification('Товар добавлен в корзину!');
+  showToast('Товар добавлен в корзину!');
+  renderCart();
 }
 
 function renderCart() {
@@ -74,26 +53,28 @@ function renderCart() {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   list.innerHTML = '';
   let sum = 0;
+
   cart.forEach((item, index) => {
-    sum += item.price * item.quantity;
-    const li = document.createElement('li');
-    li.innerHTML = `
-      ${item.name} — ${item.price.toLocaleString()} СОМ × ${item.quantity}
-      <button onclick="removeFromCart(${index})">🗑️</button>
+    list.innerHTML += `
+      <li>
+        ${item.name} — ${item.price.toLocaleString()} СОМ
+        <button onclick="removeFromCart(${index})" style="float:right;">Удалить</button>
+      </li>
     `;
-    list.appendChild(li);
+    sum += item.price;
   });
+
   total.textContent = `Итого: ${sum.toLocaleString()} СОМ`;
 }
-renderCart();
 
 function removeFromCart(index) {
-  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   cart.splice(index, 1);
   localStorage.setItem('cart', JSON.stringify(cart));
   renderCart();
-  showNotification('Товар удалён из корзины!');
 }
+
+renderCart();
 
 document.getElementById('checkout-btn')?.addEventListener('click', () => {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -102,9 +83,9 @@ document.getElementById('checkout-btn')?.addEventListener('click', () => {
   orders.push(...cart);
   localStorage.setItem('orders', JSON.stringify(orders));
   localStorage.removeItem('cart');
-  showNotification('Заказ оформлен!');
+  alert('Заказ оформлен!');
   renderCart();
-  location.reload();
+  renderOrders();
 });
 
 function renderOrders() {
@@ -113,7 +94,7 @@ function renderOrders() {
   const orders = JSON.parse(localStorage.getItem('orders') || '[]');
   list.innerHTML = '';
   orders.forEach((item, i) => {
-    list.innerHTML += `<li>№${i + 1}: ${item.name} — ${item.price.toLocaleString()} СОМ × ${item.quantity || 1}</li>`;
+    list.innerHTML += `<li>№${i + 1}: ${item.name} — ${item.price.toLocaleString()} СОМ</li>`;
   });
 }
 renderOrders();
@@ -124,9 +105,9 @@ document.getElementById('review-form')?.addEventListener('submit', function (e) 
   const name = document.getElementById('review-name').value.trim();
   const text = document.getElementById('review-text').value.trim();
   if (!name || !text) return;
-  const review = { name, text };
+
   const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
-  reviews.push(review);
+  reviews.push({ name, text });
   localStorage.setItem('reviews', JSON.stringify(reviews));
   renderReviews();
   this.reset();
@@ -141,8 +122,9 @@ function renderReviews() {
     const el = document.createElement('div');
     el.className = 'review-item';
     el.innerHTML = `
-      <strong>${name}</strong><p>${text}</p>
-      <button onclick="deleteReview(${index})">Удалить</button>
+      <strong>${name}</strong>
+      <p>${text}</p>
+      <button onclick="deleteReview(${index})" style="margin-top: 0.5rem;">Удалить</button>
     `;
     container.appendChild(el);
   });
@@ -155,3 +137,26 @@ function deleteReview(index) {
   renderReviews();
 }
 renderReviews();
+
+// ==================== Уведомление ====================
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.position = 'fixed';
+  toast.style.bottom = '20px';
+  toast.style.right = '20px';
+  toast.style.background = '#333';
+  toast.style.color = '#fff';
+  toast.style.padding = '0.8rem 1.2rem';
+  toast.style.borderRadius = '6px';
+  toast.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+  toast.style.zIndex = 9999;
+  toast.style.opacity = '0';
+  toast.style.transition = 'opacity 0.3s ease';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.style.opacity = '1', 100);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
