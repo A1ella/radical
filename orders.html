@@ -128,7 +128,7 @@
       const ordersContainer = document.getElementById("orders-container");
       const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-      if (orders.length === 0) {
+      if (!Array.isArray(orders) || orders.length === 0) {
         ordersContainer.innerHTML = "<p style='text-align:center;color:#ccc;'>Вы пока не оформляли заказы.</p>";
         return;
       }
@@ -137,22 +137,29 @@
         const orderDiv = document.createElement("div");
         orderDiv.className = "order";
 
-        orderDiv.innerHTML = `
-          <h3>Заказ #${index + 1} — ${order.date}</h3>
-        `;
+        // Форматируем дату
+        const date = order.date || new Date().toLocaleDateString();
 
-        order.items.forEach(item => {
-          const itemEl = document.createElement("div");
-          itemEl.className = "order-item";
-          itemEl.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="order-item-details">
-              <h4>${item.name}</h4>
-              <div class="price">${parseInt(item.price)} сом</div>
-            </div>
-          `;
-          orderDiv.appendChild(itemEl);
-        });
+        orderDiv.innerHTML = `<h3>Заказ #${index + 1} — ${date}</h3>`;
+
+        if (!Array.isArray(order.items) || order.items.length === 0) {
+          const emptyMsg = document.createElement("p");
+          emptyMsg.textContent = "Заказ пуст.";
+          orderDiv.appendChild(emptyMsg);
+        } else {
+          order.items.forEach(item => {
+            const itemEl = document.createElement("div");
+            itemEl.className = "order-item";
+            itemEl.innerHTML = `
+              <img src="${item.image || 'assets/products/default.jpg'}" alt="${item.name || 'Товар'}">
+              <div class="order-item-details">
+                <h4>${item.name || 'Без названия'}</h4>
+                <div class="price">${item.price ? parseInt(item.price) : 0} сом</div>
+              </div>
+            `;
+            orderDiv.appendChild(itemEl);
+          });
+        }
 
         ordersContainer.appendChild(orderDiv);
       });
