@@ -2,119 +2,70 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radical — Магазин</title>
-  <style>
-    /* ВСТАВЛЮ СТИЛИ В ОТДЕЛЬНОМ БЛОКЕ */
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radical - Минимал</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body class="dark-theme">
-
   <header>
     <div class="nav-container">
-      <div class="logo">🦋 Radical</div>
-      <nav class="nav-links">
-        <a href="#home">Главная</a>
-        <a href="#products">Товары</a>
-        <a href="#articles">Статьи</a>
-        <a href="#reviews">Отзывы</a>
-        <a href="#contact">Контакты</a>
-      </nav>
-      <button id="theme-toggle">🌙</button>
+      <div class="logo">Radical</div>
+      <ul class="nav-links">
+        <li><a href="#products">Товары</a></li>
+        <li><a href="#articles">Статьи</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#cart">Корзина</a></li>
+        <li><a href="#orders">Заказы</a></li>
+      </ul>
     </div>
   </header>
 
-  <section id="home" class="banner">
-    <div class="banner-content">
-      <h2>Добро пожаловать в Radical</h2>
-      <p>Стильный минимализм, качественные товары, мгновенная корзина</p>
-    </div>
+  <section class="banner">
+    <h1>Добро пожаловать в Radical</h1>
+    <p>Минималистичный дизайн. Настоящие товары.</p>
   </section>
 
-  <!-- СЛАЙДЕР -->
-  <section class="slider">
-    <div class="slide">🔥 Новинки каждую неделю!</div>
-    <div class="slide">🎁 Скидки до 50% на товары!</div>
-    <div class="slide">🚀 Мгновенное добавление в корзину</div>
-  </section>
-
-  <!-- ТОВАРЫ -->
   <section id="products" class="products-section">
-    <h2 class="section-title">Наши товары</h2>
-    <div class="product-list">
-      <div class="product-card">
-        <img src="assets/products/1.jpg" alt="Product 1">
-        <h3>Футболка Radical</h3>
-        <p>Минималистичный стиль</p>
-        <div class="price">700 сом</div>
-        <button class="buy-button" onclick="addToCart('Футболка Radical', 700)">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="assets/products/2.jpg" alt="Product 2">
-        <h3>Рюкзак Urban</h3>
-        <p>Идеален для города</p>
-        <div class="price">1200 сом</div>
-        <button class="buy-button" onclick="addToCart('Рюкзак Urban', 1200)">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="assets/products/3.jpg" alt="Product 3">
-        <h3>Чехол Radical</h3>
-        <p>Подходит под любой стиль</p>
-        <div class="price">500 сом</div>
-        <button class="buy-button" onclick="addToCart('Чехол Radical', 500)">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="assets/products/4.jpg" alt="Product 4">
-        <h3>Кепка Flex</h3>
-        <p>Стань заметнее</p>
-        <div class="price">650 сом</div>
-        <button class="buy-button" onclick="addToCart('Кепка Flex', 650)">Купить</button>
-      </div>
-    </div>
-    <div id="notify" class="notify" style="display:none;">Товар добавлен в корзину!</div>
+    <h2 class="section-title">Товары</h2>
+    <div class="product-list" id="product-list"></div>
   </section>
 
-  <!-- КОРЗИНА -->
-  <section class="cart" id="cart">
-    <h2 class="section-title">🛒 Ваша корзина</h2>
-    <div id="cart-items"></div>
-    <div id="total-price" style="margin: 1rem 0; font-weight: bold;"></div>
-    <button onclick="checkout()" class="buy-button">Оплатить</button>
-  </section>
-
-  <!-- ОСТАЛЬНЫЕ РАЗДЕЛЫ (статьи, отзывы и контакты) -->
   <section id="articles" class="articles-section">
-    <h2 class="section-title">📚 Полезные статьи</h2>
+    <h2 class="section-title">Статьи</h2>
     <div class="article-card">
-      <h3>Как выбрать стильную одежду?</h3>
-      <p>Советы от наших дизайнеров по выбору минималистичного гардероба.</p>
+      <h3>Как выбрать лучший продукт</h3>
+      <p>Минимализм помогает сосредоточиться на главном. Мы покажем, как сделать правильный выбор.</p>
     </div>
     <div class="article-card">
-      <h3>Советы по уходу за тканями</h3>
-      <p>Сохраняйте яркость и форму вашей одежды надолго!</p>
+      <h3>Почему стоит выбрать Radical</h3>
+      <p>Лучшее качество, проверенные товары, удобная оплата — всё это мы.</p>
     </div>
   </section>
 
   <section id="reviews" class="reviews-section">
-    <h2 class="section-title">🗣 Отзывы</h2>
-    <div id="reviews-list"></div>
-    <form class="review-form" onsubmit="submitReview(event)">
-      <input type="text" id="reviewer" placeholder="Ваше имя" required />
-      <textarea id="review-text" placeholder="Ваш отзыв..." rows="4" required></textarea>
+    <h2 class="section-title">Отзывы</h2>
+    <div id="review-list"></div>
+    <form class="review-form" id="review-form">
+      <input type="text" placeholder="Ваше имя" id="review-name" required />
+      <textarea placeholder="Ваш отзыв..." id="review-text" required></textarea>
       <button type="submit">Оставить отзыв</button>
     </form>
   </section>
 
-  <section id="contact" class="contact-section">
-    <h2 class="section-title">📞 Связаться с нами</h2>
-    <p>Тел: +996 702 126 406</p>
-    <p>Мы ответим в течение дня!</p>
+  <section id="cart" class="cart">
+    <h2 class="section-title">Корзина</h2>
+    <div id="cart-items"></div>
   </section>
 
-  <footer class="footer">© Radical 2025 — Все права защищены</footer>
+  <section id="orders" class="orders">
+    <h2 class="section-title">Ваши заказы</h2>
+    <div id="order-list"></div>
+  </section>
 
-  <script>
-    // ВСТАВЛЮ СКРИПТЫ ОТДЕЛЬНО
-  </script>
+  <footer class="footer">
+    &copy; 2025 Radical. Все права защищены.
+  </footer>
+
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
