@@ -512,3 +512,77 @@ header {
   color: #ff2222;
 }
 }
+.contact-section {
+  background: #1a1a1a;
+  padding: 50px 20px;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2em;
+  color: #ff6600;
+  margin-bottom: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-text a {
+  color: #ffa94d;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-text a:hover {
+  color: #ff6600;
+}
+
+.footer {
+  background: #1a1a1a;
+  padding: 40px 20px;
+  text-align: center;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-top: 2px solid #ff6600;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.footer-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.footer-title {
+  font-size: 1.5em;
+  color: #ff6600;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(255, 102, 0, 0.3);
+}
+
+.footer a {
+  color: #ffa94d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ff6600;
+  text-decoration: underline;
+}
+
+.footer p {
+  margin: 8px 0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+/* 📱 Мобильная адаптация */
+@media (max-width: 600px) {
+  .contact-title, .footer-title {
+    font-size: 1.3em;
+  }
+  .footer p, .contact-text {
+    font-size: 0.95em;
+    padding: 0 10px;
+  }
+}
