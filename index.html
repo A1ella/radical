@@ -34,31 +34,31 @@
     <input type="text" id="search-input" placeholder="Поиск товара..." />
     <div class="product-list" id="product-list">
       <!-- Товары -->
-      <div class="product-card" data-name="Смарт-часы">
+      <div class="product-card" data-name="Смарт-часы" data-price="2990" data-img="assets/products/watch.jpg">
         <img src="assets/products/watch.jpg" alt="Смарт-часы" />
         <h3>Смарт-часы</h3>
         <p class="price">2990 сом</p>
         <button class="buy-btn">Купить</button>
       </div>
-      <div class="product-card" data-name="Наушники Bluetooth">
+      <div class="product-card" data-name="Наушники Bluetooth" data-price="1990" data-img="assets/products/headphones.jpg">
         <img src="assets/products/headphones.jpg" alt="Наушники" />
         <h3>Наушники Bluetooth</h3>
         <p class="price">1990 сом</p>
         <button class="buy-btn">Купить</button>
       </div>
-      <div class="product-card" data-name="Фитнес-браслет">
+      <div class="product-card" data-name="Фитнес-браслет" data-price="1590" data-img="assets/products/bracelet.jpg">
         <img src="assets/products/bracelet.jpg" alt="Браслет" />
         <h3>Фитнес-браслет</h3>
         <p class="price">1590 сом</p>
         <button class="buy-btn">Купить</button>
       </div>
-      <div class="product-card" data-name="Портативная колонка">
+      <div class="product-card" data-name="Портативная колонка" data-price="2390" data-img="assets/products/speaker.jpg">
         <img src="assets/products/speaker.jpg" alt="Колонка" />
         <h3>Портативная колонка</h3>
         <p class="price">2390 сом</p>
         <button class="buy-btn">Купить</button>
       </div>
-      <div class="product-card" data-name="USB-хаб 4в1">
+      <div class="product-card" data-name="USB-хаб 4в1" data-price="890" data-img="assets/products/hub.jpg">
         <img src="assets/products/hub.jpg" alt="USB-хаб" />
         <h3>USB-хаб 4в1</h3>
         <p class="price">890 сом</p>
@@ -104,7 +104,7 @@
     <p>© 2025 Radical. Все права защищены.</p>
   </footer>
 
-  <!-- ✅ Добавлено уведомление -->
+  <!-- ✅ Уведомление о добавлении товара -->
   <div id="added-notification" style="
     display: none;
     position: fixed;
@@ -118,6 +118,32 @@
     z-index: 1000;
     font-weight: bold;
   ">✔ Товар добавлен в корзину</div>
+
+  <!-- ✅ Скрипт добавления в корзину и уведомления -->
+  <script>
+    document.querySelectorAll('.buy-btn').forEach(button => {
+      button.addEventListener('click', e => {
+        const card = e.target.closest('.product-card');
+        const product = {
+          name: card.dataset.name,
+          price: card.dataset.price,
+          img: card.dataset.img
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        const notification = document.getElementById('added-notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 2000);
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
 
 </body>
 </html>
